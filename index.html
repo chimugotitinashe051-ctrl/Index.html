@@ -1,592 +1,289 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full bg-slate-50">
+<html lang="en" class="h-full bg-slate-900 text-slate-100">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CorpShare - Enterprise Internal Asset Marketplace & Redistribution Hub</title>
+    <title>PokieBoii Ads | Multi-Vendor Product Marketplace by P O K I E B O I I</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
                         brand: {
-                            50: '#f0f9ff',
-                            100: '#e0f2fe',
-                            500: '#0284c7',
-                            600: '#0369a1',
-                            700: '#0369a1',
-                            800: '#075985',
-                            900: '#0c4a6e',
+                            50: '#fff1f2',
+                            100: '#ffe4e6',
+                            500: '#f43f5e',
+                            600: '#e11d48',
+                            700: '#be123c',
+                            800: '#9f1239',
+                            900: '#881337',
+                            accent: '#f59e0b'
                         }
                     }
                 }
             }
         }
     </script>
-    <!-- FontAwesome Icons -->
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; }
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
         .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #0f172a; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #475569; }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
     </style>
 </head>
-<body class="h-full flex flex-col text-slate-800 antialiased">
+<body class="h-full flex flex-col antialiased custom-scrollbar selection:bg-rose-500 selection:text-white">
 
-    <!-- TOP SSO & GLOBAL METRICS TICKER BAR -->
-    <header class="bg-slate-900 text-slate-200 border-b border-slate-800 sticky top-0 z-30 shadow-md">
+    <!-- TOP PROMOTIONAL ANNOUNCEMENT BAR -->
+    <div class="bg-gradient-to-r from-rose-700 via-amber-600 to-rose-700 text-white text-xs py-2 px-4 text-center font-bold tracking-wide shadow-md flex items-center justify-center space-x-2">
+        <span class="bg-black/30 px-2 py-0.5 rounded-full text-[10px] uppercase font-extrabold tracking-widest text-amber-300">Limited Promo</span>
+        <span>🔥 Advertise Your Company Products FREE For 7 Days! Created by P O K I E B O I I</span>
+        <button onclick="openModal('modal-vendor-signup')" class="underline hover:text-amber-200 ml-2 font-black">Register Business Now →</button>
+    </div>
+
+    <!-- MAIN HEADER & NAVBAR -->
+    <header class="sticky top-0 z-40 bg-slate-900/90 backdrop-blur-md border-b border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <!-- Branding -->
-                <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('marketplace')">
-                    <div class="bg-gradient-to-tr from-sky-500 to-emerald-400 p-2.5 rounded-xl shadow-lg shadow-sky-500/20 text-white flex items-center justify-center">
-                        <i class="fa-solid fa-boxes-packing text-xl"></i>
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- BRANDING / LOGO -->
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="switchView('view-browse')">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-rose-500 to-amber-500 p-0.5 shadow-lg shadow-rose-500/20">
+                        <div class="w-full h-full bg-slate-900 rounded-[14px] flex items-center justify-center">
+                            <i class="fa-solid fa-bullhorn text-2xl text-rose-500"></i>
+                        </div>
                     </div>
                     <div>
-                        <span class="text-xl font-bold tracking-tight text-white">Corp<span class="text-sky-400">Share</span></span>
-                        <span class="hidden sm:inline-block ml-2 text-xs bg-slate-800 text-slate-300 font-medium px-2 py-0.5 rounded-full border border-slate-700">Internal Asset Hub</span>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-2xl font-black tracking-tight text-white">PokieBoii<span class="text-rose-500">Ads</span></span>
+                            <span class="bg-rose-500/10 text-rose-400 border border-rose-500/20 text-[10px] font-bold px-2 py-0.5 rounded-full">PRO</span>
+                        </div>
+                        <p class="text-[11px] font-semibold text-slate-400 tracking-wider uppercase">Created by <span class="text-amber-400 font-bold">P O K I E B O I I</span></p>
                     </div>
                 </div>
 
-                <!-- Live Metrics Ticker -->
-                <div class="hidden lg:flex items-center space-x-6 text-xs bg-slate-800/80 px-4 py-2 rounded-xl border border-slate-700/60">
-                    <div class="flex items-center space-x-2">
-                        <span class="p-1 rounded bg-emerald-500/10 text-emerald-400"><i class="fa-solid fa-piggy-bank"></i></span>
-                        <div>
-                            <p class="text-slate-400 text-[10px] uppercase font-semibold tracking-wider">Q3 Savings</p>
-                            <p class="font-bold text-emerald-400 text-sm" id="ticker-savings">$42,850</p>
-                        </div>
-                    </div>
-                    <div class="h-6 w-px bg-slate-700"></div>
-                    <div class="flex items-center space-x-2">
-                        <span class="p-1 rounded bg-sky-500/10 text-sky-400"><i class="fa-solid fa-arrows-rotate"></i></span>
-                        <div>
-                            <p class="text-slate-400 text-[10px] uppercase font-semibold tracking-wider">Rehomed</p>
-                            <p class="font-bold text-sky-300 text-sm" id="ticker-rehomed">314 Assets</p>
-                        </div>
-                    </div>
-                    <div class="h-6 w-px bg-slate-700"></div>
-                    <div class="flex items-center space-x-2">
-                        <span class="p-1 rounded bg-teal-500/10 text-teal-400"><i class="fa-solid fa-leaf"></i></span>
-                        <div>
-                            <p class="text-slate-400 text-[10px] uppercase font-semibold tracking-wider">CO₂ Diverted</p>
-                            <p class="font-bold text-teal-300 text-sm" id="ticker-co2">1.2 Tons</p>
-                        </div>
-                    </div>
+                <!-- DESKTOP QUICK NAV ACTION BUTTONS -->
+                <div class="hidden lg:flex items-center space-x-3">
+                    <button onclick="switchView('view-browse')" id="nav-btn-browse" class="px-4 py-2 text-xs font-bold rounded-xl text-rose-400 bg-rose-500/10 border border-rose-500/20 transition">
+                        <i class="fa-solid fa-store mr-1.5"></i> Browse Showcase
+                    </button>
+                    <button onclick="switchView('view-pricing')" id="nav-btn-pricing" class="px-4 py-2 text-xs font-bold rounded-xl text-slate-300 hover:text-white hover:bg-slate-800 transition">
+                        <i class="fa-solid fa-tags mr-1.5"></i> Pricing & Trial
+                    </button>
+                    <button onclick="switchView('view-dashboard')" id="nav-btn-dashboard" class="px-4 py-2 text-xs font-bold rounded-xl text-slate-300 hover:text-white hover:bg-slate-800 transition">
+                        <i class="fa-solid fa-chart-pie mr-1.5"></i> Vendor Portal
+                    </button>
+                    <button onclick="openModal('modal-vendor-signup')" class="bg-gradient-to-r from-rose-600 to-amber-600 hover:from-rose-500 hover:to-amber-500 text-white text-xs font-extrabold px-5 py-2.5 rounded-xl shadow-lg shadow-rose-600/25 transition transform hover:-translate-y-0.5">
+                        <i class="fa-solid fa-plus-circle mr-1.5"></i> List Your Products
+                    </button>
                 </div>
 
-                <!-- SSO Authentication Profile & Switcher -->
-                <div class="flex items-center space-x-3">
-                    <div class="text-right hidden sm:block">
-                        <div class="text-xs font-semibold text-slate-200" id="current-user-name">Alex Morgan</div>
-                        <div class="text-[11px] text-slate-400 flex items-center justify-end space-x-1">
-                            <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-                            <span id="current-user-dept">Engineering (#ENG-402)</span>
-                        </div>
-                    </div>
-                    <div class="relative group">
-                        <button class="flex items-center justify-center h-10 w-10 rounded-xl bg-slate-800 border border-slate-700 text-sky-400 font-bold hover:bg-slate-700 transition">
-                            <span id="current-user-avatar">AM</span>
-                        </button>
-                        <!-- SSO Dropdown -->
-                        <div class="absolute right-0 mt-2 w-72 bg-white rounded-xl shadow-2xl border border-slate-200 text-slate-800 py-2 hidden group-hover:block z-50">
-                            <div class="px-4 py-2 border-b border-slate-100 bg-slate-50/50">
-                                <p class="text-xs text-slate-500 uppercase font-semibold">SSO Authenticated Domain</p>
-                                <p class="text-xs font-bold text-slate-700" id="current-user-email">alex.morgan@acmecorp.com</p>
-                            </div>
-                            <div class="px-3 py-2 text-xs font-semibold text-slate-400 uppercase">Simulate Role Switch:</div>
-                            <button onclick="switchUser('alex')" class="w-full text-left px-4 py-2 text-xs hover:bg-slate-100 flex items-center justify-between">
-                                <div>
-                                    <p class="font-semibold text-slate-800">Alex Morgan</p>
-                                    <p class="text-slate-500">Engineering (#ENG-402)</p>
-                                </div>
-                                <span class="text-emerald-600 text-xs font-bold"><i class="fa-solid fa-check"></i></span>
-                            </button>
-                            <button onclick="switchUser('sarah')" class="w-full text-left px-4 py-2 text-xs hover:bg-slate-100 flex items-center justify-between">
-                                <div>
-                                    <p class="font-semibold text-slate-800">Sarah Jenkins</p>
-                                    <p class="text-slate-500">Procurement Manager (#PROC-101)</p>
-                                </div>
-                            </button>
-                            <button onclick="switchUser('david')" class="w-full text-left px-4 py-2 text-xs hover:bg-slate-100 flex items-center justify-between">
-                                <div>
-                                    <p class="font-semibold text-slate-800">David Chen</p>
-                                    <p class="text-slate-500">Marketing & Ops (#MKT-101)</p>
-                                </div>
-                            </button>
-                        </div>
-                    </div>
+                <!-- MOBILE MENU TOGGLE -->
+                <div class="lg:hidden flex items-center">
+                    <button onclick="toggleMobileMenu()" class="p-2.5 rounded-xl bg-slate-800 text-slate-300 hover:text-white">
+                        <i class="fa-solid fa-bars text-lg"></i>
+                    </button>
                 </div>
             </div>
         </div>
 
-        <!-- MAIN NAVIGATION TABS -->
-        <div class="bg-slate-900/90 border-t border-slate-800/80 px-4 sm:px-6 lg:px-8">
-            <div class="max-w-7xl mx-auto flex space-x-1 sm:space-x-6 overflow-x-auto custom-scrollbar">
-                <button onclick="switchTab('marketplace')" id="nav-marketplace" class="nav-tab active flex items-center space-x-2 py-3 px-3 text-xs sm:text-sm font-medium border-b-2 border-sky-400 text-sky-400 transition whitespace-nowrap">
-                    <i class="fa-solid fa-store"></i>
-                    <span>Browse Marketplace</span>
-                    <span class="ml-1 bg-sky-500/20 text-sky-300 text-[10px] px-1.5 py-0.5 rounded-full" id="nav-count-marketplace">18</span>
-                </button>
-
-                <button onclick="switchTab('procurement')" id="nav-procurement" class="nav-tab flex items-center space-x-2 py-3 px-3 text-xs sm:text-sm font-medium border-b-2 border-transparent text-slate-400 hover:text-slate-200 transition whitespace-nowrap">
-                    <i class="fa-solid fa-shield-halved text-amber-400"></i>
-                    <span>Procurement Gate</span>
-                    <span class="bg-amber-500/20 text-amber-300 text-[10px] font-bold px-2 py-0.5 rounded-full" id="nav-count-procurement">3 Alerts</span>
-                </button>
-
-                <button onclick="switchTab('list-asset')" id="nav-list-asset" class="nav-tab flex items-center space-x-2 py-3 px-3 text-xs sm:text-sm font-medium border-b-2 border-transparent text-slate-400 hover:text-slate-200 transition whitespace-nowrap">
-                    <i class="fa-solid fa-circle-plus text-emerald-400"></i>
-                    <span>List Surplus Asset</span>
-                </button>
-
-                <button onclick="switchTab('ledger')" id="nav-ledger" class="nav-tab flex items-center space-x-2 py-3 px-3 text-xs sm:text-sm font-medium border-b-2 border-transparent text-slate-400 hover:text-slate-200 transition whitespace-nowrap">
-                    <i class="fa-solid fa-chart-line text-indigo-400"></i>
-                    <span>Ledger & Analytics</span>
-                </button>
-
-                <button onclick="switchTab('wishlist')" id="nav-wishlist" class="nav-tab flex items-center space-x-2 py-3 px-3 text-xs sm:text-sm font-medium border-b-2 border-transparent text-slate-400 hover:text-slate-200 transition whitespace-nowrap">
-                    <i class="fa-solid fa-heart-pulse text-rose-400"></i>
-                    <span>Asset Wishlist</span>
-                </button>
-            </div>
+        <!-- MOBILE EXPANDABLE MENU -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-slate-900 border-b border-slate-800 px-4 py-4 space-y-3">
+            <button onclick="switchView('view-browse'); toggleMobileMenu()" class="w-full text-left px-4 py-2.5 text-xs font-bold text-rose-400 bg-slate-800 rounded-xl">
+                <i class="fa-solid fa-store mr-2"></i> Browse Products
+            </button>
+            <button onclick="switchView('view-dashboard'); toggleMobileMenu()" class="w-full text-left px-4 py-2.5 text-xs font-bold text-slate-300 hover:bg-slate-800 rounded-xl">
+                <i class="fa-solid fa-chart-pie mr-2"></i> Vendor Dashboard
+            </button>
+            <button onclick="switchView('view-pricing'); toggleMobileMenu()" class="w-full text-left px-4 py-2.5 text-xs font-bold text-slate-300 hover:bg-slate-800 rounded-xl">
+                <i class="fa-solid fa-tags mr-2"></i> Ad Plans & Pricing
+            </button>
+            <button onclick="openModal('modal-vendor-signup'); toggleMobileMenu()" class="w-full text-center bg-rose-600 text-white text-xs font-extrabold py-3 rounded-xl shadow-md">
+                + Register Company & List Items
+            </button>
         </div>
     </header>
 
-    <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8">
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
 
         <!-- ================================================================= -->
-        <!-- VIEW 1: BROWSE MARKETPLACE VIEW -->
+        <!-- VIEW 1: CONSUMER BROWSING & PRODUCT SHOWCASE -->
         <!-- ================================================================= -->
-        <section id="view-marketplace" class="space-y-6">
-            
-            <!-- SEARCH AND FILTER BAR HUB -->
-            <div class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
-                <div class="flex flex-col md:flex-row gap-3 items-center justify-between">
-                    <!-- Main Search Input -->
-                    <div class="relative w-full md:w-1/2">
-                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                        <input type="text" id="search-input" onkeyup="applyFilters()" placeholder="Search monitors, Herman Miller chairs, HDMI cables, lab tools..." 
-                               class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 focus:bg-white transition">
+        <section id="view-browse" class="space-y-8">
+
+            <!-- HERO BANNER -->
+            <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-slate-900 via-slate-800 to-rose-950 border border-slate-800 p-8 sm:p-12 shadow-2xl">
+                <div class="absolute -right-10 -bottom-10 w-96 h-96 bg-rose-600/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="relative z-10 max-w-2xl space-y-4">
+                    <div class="inline-flex items-center space-x-2 bg-rose-500/10 border border-rose-500/20 px-3 py-1 rounded-full text-rose-400 text-xs font-bold">
+                        <i class="fa-solid fa-certificate text-amber-400"></i>
+                        <span>Official Marketplace Platform by P O K I E B O I I</span>
                     </div>
-
-                    <!-- Quick View Switcher & Clear Filters -->
-                    <div class="flex items-center space-x-3 w-full md:w-auto justify-end">
-                        <button onclick="resetFilters()" class="text-xs text-slate-500 hover:text-slate-800 font-medium px-2 py-1 flex items-center space-x-1">
-                            <i class="fa-solid fa-rotate-left"></i>
-                            <span>Reset Filters</span>
+                    <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
+                        Direct Deals From Verified <span class="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-amber-400">Companies & Sellers</span>
+                    </h1>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        Discover top deals directly from businesses. Order instantly via <strong class="text-emerald-400">WhatsApp</strong>, <strong class="text-sky-400">Email</strong>, or <strong class="text-amber-400">Direct Phone Call</strong> with no intermediary markup!
+                    </p>
+                    <div class="pt-2 flex flex-wrap gap-3">
+                        <button onclick="openModal('modal-vendor-signup')" class="bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold px-6 py-3 rounded-xl shadow-lg shadow-rose-600/30 transition">
+                            Start 7-Day Free Company Ad Trial
                         </button>
-                        <div class="h-4 w-px bg-slate-200"></div>
-                        <div class="bg-slate-100 p-1 rounded-xl flex items-center space-x-1 border border-slate-200">
-                            <button id="view-mode-grid" onclick="setViewMode('grid')" class="px-2.5 py-1.5 text-xs font-semibold rounded-lg bg-white shadow-sm text-slate-800">
-                                <i class="fa-solid fa-grip"></i> <span class="hidden sm:inline ml-1">Grid</span>
-                            </button>
-                            <button id="view-mode-list" onclick="setViewMode('list')" class="px-2.5 py-1.5 text-xs font-semibold rounded-lg text-slate-500 hover:text-slate-800">
-                                <i class="fa-solid fa-list"></i> <span class="hidden sm:inline ml-1">List</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Category Pills & Filter Dropdowns -->
-                <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-3 pt-2 border-t border-slate-100">
-                    <div>
-                        <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">Category</label>
-                        <select id="filter-category" onchange="applyFilters()" class="w-full bg-slate-50 border border-slate-200 rounded-lg text-xs py-2 px-2.5 focus:ring-2 focus:ring-sky-500">
-                            <option value="ALL">All Categories</option>
-                            <option value="Monitors & Displays">Monitors & Displays</option>
-                            <option value="Ergonomic Chairs & Desks">Ergonomic Chairs & Desks</option>
-                            <option value="AV & Conferencing">AV & Conferencing</option>
-                            <option value="Mobile & Cables">Mobile & Cables</option>
-                            <option value="Specialized Tools">Specialized Tools</option>
-                            <option value="Stationery & Supplies">Stationery & Supplies</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">Condition</label>
-                        <select id="filter-condition" onchange="applyFilters()" class="w-full bg-slate-50 border border-slate-200 rounded-lg text-xs py-2 px-2.5 focus:ring-2 focus:ring-sky-500">
-                            <option value="ALL">All Conditions</option>
-                            <option value="Brand New">Brand New</option>
-                            <option value="Lightly Used">Lightly Used</option>
-                            <option value="Needs Cleaning">Needs Cleaning</option>
-                            <option value="Repair Needed">Repair Needed</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">Location / Floor</label>
-                        <select id="filter-location" onchange="applyFilters()" class="w-full bg-slate-50 border border-slate-200 rounded-lg text-xs py-2 px-2.5 focus:ring-2 focus:ring-sky-500">
-                            <option value="ALL">All Locations</option>
-                            <option value="Floor 2 (Tech Storage)">Floor 2 (Tech Storage)</option>
-                            <option value="Floor 4 (Storage Closet B)">Floor 4 (Storage Closet B)</option>
-                            <option value="East Campus Bay 12">East Campus Bay 12</option>
-                            <option value="Floor 7 (AV Depot)">Floor 7 (AV Depot)</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">Procurement Exemption</label>
-                        <select id="filter-gate" onchange="applyFilters()" class="w-full bg-slate-50 border border-slate-200 rounded-lg text-xs py-2 px-2.5 focus:ring-2 focus:ring-sky-500">
-                            <option value="ALL">All Listings</option>
-                            <option value="MANDATORY">Mandatory Procurement Check</option>
-                            <option value="OPTIONAL">Optional Surplus</option>
-                        </select>
-                    </div>
-
-                    <div class="col-span-2 sm:col-span-4 lg:col-span-1 flex items-end">
-                        <div class="text-xs text-slate-500 w-full text-right py-2">
-                            Showing <span id="active-item-count" class="font-bold text-slate-800">0</span> assets
-                        </div>
+                        <button onclick="scrollToProducts()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold px-6 py-3 rounded-xl border border-slate-700 transition">
+                            Explore Featured Products
+                        </button>
                     </div>
                 </div>
             </div>
 
-            <!-- ASSET CARDS CONTAINER (GRID & LIST DYNAMIC) -->
-            <div id="assets-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                <!-- Javascript will inject assets here -->
+            <!-- SEARCH BAR & CATEGORY FILTER CONTROL BAR -->
+            <div id="product-section-anchor" class="glass-card p-5 rounded-2xl shadow-xl space-y-4">
+                <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+                    <!-- Search Field -->
+                    <div class="relative w-full md:w-1/2">
+                        <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                        <input type="text" id="search-input" onkeyup="filterProducts()" placeholder="Search products, companies, models, electronics, apparel..." 
+                               class="w-full pl-11 pr-4 py-3 bg-slate-900/80 border border-slate-700 rounded-xl text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-rose-500">
+                    </div>
+
+                    <!-- Filter Controls -->
+                    <div class="flex items-center space-x-3 w-full md:w-auto justify-end">
+                        <select id="sort-select" onchange="filterProducts()" class="bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-slate-300 focus:ring-2 focus:ring-rose-500">
+                            <option value="featured">Featured / Newest</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                        </select>
+                        <button onclick="resetFilters()" class="text-xs text-slate-400 hover:text-white px-3 py-2 bg-slate-800 rounded-xl border border-slate-700 transition">
+                            <i class="fa-solid fa-arrows-rotate mr-1"></i> Reset
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Category Pills -->
+                <div class="flex items-center space-x-2 overflow-x-auto pt-2 pb-1 custom-scrollbar" id="category-pills">
+                    <!-- JS Injected Pills -->
+                </div>
+            </div>
+
+            <!-- PRODUCT SHOWCASE GRID -->
+            <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Dynamic Product Cards injected via JavaScript -->
             </div>
 
             <!-- EMPTY STATE -->
-            <div id="empty-state" class="hidden bg-white rounded-2xl border border-dashed border-slate-300 p-12 text-center space-y-3">
-                <div class="w-16 h-16 bg-slate-100 text-slate-400 rounded-full flex items-center justify-center mx-auto text-2xl">
+            <div id="no-products-state" class="hidden glass-card rounded-2xl p-12 text-center space-y-3">
+                <div class="w-16 h-16 bg-slate-800 text-rose-500 rounded-full flex items-center justify-center mx-auto text-2xl">
                     <i class="fa-solid fa-box-open"></i>
                 </div>
-                <h3 class="text-base font-bold text-slate-800">No surplus assets matched your filter</h3>
-                <p class="text-xs text-slate-500 max-w-sm mx-auto">Try clearing search terms or selecting a broader category filter to find available corporate surplus.</p>
-                <button onclick="resetFilters()" class="mt-2 bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold px-4 py-2 rounded-xl transition">Clear All Filters</button>
+                <h3 class="text-lg font-bold text-white">No items match your criteria</h3>
+                <p class="text-xs text-slate-400 max-w-md mx-auto">Try broadening your search term or select 'All Categories' to view available company products.</p>
+                <button onclick="resetFilters()" class="mt-2 bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold px-5 py-2.5 rounded-xl transition">Clear Filters</button>
             </div>
         </section>
 
         <!-- ================================================================= -->
-        <!-- VIEW 2: PROCUREMENT APPROVAL GATE -->
+        <!-- VIEW 2: VENDOR DASHBOARD & ANALYTICS -->
         <!-- ================================================================= -->
-        <section id="view-procurement" class="hidden space-y-6">
-            <!-- Header Banner -->
-            <div class="bg-gradient-to-r from-amber-600 to-orange-600 text-white rounded-2xl p-6 shadow-md relative overflow-hidden">
-                <div class="absolute right-0 top-0 opacity-10 text-9xl transform translate-x-8 -translate-y-6 font-bold">
-                    <i class="fa-solid fa-shield-halved"></i>
-                </div>
-                <div class="relative z-10 max-w-2xl space-y-2">
-                    <div class="inline-flex items-center space-x-2 bg-amber-500/30 text-amber-100 text-xs px-3 py-1 rounded-full font-medium">
-                        <i class="fa-solid fa-triangle-exclamation text-amber-300"></i>
-                        <span>Active Procurement Intercept System</span>
-                    </div>
-                    <h2 class="text-2xl font-bold">Internal Redistribution Gate</h2>
-                    <p class="text-xs sm:text-sm text-amber-100 leading-relaxed">
-                        To eliminate redundant capital expenditure, external purchase requisitions are automatically matched against unallocated internal surplus before PO approval.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Active Pending Intercept Requests -->
-            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-                <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
-                    <div>
-                        <h3 class="font-bold text-slate-800 text-sm">Pending External Purchase Requisitions</h3>
-                        <p class="text-xs text-slate-500">Cross-referenced with internal stock</p>
-                    </div>
-                    <span class="bg-amber-100 text-amber-800 text-xs font-bold px-2.5 py-1 rounded-full border border-amber-200">
-                        3 Requisitions Intercepted
-                    </span>
-                </div>
-
-                <div class="divide-y divide-slate-100" id="procurement-intercept-list">
-                    <!-- Dynamic Intercept Items JS injected -->
-                </div>
-            </div>
-        </section>
-
-        <!-- ================================================================= -->
-        <!-- VIEW 3: LIST NEW SURPLUS ASSET WORKFLOW -->
-        <!-- ================================================================= -->
-        <section id="view-list-asset" class="hidden max-w-3xl mx-auto space-y-6">
-            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-                <div class="px-6 py-5 border-b border-slate-100 bg-slate-50/50 flex items-center justify-between">
-                    <div>
-                        <h2 class="text-lg font-bold text-slate-900">List Surplus Office Asset</h2>
-                        <p class="text-xs text-slate-500">Publish unused equipment for internal adoption & budget credit</p>
-                    </div>
-                    <div class="text-xs bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full font-medium flex items-center space-x-1">
-                        <i class="fa-solid fa-leaf text-emerald-600"></i>
-                        <span>Zero Waste Initiative</span>
-                    </div>
-                </div>
-
-                <form id="form-list-asset" onsubmit="handleAssetSubmit(event)" class="p-6 space-y-5">
-                    <!-- Title & Category -->
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                        <div class="sm:col-span-2 space-y-1">
-                            <label class="block text-xs font-bold text-slate-700">Asset Title / Model <span class="text-rose-500">*</span></label>
-                            <input type="text" required id="form-title" placeholder="e.g. Dell UltraSharp 27&quot; 4K USB-C Monitor" 
-                                   class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-sky-500 focus:bg-white">
+        <section id="view-dashboard" class="hidden space-y-8">
+            
+            <!-- VENDOR HEADER & STATS -->
+            <div class="glass-card p-6 sm:p-8 rounded-3xl space-y-6">
+                <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-rose-500 to-amber-500 p-0.5 shadow-lg">
+                            <img id="vendor-dash-logo" src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=150" alt="Vendor Logo" class="w-full h-full object-cover rounded-[14px]">
                         </div>
-                        <div class="space-y-1">
-                            <label class="block text-xs font-bold text-slate-700">Category <span class="text-rose-500">*</span></label>
-                            <select id="form-category" required class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-sky-500 focus:bg-white">
-                                <option value="Monitors & Displays">Monitors & Displays</option>
-                                <option value="Ergonomic Chairs & Desks">Ergonomic Chairs & Desks</option>
-                                <option value="AV & Conferencing">AV & Conferencing</option>
-                                <option value="Mobile & Cables">Mobile & Cables</option>
-                                <option value="Specialized Tools">Specialized Tools</option>
-                                <option value="Stationery & Supplies">Stationery & Supplies</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- Condition & Image Selector Preset -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="space-y-1">
-                            <label class="block text-xs font-bold text-slate-700">Condition Assessment <span class="text-rose-500">*</span></label>
-                            <select id="form-condition" required class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-sky-500">
-                                <option value="Brand New">Brand New (Unopened Box)</option>
-                                <option value="Lightly Used" selected>Lightly Used (Fully Functional)</option>
-                                <option value="Needs Cleaning">Needs Cleaning / Minor Dust</option>
-                                <option value="Repair Needed">Repair Needed / As-Is</option>
-                            </select>
-                        </div>
-
-                        <div class="space-y-1">
-                            <label class="block text-xs font-bold text-slate-700">Asset Visual Icon Preset <span class="text-rose-500">*</span></label>
-                            <select id="form-icon" required class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-sky-500">
-                                <option value="fa-desktop">🖥️ Monitor / Screen</option>
-                                <option value="fa-chair">🪑 Ergonomic Chair / Desk</option>
-                                <option value="fa-laptop">💻 Laptop / Docking Station</option>
-                                <option value="fa-video">📹 Web Camera / AV Mic</option>
-                                <option value="fa-toolbox">🧰 Specialized Tool / Tester</option>
-                                <option value="fa-plug">🔌 Cable / Power Supply</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- Location details -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="space-y-1">
-                            <label class="block text-xs font-bold text-slate-700">Physical Location <span class="text-rose-500">*</span></label>
-                            <input type="text" required id="form-location" placeholder="e.g. Floor 4 - Storage Closet B, Bay 12" 
-                                   class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-sky-500 focus:bg-white">
-                        </div>
-                        <div class="space-y-1">
-                            <label class="block text-xs font-bold text-slate-700">Originating Cost Center Code</label>
-                            <input type="text" id="form-cost-center" readonly value="#ENG-402 (Engineering)" 
-                                   class="w-full px-3 py-2 bg-slate-100 border border-slate-200 text-slate-500 rounded-xl text-xs font-mono">
-                        </div>
-                    </div>
-
-                    <!-- Financial & Valuation Transfer -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 bg-slate-50 rounded-xl border border-slate-200">
-                        <div class="space-y-1">
-                            <label class="block text-xs font-bold text-slate-700">Est. Replacement / New Cost ($)</label>
-                            <input type="number" required id="form-est-cost" placeholder="350" min="0" 
-                                   class="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl text-xs font-semibold focus:ring-2 focus:ring-sky-500">
-                            <p class="text-[10px] text-slate-400">Calculates savings vs buying new</p>
-                        </div>
-                        <div class="space-y-1">
-                            <label class="block text-xs font-bold text-slate-700">Internal Ledger Transfer Fee ($)</label>
-                            <input type="number" required id="form-transfer-fee" value="0" min="0" 
-                                   class="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl text-xs font-semibold focus:ring-2 focus:ring-sky-500">
-                            <p class="text-[10px] text-slate-400">Set to $0 for free departmental adoption</p>
-                        </div>
-                    </div>
-
-                    <!-- Procurement Exemption Switch -->
-                    <div class="flex items-start space-x-3 p-3 bg-amber-50 rounded-xl border border-amber-200">
-                        <input type="checkbox" id="form-procurement-gate" class="mt-1 rounded text-sky-600 focus:ring-sky-500">
                         <div>
-                            <label for="form-procurement-gate" class="text-xs font-bold text-amber-900 cursor-pointer">Flag as Mandatory Procurement Exemption Gate</label>
-                            <p class="text-[11px] text-amber-700">Requires teams submitting new PO requests in this category to adopt this asset before spending external budget.</p>
+                            <div class="flex items-center space-x-2">
+                                <h2 id="vendor-dash-name" class="text-xl font-bold text-white">Apex Tech Solutions</h2>
+                                <span id="vendor-dash-trial-badge" class="bg-amber-500/20 text-amber-300 border border-amber-500/30 text-[10px] font-bold px-2.5 py-0.5 rounded-full">
+                                    7-Day Free Trial (6 Days Remaining)
+                                </span>
+                            </div>
+                            <p id="vendor-dash-dept" class="text-xs text-slate-400">Electronics & Software Division • Verified Seller</p>
                         </div>
                     </div>
 
-                    <!-- Description -->
-                    <div class="space-y-1">
-                        <label class="block text-xs font-bold text-slate-700">Asset Notes & Inspection Details</label>
-                        <textarea id="form-desc" rows="3" placeholder="Provide details regarding condition, accessories included, pickup instructions..." 
-                                  class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-sky-500 focus:bg-white"></textarea>
-                    </div>
-
-                    <!-- Submit Button -->
-                    <div class="pt-3 flex justify-end space-x-3 border-t border-slate-100">
-                        <button type="button" onclick="switchTab('marketplace')" class="px-4 py-2 border border-slate-200 text-slate-600 text-xs font-semibold rounded-xl hover:bg-slate-50">Cancel</button>
-                        <button type="submit" class="px-6 py-2 bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold rounded-xl shadow-md transition flex items-center space-x-2">
-                            <i class="fa-solid fa-cloud-arrow-up"></i>
-                            <span>Publish Asset to CorpShare</span>
+                    <div class="flex items-center space-x-3">
+                        <button onclick="openModal('modal-add-product')" class="bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow transition flex items-center space-x-2">
+                            <i class="fa-solid fa-plus"></i>
+                            <span>Add New Ad Product</span>
+                        </button>
+                        <button onclick="openModal('modal-upgrade-plan')" class="bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-extrabold text-xs px-4 py-2.5 rounded-xl shadow transition">
+                            <i class="fa-solid fa-crown mr-1"></i> Upgrade Ad Plan
                         </button>
                     </div>
-                </form>
-            </div>
-        </section>
-
-        <!-- ================================================================= -->
-        <!-- VIEW 4: DEPARTMENT BUDGET LEDGER & ANALYTICS DASHBOARD -->
-        <!-- ================================================================= -->
-        <section id="view-ledger" class="hidden space-y-6">
-            
-            <!-- Dashboard Top Cards -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
-                    <p class="text-xs text-slate-400 font-bold uppercase tracking-wider">Internal Capital Saved</p>
-                    <h3 class="text-2xl font-black text-slate-800 mt-1" id="dash-total-savings">$42,850</h3>
-                    <p class="text-[11px] text-emerald-600 font-semibold mt-1 flex items-center space-x-1">
-                        <i class="fa-solid fa-arrow-trend-up"></i>
-                        <span>+18.4% vs last quarter</span>
-                    </p>
                 </div>
 
-                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
-                    <p class="text-xs text-slate-400 font-bold uppercase tracking-wider">Internal Transfers</p>
-                    <h3 class="text-2xl font-black text-slate-800 mt-1" id="dash-transfers-count">314</h3>
-                    <p class="text-[11px] text-sky-600 font-semibold mt-1 flex items-center space-x-1">
-                        <i class="fa-solid fa-arrows-split-up-and-left"></i>
-                        <span>Zero procurement friction</span>
-                    </p>
-                </div>
-
-                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
-                    <p class="text-xs text-slate-400 font-bold uppercase tracking-wider">PO Requisitions Blocked</p>
-                    <h3 class="text-2xl font-black text-slate-800 mt-1">47</h3>
-                    <p class="text-[11px] text-amber-600 font-semibold mt-1 flex items-center space-x-1">
-                        <i class="fa-solid fa-shield"></i>
-                        <span>Redirected to surplus</span>
-                    </p>
-                </div>
-
-                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
-                    <p class="text-xs text-slate-400 font-bold uppercase tracking-wider">E-Waste Diverted</p>
-                    <h3 class="text-2xl font-black text-slate-800 mt-1">1.2 Tons</h3>
-                    <p class="text-[11px] text-teal-600 font-semibold mt-1 flex items-center space-x-1">
-                        <i class="fa-solid fa-leaf"></i>
-                        <span>ESG compliance verified</span>
-                    </p>
-                </div>
-            </div>
-
-            <!-- SVG Analytics Chart -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <!-- Main Savings Trend SVG Chart -->
-                <div class="lg:col-span-2 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <h3 class="font-bold text-slate-800 text-sm">Monthly Capital Savings ($ USD)</h3>
-                            <p class="text-xs text-slate-500">Track cumulative procurement spend avoided</p>
-                        </div>
-                        <div class="text-xs bg-slate-100 text-slate-600 font-semibold px-2.5 py-1 rounded-lg">
-                            2026 Fiscal Year
-                        </div>
+                <!-- Trial Progress Bar -->
+                <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-800 space-y-2">
+                    <div class="flex justify-between text-xs font-semibold">
+                        <span class="text-slate-300"><i class="fa-solid fa-clock text-amber-400 mr-1.5"></i> 7-Day Advertising Trial Active</span>
+                        <span class="text-amber-400">6 Days 18 Hours Left</span>
                     </div>
-
-                    <!-- SVG Bar Chart Representation -->
-                    <div class="h-56 w-full pt-4">
-                        <svg class="w-full h-full" viewBox="0 0 500 200" preserveAspectRatio="none">
-                            <!-- Background Grid -->
-                            <line x1="0" y1="40" x2="500" y2="40" stroke="#f1f5f9" stroke-dasharray="4" />
-                            <line x1="0" y1="90" x2="500" y2="90" stroke="#f1f5f9" stroke-dasharray="4" />
-                            <line x1="0" y1="140" x2="500" y2="140" stroke="#f1f5f9" stroke-dasharray="4" />
-                            
-                            <!-- SVG Gradient -->
-                            <defs>
-                                <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
-                                    <stop offset="0%" stop-color="#0284c7" stop-opacity="0.8"/>
-                                    <stop offset="100%" stop-color="#0284c7" stop-opacity="0.1"/>
-                                </linearGradient>
-                            </defs>
-
-                            <!-- Area Path -->
-                            <path d="M 30,160 Q 100,130 170,110 T 310,70 T 450,30 L 450,180 L 30,180 Z" fill="url(#chartGrad)" />
-
-                            <!-- Line Path -->
-                            <path d="M 30,160 Q 100,130 170,110 T 310,70 T 450,30" fill="none" stroke="#0284c7" stroke-width="3" />
-
-                            <!-- Data Points -->
-                            <circle cx="30" cy="160" r="4" fill="#0284c7" />
-                            <circle cx="170" cy="110" r="4" fill="#0284c7" />
-                            <circle cx="310" cy="70" r="4" fill="#0284c7" />
-                            <circle cx="450" cy="30" r="5" fill="#0284c7" stroke="#ffffff" stroke-width="2" />
-
-                            <!-- Values -->
-                            <text x="30" y="150" font-size="10" fill="#64748b" text-anchor="middle">$12k</text>
-                            <text x="170" y="100" font-size="10" fill="#64748b" text-anchor="middle">$22k</text>
-                            <text x="310" y="60" font-size="10" fill="#64748b" text-anchor="middle">$34k</text>
-                            <text x="450" y="20" font-size="10" fill="#0284c7" font-weight="bold" text-anchor="middle">$42.8k</text>
-
-                            <!-- Axis Labels -->
-                            <text x="30" y="195" font-size="10" fill="#94a3b8" text-anchor="middle">Q1 Jan</text>
-                            <text x="170" y="195" font-size="10" fill="#94a3b8" text-anchor="middle">Q2 Apr</text>
-                            <text x="310" y="195" font-size="10" fill="#94a3b8" text-anchor="middle">Q3 Jul</text>
-                            <text x="450" y="195" font-size="10" fill="#94a3b8" text-anchor="middle">Current</text>
-                        </svg>
+                    <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
+                        <div class="bg-gradient-to-r from-amber-400 to-rose-500 h-full rounded-full" style="width: 85%"></div>
                     </div>
                 </div>
 
-                <!-- Top Donating vs Adopting Departments -->
-                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
-                    <h3 class="font-bold text-slate-800 text-sm">Top Department Leaders</h3>
-                    <div class="space-y-3">
-                        <div class="p-3 bg-slate-50 rounded-xl space-y-1">
-                            <div class="flex justify-between text-xs font-semibold">
-                                <span class="text-slate-700">Facilities & Real Estate</span>
-                                <span class="text-sky-600">112 Assets Donated</span>
-                            </div>
-                            <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
-                                <div class="bg-sky-500 h-full" style="width: 85%"></div>
-                            </div>
-                        </div>
-
-                        <div class="p-3 bg-slate-50 rounded-xl space-y-1">
-                            <div class="flex justify-between text-xs font-semibold">
-                                <span class="text-slate-700">IT Infrastructure</span>
-                                <span class="text-sky-600">84 Assets Donated</span>
-                            </div>
-                            <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
-                                <div class="bg-sky-500 h-full" style="width: 65%"></div>
-                            </div>
-                        </div>
-
-                        <div class="p-3 bg-slate-50 rounded-xl space-y-1">
-                            <div class="flex justify-between text-xs font-semibold">
-                                <span class="text-slate-700">Engineering Ops</span>
-                                <span class="text-emerald-600">54 Assets Adopted</span>
-                            </div>
-                            <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
-                                <div class="bg-emerald-500 h-full" style="width: 45%"></div>
-                            </div>
-                        </div>
+                <!-- Key Metrics Cards -->
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 pt-2">
+                    <div class="bg-slate-900/60 p-4 rounded-2xl border border-slate-800">
+                        <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Active Listings</p>
+                        <h3 class="text-2xl font-black text-white mt-1" id="dash-stat-listings">3 Products</h3>
+                    </div>
+                    <div class="bg-slate-900/60 p-4 rounded-2xl border border-slate-800">
+                        <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Ad Impressions</p>
+                        <h3 class="text-2xl font-black text-rose-400 mt-1" id="dash-stat-impressions">1,420 Views</h3>
+                    </div>
+                    <div class="bg-slate-900/60 p-4 rounded-2xl border border-slate-800">
+                        <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">WhatsApp Leads</p>
+                        <h3 class="text-2xl font-black text-emerald-400 mt-1" id="dash-stat-whatsapp">38 Chats</h3>
+                    </div>
+                    <div class="bg-slate-900/60 p-4 rounded-2xl border border-slate-800">
+                        <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Calls & Emails</p>
+                        <h3 class="text-2xl font-black text-sky-400 mt-1" id="dash-stat-calls">19 Inquiries</h3>
                     </div>
                 </div>
             </div>
 
-            <!-- Inter-Departmental Ledger Transaction Log Table -->
-            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-                <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
+            <!-- MANAGED LISTINGS TABLE -->
+            <div class="glass-card rounded-3xl overflow-hidden space-y-4 p-6">
+                <div class="flex items-center justify-between border-b border-slate-800 pb-4">
                     <div>
-                        <h3 class="font-bold text-slate-800 text-sm">Inter-Departmental Budget Ledger Log</h3>
-                        <p class="text-xs text-slate-500">Automated cost center transfer auditing</p>
+                        <h3 class="font-bold text-white text-base">Your Active Product Advertisements</h3>
+                        <p class="text-xs text-slate-400">Manage listings visible to consumers enterprise-wide</p>
                     </div>
-                    <button onclick="exportLedgerCSV()" class="text-xs bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold px-3 py-1.5 rounded-lg border border-slate-200 flex items-center space-x-1 transition">
-                        <i class="fa-solid fa-download"></i>
-                        <span>Export CSV</span>
+                    <button onclick="openModal('modal-add-product')" class="text-xs text-rose-400 hover:text-rose-300 font-bold">
+                        + New Listing
                     </button>
                 </div>
 
                 <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse text-xs">
                         <thead>
-                            <tr class="bg-slate-50 text-slate-500 font-bold uppercase tracking-wider border-b border-slate-100">
-                                <th class="p-3.5">Tx ID</th>
-                                <th class="p-3.5">Asset Rehomed</th>
-                                <th class="p-3.5">Source Budget</th>
-                                <th class="p-3.5">Target Budget</th>
-                                <th class="p-3.5">Ledger Value</th>
-                                <th class="p-3.5">Date / Status</th>
+                            <tr class="text-slate-400 font-bold uppercase tracking-wider border-b border-slate-800">
+                                <th class="py-3 px-2">Product</th>
+                                <th class="py-3 px-2">Category</th>
+                                <th class="py-3 px-2">Price</th>
+                                <th class="py-3 px-2">Ad Status</th>
+                                <th class="py-3 px-2">Leads Generated</th>
+                                <th class="py-3 px-2 text-right">Actions</th>
                             </tr>
                         </thead>
-                        <tbody id="ledger-table-body" class="divide-y divide-slate-100 font-medium">
-                            <!-- Injected JS Ledger Rows -->
+                        <tbody id="vendor-products-table" class="divide-y divide-slate-800/80 font-medium text-slate-200">
+                            <!-- JS Dynamic Injection -->
                         </tbody>
                     </table>
                 </div>
@@ -594,789 +291,814 @@
         </section>
 
         <!-- ================================================================= -->
-        <!-- VIEW 5: ASSET REQUESTS & WISHLIST -->
+        <!-- VIEW 3: PRICING & SUBSCRIPTION AD PLANS -->
         <!-- ================================================================= -->
-        <section id="view-wishlist" class="hidden space-y-6">
-            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-4">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <h2 class="text-lg font-bold text-slate-900">Department Wishlist & Needed Assets</h2>
-                        <p class="text-xs text-slate-500">Post items your team needs before submitting new external POs</p>
+        <section id="view-pricing" class="hidden space-y-8">
+            <div class="text-center max-w-2xl mx-auto space-y-3">
+                <div class="inline-flex items-center space-x-2 bg-amber-500/10 border border-amber-500/20 px-3 py-1 rounded-full text-amber-400 text-xs font-bold">
+                    <i class="fa-solid fa-crown"></i>
+                    <span>Official Ad Rates by P O K I E B O I I</span>
+                </div>
+                <h2 class="text-3xl font-black text-white">Simple, Transparent Advertising Plans</h2>
+                <p class="text-xs sm:text-sm text-slate-400">Start with our 100% free 7-day trial. Upgrade anytime to boost your products to top category positions.</p>
+            </div>
+
+            <!-- PRICING CARDS GRID -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pt-4">
+                
+                <!-- PLAN 1: 7-DAY FREE TRIAL -->
+                <div class="glass-card rounded-3xl p-6 space-y-6 border border-slate-700 relative flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <span class="bg-slate-800 text-slate-300 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Starter Trial</span>
+                        <h3 class="text-xl font-bold text-white">7-Day Free Ad Trial</h3>
+                        <div class="flex items-baseline space-x-1">
+                            <span class="text-4xl font-black text-white">$0</span>
+                            <span class="text-xs text-slate-400">/ 7 Days</span>
+                        </div>
+                        <p class="text-xs text-slate-400 leading-relaxed">Perfect for testing consumer demand and generating direct WhatsApp orders.</p>
+                        
+                        <ul class="space-y-2.5 text-xs text-slate-300 pt-2">
+                            <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-400"></i><span>Up to 3 Product Ads Listed</span></li>
+                            <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-400"></i><span>Direct WhatsApp & Call Ordering</span></li>
+                            <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-400"></i><span>Basic Impression Analytics</span></li>
+                            <li class="flex items-center space-x-2 text-slate-500"><i class="fa-solid fa-xmark"></i><span>Featured Top Placement</span></li>
+                        </ul>
                     </div>
-                    <button onclick="openWishlistModal()" class="bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold px-4 py-2 rounded-xl transition flex items-center space-x-1">
-                        <i class="fa-solid fa-plus"></i>
-                        <span>Post Asset Need</span>
+                    <button onclick="openModal('modal-vendor-signup')" class="w-full bg-slate-800 hover:bg-slate-700 text-white font-bold py-3 rounded-xl text-xs transition border border-slate-700">
+                        Start 7-Day Free Trial
                     </button>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="wishlist-container">
-                    <!-- Dynamic Wishlist Cards injected here -->
+                <!-- PLAN 2: PRO BUSINESS (HIGHLIGHTED) -->
+                <div class="glass-card rounded-3xl p-6 space-y-6 border-2 border-rose-500 relative flex flex-col justify-between shadow-2xl shadow-rose-600/10">
+                    <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-rose-500 to-amber-500 text-white text-[10px] font-black uppercase tracking-widest px-4 py-1 rounded-full shadow">
+                        Most Popular For Companies
+                    </div>
+                    <div class="space-y-4 pt-2">
+                        <span class="bg-rose-500/20 text-rose-300 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Pro Advertiser</span>
+                        <h3 class="text-xl font-bold text-white">Pro Ad Pass</h3>
+                        <div class="flex items-baseline space-x-1">
+                            <span class="text-4xl font-black text-white">$19.99</span>
+                            <span class="text-xs text-slate-400">/ month</span>
+                        </div>
+                        <p class="text-xs text-slate-400 leading-relaxed">Continuous product visibility with verified vendor badge and unlimited customer leads.</p>
+                        
+                        <ul class="space-y-2.5 text-xs text-slate-300 pt-2">
+                            <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-rose-400"></i><span>Up to 25 Active Product Listings</span></li>
+                            <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-rose-400"></i><span>Verified Company Badge</span></li>
+                            <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-rose-400"></i><span>WhatsApp, Call & Email Leads</span></li>
+                            <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-rose-400"></i><span>Real-Time Lead Dashboard</span></li>
+                        </ul>
+                    </div>
+                    <button onclick="openModal('modal-upgrade-plan')" class="w-full bg-rose-600 hover:bg-rose-500 text-white font-extrabold py-3 rounded-xl text-xs shadow-lg shadow-rose-600/30 transition">
+                        Subscribe Pro ($19.99/mo)
+                    </button>
+                </div>
+
+                <!-- PLAN 3: ENTERPRISE FEATURED -->
+                <div class="glass-card rounded-3xl p-6 space-y-6 border border-amber-500/30 relative flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <span class="bg-amber-500/20 text-amber-300 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Maximum Reach</span>
+                        <h3 class="text-xl font-bold text-white">Enterprise Featured</h3>
+                        <div class="flex items-baseline space-x-1">
+                            <span class="text-4xl font-black text-white">$49.99</span>
+                            <span class="text-xs text-slate-400">/ month</span>
+                        </div>
+                        <p class="text-xs text-slate-400 leading-relaxed">Top homepage carousel placement and dedicated promotion across the PokieBoii network.</p>
+                        
+                        <ul class="space-y-2.5 text-xs text-slate-300 pt-2">
+                            <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-amber-400"></i><span>Unlimited Product Listings</span></li>
+                            <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-amber-400"></i><span>#1 Top Homepage Banner Feature</span></li>
+                            <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-amber-400"></i><span>Dedicated Account Support</span></li>
+                            <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-amber-400"></i><span>Weekly Blast Email Spotlight</span></li>
+                        </ul>
+                    </div>
+                    <button onclick="openModal('modal-upgrade-plan')" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold py-3 rounded-xl text-xs transition">
+                        Get Enterprise ($49.99/mo)
+                    </button>
                 </div>
             </div>
         </section>
     </main>
 
     <!-- ================================================================= -->
-    <!-- MODAL 1: CLAIM & BUDGET LEDGER TRANSFER MODAL -->
+    <!-- MODALS & OVERLAYS -->
     <!-- ================================================================= -->
-    <div id="modal-claim" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-lg w-full shadow-2xl border border-slate-200 overflow-hidden transform transition-all">
-            <!-- Header -->
-            <div class="bg-slate-900 text-white p-5 flex items-center justify-between">
-                <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 rounded-xl bg-sky-500/20 text-sky-400 flex items-center justify-center text-lg">
-                        <i class="fa-solid fa-boxes-packing"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-sm text-white">Internal Asset Adoption</h3>
-                        <p class="text-xs text-slate-400">Ledger Transfer Authorization</p>
-                    </div>
-                </div>
-                <button onclick="closeClaimModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
-            </div>
 
-            <div class="p-6 space-y-5">
-                <!-- Asset Brief Summary -->
-                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex items-start space-x-3">
-                    <div id="claim-modal-icon" class="text-3xl text-sky-600 p-2"></div>
-                    <div>
-                        <h4 id="claim-modal-title" class="font-bold text-slate-800 text-sm"></h4>
-                        <p id="claim-modal-location" class="text-xs text-slate-500 mt-0.5"></p>
-                        <div class="mt-2 flex items-center space-x-2">
-                            <span id="claim-modal-savings" class="text-[11px] font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded"></span>
-                            <span id="claim-modal-condition" class="text-[11px] font-medium text-slate-600 bg-slate-200 px-2 py-0.5 rounded"></span>
+    <!-- MODAL 1: QUICK VIEW & ORDER MODAL -->
+    <div id="modal-quickview" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="glass-card rounded-3xl max-w-2xl w-full p-6 space-y-6 border border-slate-700 max-h-[90vh] overflow-y-auto custom-scrollbar relative">
+            <button onclick="closeModal('modal-quickview')" class="absolute right-5 top-5 text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <!-- Image Box -->
+                <div class="rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 h-64 sm:h-full">
+                    <img id="qv-image" src="" alt="Product Image" class="w-full h-full object-cover">
+                </div>
+
+                <!-- Product Specs -->
+                <div class="space-y-4">
+                    <div class="space-y-1">
+                        <span id="qv-category" class="text-[10px] font-bold text-rose-400 uppercase tracking-wider bg-rose-500/10 px-2.5 py-1 rounded-full"></span>
+                        <h3 id="qv-title" class="text-xl font-bold text-white pt-1"></h3>
+                        <p id="qv-company" class="text-xs text-slate-400 flex items-center"><i class="fa-solid fa-building mr-1.5 text-amber-400"></i><span></span></p>
+                    </div>
+
+                    <div class="flex items-baseline space-x-2">
+                        <span id="qv-price" class="text-2xl font-black text-emerald-400"></span>
+                        <span id="qv-discount" class="text-xs text-rose-400 font-bold bg-rose-500/10 px-2 py-0.5 rounded-full"></span>
+                    </div>
+
+                    <p id="qv-desc" class="text-xs text-slate-300 leading-relaxed"></p>
+
+                    <!-- Contact Channels -->
+                    <div class="pt-3 space-y-2 border-t border-slate-800">
+                        <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Choose Order / Inquiry Channel:</p>
+                        
+                        <a id="qv-btn-whatsapp" href="#" target="_blank" onclick="trackLead('whatsapp')" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 px-4 rounded-xl text-xs flex items-center justify-center space-x-2 transition shadow">
+                            <i class="fa-brands fa-whatsapp text-lg"></i>
+                            <span>Order via WhatsApp Chat</span>
+                        </a>
+
+                        <div class="grid grid-cols-2 gap-2">
+                            <button id="qv-btn-email" onclick="openEmailForm()" class="bg-sky-600 hover:bg-sky-500 text-white font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center space-x-1.5 transition">
+                                <i class="fa-solid fa-envelope"></i>
+                                <span>Email Seller</span>
+                            </button>
+                            <a id="qv-btn-call" href="#" onclick="trackLead('call')" class="bg-amber-600 hover:bg-amber-500 text-white font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center space-x-1.5 transition">
+                                <i class="fa-solid fa-phone"></i>
+                                <span>Call Direct</span>
+                            </a>
                         </div>
                     </div>
                 </div>
-
-                <!-- Ledger Transfer Calculation Box -->
-                <div class="border border-slate-200 rounded-xl p-4 space-y-3 bg-white">
-                    <h5 class="text-xs font-bold text-slate-700 uppercase tracking-wider">Budget Code Ledger Movement</h5>
-                    <div class="flex items-center justify-between text-xs font-mono">
-                        <div class="bg-slate-100 p-2 rounded text-slate-700">
-                            <p class="text-[10px] text-slate-400 uppercase font-sans">Source Cost Center</p>
-                            <p id="claim-modal-source" class="font-bold"></p>
-                        </div>
-                        <i class="fa-solid fa-arrow-right text-slate-400"></i>
-                        <div class="bg-sky-50 p-2 rounded text-sky-800 border border-sky-200">
-                            <p class="text-[10px] text-sky-600 uppercase font-sans">Target Cost Center</p>
-                            <p id="claim-modal-target" class="font-bold"></p>
-                        </div>
-                    </div>
-                    <div class="pt-2 border-t border-slate-100 flex justify-between text-xs">
-                        <span class="text-slate-500">Internal Transfer Fee:</span>
-                        <span id="claim-modal-fee" class="font-bold text-slate-800">$0.00 (Free Transfer)</span>
-                    </div>
-                </div>
-
-                <!-- Pickup & Dispatch Option -->
-                <div class="space-y-2">
-                    <label class="block text-xs font-bold text-slate-700">Fulfillment Method</label>
-                    <div class="grid grid-cols-2 gap-3">
-                        <label class="border border-slate-200 p-3 rounded-xl flex items-center space-x-2 cursor-pointer hover:border-sky-500 transition">
-                            <input type="radio" name="dispatch-type" value="self" checked class="text-sky-600">
-                            <div class="text-xs">
-                                <p class="font-bold text-slate-800">Self Pickup</p>
-                                <p class="text-[10px] text-slate-400">Collect from Closet</p>
-                            </div>
-                        </label>
-                        <label class="border border-slate-200 p-3 rounded-xl flex items-center space-x-2 cursor-pointer hover:border-sky-500 transition">
-                            <input type="radio" name="dispatch-type" value="facilities" class="text-sky-600">
-                            <div class="text-xs">
-                                <p class="font-bold text-slate-800">Internal Dispatch</p>
-                                <p class="text-[10px] text-slate-400">Facilities Ticket ($15)</p>
-                            </div>
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Submit Button -->
-                <button onclick="confirmClaim()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg transition flex items-center justify-center space-x-2 text-xs">
-                    <i class="fa-solid fa-check-double"></i>
-                    <span>Confirm Adoption & Authorize Ledger Transfer</span>
-                </button>
             </div>
         </div>
     </div>
 
-    <!-- MODAL 2: WISHLIST REQUEST MODAL -->
-    <div id="modal-wishlist" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-md w-full shadow-2xl border border-slate-200 overflow-hidden">
-            <div class="bg-slate-900 text-white p-4 flex items-center justify-between">
-                <h3 class="font-bold text-sm">Post Needed Asset Request</h3>
-                <button onclick="closeWishlistModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+    <!-- MODAL 2: COMPANY / VENDOR SIGNUP (7-DAY TRIAL) -->
+    <div id="modal-vendor-signup" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="glass-card rounded-3xl max-w-lg w-full p-6 space-y-5 border border-slate-700 relative">
+            <button onclick="closeModal('modal-vendor-signup')" class="absolute right-5 top-5 text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+
+            <div class="space-y-1">
+                <div class="inline-flex items-center space-x-1.5 bg-amber-500/20 text-amber-300 text-[10px] font-bold px-2.5 py-0.5 rounded-full">
+                    <i class="fa-solid fa-gift"></i>
+                    <span>7-Day Free Advertising Activation</span>
+                </div>
+                <h3 class="text-lg font-bold text-white">Register Business on PokieBoii Ads</h3>
+                <p class="text-xs text-slate-400">List your products for instant consumer WhatsApp orders. No credit card required!</p>
             </div>
-            <form onsubmit="handleWishlistSubmit(event)" class="p-5 space-y-4">
+
+            <form onsubmit="handleVendorSignup(event)" class="space-y-3">
                 <div>
-                    <label class="block text-xs font-bold text-slate-700 mb-1">Asset Needed Title</label>
-                    <input type="text" id="wish-title" required placeholder="e.g. Ergonomic Standing Desk Converter" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs">
+                    <label class="block text-xs font-bold text-slate-300 mb-1">Company / Store Name *</label>
+                    <input type="text" required id="reg-company-name" placeholder="e.g. Apex Tech Solutions Ltd" class="w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-xl text-xs text-white">
                 </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-1">Business Email *</label>
+                        <input type="email" required id="reg-company-email" placeholder="sales@apextech.com" class="w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-xl text-xs text-white">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-1">WhatsApp Number *</label>
+                        <input type="tel" required id="reg-company-whatsapp" placeholder="+1234567890" class="w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-xl text-xs text-white">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-1">Direct Phone Call</label>
+                        <input type="tel" id="reg-company-phone" placeholder="+1234567890" class="w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-xl text-xs text-white">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-1">Industry Department</label>
+                        <select id="reg-company-dept" class="w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-xl text-xs text-slate-300">
+                            <option value="Electronics & Tech">Electronics & Tech</option>
+                            <option value="Fashion & Apparel">Fashion & Apparel</option>
+                            <option value="Home & Furniture">Home & Furniture</option>
+                            <option value="Automotive & Parts">Automotive & Parts</option>
+                        </select>
+                    </div>
+                </div>
+
                 <div>
-                    <label class="block text-xs font-bold text-slate-700 mb-1">Category</label>
-                    <select id="wish-category" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs">
-                        <option value="Monitors & Displays">Monitors & Displays</option>
-                        <option value="Ergonomic Chairs & Desks">Ergonomic Chairs & Desks</option>
-                        <option value="AV & Conferencing">AV & Conferencing</option>
-                        <option value="Mobile & Cables">Mobile & Cables</option>
-                    </select>
+                    <label class="block text-xs font-bold text-slate-300 mb-1">Company Logo URL (Optional)</label>
+                    <input type="url" id="reg-company-logo" placeholder="https://images.unsplash.com/photo-..." class="w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-xl text-xs text-white">
                 </div>
-                <div>
-                    <label class="block text-xs font-bold text-slate-700 mb-1">Justification / Request Notes</label>
-                    <textarea id="wish-notes" required rows="2" placeholder="Needed for new onboarding cohort..." class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs"></textarea>
-                </div>
-                <button type="submit" class="w-full bg-sky-600 hover:bg-sky-700 text-white font-bold py-2.5 rounded-xl text-xs shadow-md">
-                    Publish Request to Wishlist
+
+                <button type="submit" class="w-full bg-gradient-to-r from-rose-600 to-amber-600 hover:from-rose-500 hover:to-amber-500 text-white font-extrabold py-3 rounded-xl text-xs shadow-lg shadow-rose-600/30 transition mt-2">
+                    Activate 7-Day Free Advertising Trial
                 </button>
             </form>
         </div>
     </div>
 
-    <!-- TOAST NOTIFICATION FLOATER -->
-    <div id="toast-notification" class="fixed bottom-5 right-5 z-50 bg-slate-900 text-white px-4 py-3 rounded-2xl shadow-2xl border border-slate-800 flex items-center space-x-3 transform translate-y-24 opacity-0 transition-all duration-300">
-        <div id="toast-icon" class="text-emerald-400 text-lg">
-            <i class="fa-solid fa-circle-check"></i>
+    <!-- MODAL 3: ADD NEW PRODUCT ADVERTISEMENT -->
+    <div id="modal-add-product" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="glass-card rounded-3xl max-w-lg w-full p-6 space-y-5 border border-slate-700 relative">
+            <button onclick="closeModal('modal-add-product')" class="absolute right-5 top-5 text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+
+            <div class="space-y-1">
+                <h3 class="text-lg font-bold text-white">Post New Product Advertisement</h3>
+                <p class="text-xs text-slate-400">List item to receive WhatsApp and call inquiries directly.</p>
+            </div>
+
+            <form onsubmit="handleProductSubmit(event)" class="space-y-3">
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 mb-1">Product Title *</label>
+                    <input type="text" required id="add-prod-title" placeholder="e.g. Wireless Noise-Cancelling Headphones" class="w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-xl text-xs text-white">
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-1">Category *</label>
+                        <select id="add-prod-category" required class="w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-xl text-xs text-slate-300">
+                            <option value="Electronics">Electronics</option>
+                            <option value="Fashion">Fashion</option>
+                            <option value="Home & Living">Home & Living</option>
+                            <option value="Automotive">Automotive</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-1">Price ($ USD) *</label>
+                        <input type="number" step="0.01" required id="add-prod-price" placeholder="149.99" class="w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-xl text-xs text-white">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-1">Discount Tag (e.g. 20% OFF)</label>
+                        <input type="text" id="add-prod-discount" placeholder="15% OFF Promo" class="w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-xl text-xs text-white">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-1">Photo URL *</label>
+                        <input type="url" required id="add-prod-image" placeholder="https://images.unsplash.com/..." class="w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-xl text-xs text-white">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 mb-1">Product Description *</label>
+                    <textarea id="add-prod-desc" required rows="3" placeholder="Provide specs, warranty details, and availability..." class="w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-xl text-xs text-white"></textarea>
+                </div>
+
+                <button type="submit" class="w-full bg-rose-600 hover:bg-rose-500 text-white font-extrabold py-3 rounded-xl text-xs shadow-lg shadow-rose-600/30 transition mt-2">
+                    Publish Product Ad
+                </button>
+            </form>
         </div>
+    </div>
+
+    <!-- MODAL 4: UPGRADE PLAN PAYMENT MOCK -->
+    <div id="modal-upgrade-plan" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="glass-card rounded-3xl max-w-md w-full p-6 space-y-5 border border-slate-700 text-center relative">
+            <button onclick="closeModal('modal-upgrade-plan')" class="absolute right-5 top-5 text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+
+            <div class="w-12 h-12 bg-amber-500/20 text-amber-400 rounded-full flex items-center justify-center mx-auto text-xl">
+                <i class="fa-solid fa-crown"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white">Upgrade to Pro Ad Pass</h3>
+            <p class="text-xs text-slate-400">Lock in $19.99/month advertising rate for high-volume customer inquiries.</p>
+
+            <div class="bg-slate-900 p-4 rounded-2xl border border-slate-800 text-left space-y-2 text-xs">
+                <div class="flex justify-between">
+                    <span class="text-slate-400">Plan Rate:</span>
+                    <span class="font-bold text-white">$19.99 / mo</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-slate-400">Free Trial Remaining:</span>
+                    <span class="font-bold text-amber-400">6 Days Credit Applied</span>
+                </div>
+                <div class="pt-2 border-t border-slate-800 flex justify-between text-sm font-bold">
+                    <span class="text-white">Total Due Today:</span>
+                    <span class="text-emerald-400">$0.00 (Billed After Trial)</span>
+                </div>
+            </div>
+
+            <button onclick="processSubscriptionUpgrade()" class="w-full bg-gradient-to-r from-rose-600 to-amber-600 hover:from-rose-500 hover:to-amber-500 text-white font-extrabold py-3 rounded-xl text-xs shadow-lg transition">
+                Confirm & Lock In Subscription
+            </button>
+        </div>
+    </div>
+
+    <!-- MODAL 5: LEGAL FOOTER MODAL -->
+    <div id="modal-legal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="glass-card rounded-3xl max-w-2xl w-full p-6 space-y-4 border border-slate-700 relative max-h-[80vh] overflow-y-auto custom-scrollbar">
+            <button onclick="closeModal('modal-legal')" class="absolute right-5 top-5 text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+            <h3 class="text-lg font-bold text-white" id="legal-modal-title">Terms of Service & Copyrights</h3>
+            <p class="text-xs text-slate-300 leading-relaxed" id="legal-modal-body">
+                © 2026 PokieBoii Ads. All rights reserved. Designed and developed exclusively by P O K I E B O I I. 
+                All registered company trademarks, logos, and product assets listed on this multi-vendor advertisement platform remain the intellectual property of their respective corporate owners. PokieBoii Ads operates strictly as an ad showcase venue and direct contact bridge between sellers and buyers.
+            </p>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 bg-slate-900 border border-slate-700 text-white px-4 py-3 rounded-2xl shadow-2xl flex items-center space-x-3 transform translate-y-24 opacity-0 transition-all duration-300">
+        <div id="toast-icon" class="text-rose-500 text-lg"><i class="fa-solid fa-circle-check"></i></div>
         <div>
-            <p id="toast-message" class="text-xs font-bold text-white"></p>
+            <p id="toast-title" class="text-xs font-bold text-white"></p>
             <p id="toast-sub" class="text-[10px] text-slate-400"></p>
         </div>
     </div>
 
+    <!-- ================================================================= -->
+    <!-- LEGIT CORPORATE FOOTER -->
+    <!-- ================================================================= -->
+    <footer class="bg-slate-950 border-t border-slate-800 mt-16 text-slate-400 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                
+                <!-- Col 1: Brand -->
+                <div class="space-y-3 md:col-span-1">
+                    <div class="flex items-center space-x-2">
+                        <span class="text-lg font-black text-white">PokieBoii<span class="text-rose-500">Ads</span></span>
+                    </div>
+                    <p class="text-slate-400 text-[11px] leading-relaxed">
+                        The ultimate multi-vendor product showcase and advertising marketplace. Created by <strong class="text-amber-400">P O K I E B O I I</strong>.
+                    </p>
+                </div>
+
+                <!-- Col 2: Categories -->
+                <div class="space-y-2">
+                    <p class="font-bold text-white uppercase tracking-wider text-[11px]">Popular Categories</p>
+                    <ul class="space-y-1.5 text-[11px]">
+                        <li><a href="#" onclick="selectCategory('Electronics')" class="hover:text-rose-400">Electronics & Tech</a></li>
+                        <li><a href="#" onclick="selectCategory('Fashion')" class="hover:text-rose-400">Fashion & Apparel</a></li>
+                        <li><a href="#" onclick="selectCategory('Home & Living')" class="hover:text-rose-400">Home & Furniture</a></li>
+                        <li><a href="#" onclick="selectCategory('Automotive')" class="hover:text-rose-400">Automotive Deals</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Vendors -->
+                <div class="space-y-2">
+                    <p class="font-bold text-white uppercase tracking-wider text-[11px]">For Companies</p>
+                    <ul class="space-y-1.5 text-[11px]">
+                        <li><a href="#" onclick="openModal('modal-vendor-signup')" class="hover:text-rose-400">Start 7-Day Free Trial</a></li>
+                        <li><a href="#" onclick="switchView('view-pricing')" class="hover:text-rose-400">Ad Rates & Subscription</a></li>
+                        <li><a href="#" onclick="switchView('view-dashboard')" class="hover:text-rose-400">Vendor Analytics Portal</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Legal & Copyright -->
+                <div class="space-y-2">
+                    <p class="font-bold text-white uppercase tracking-wider text-[11px]">Legit Governance</p>
+                    <ul class="space-y-1.5 text-[11px]">
+                        <li><a href="#" onclick="openLegalModal('Terms of Service')" class="hover:text-rose-400">Terms of Service</a></li>
+                        <li><a href="#" onclick="openLegalModal('Privacy Policy')" class="hover:text-rose-400">Privacy Policy</a></li>
+                        <li><a href="#" onclick="openLegalModal('Ad Policy')" class="hover:text-rose-400">Advertising Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500 space-y-2 sm:space-y-0">
+                <p>© 2026 PokieBoii Ads by <span class="font-bold text-amber-400">P O K I E B O I I</span>. All Rights Reserved.</p>
+                <div class="flex space-x-4">
+                    <span class="hover:text-slate-300 cursor-pointer"><i class="fa-brands fa-whatsapp"></i> Instant WhatsApp Bridge</span>
+                    <span class="hover:text-slate-300 cursor-pointer"><i class="fa-solid fa-shield-halved"></i> Verified Vendors</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
     <script>
         // =====================================================================
-        // APPLICATION STATE & MOCK INITIAL DATA
+        // APPLICATION STATE & SEED DATA
         // =====================================================================
-        
-        let currentUser = {
-            id: 'alex',
-            name: 'Alex Morgan',
-            email: 'alex.morgan@acmecorp.com',
-            dept: 'Engineering',
-            costCenter: '#ENG-402',
-            avatar: 'AM'
+
+        let activeCategory = 'ALL';
+        let currentQuickViewItem = null;
+
+        let activeVendor = {
+            id: 'vendor-1',
+            companyName: 'Apex Tech Solutions',
+            email: 'sales@apextech.com',
+            whatsapp: '+1234567890',
+            phone: '+1234567890',
+            dept: 'Electronics & Tech',
+            logo: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=150',
+            trialDaysLeft: 6,
+            isTrial: true
         };
 
-        let metrics = {
-            savings: 42850,
-            rehomed: 314,
-            co2: 1.2
-        };
-
-        let viewMode = 'grid'; // 'grid' | 'list'
-        let activeClaimItem = null;
-
-        // Mock Initial Surplus Assets Data
-        let assets = [
-            {
-                id: 1,
-                title: 'Herman Miller Aeron Ergonomic Chair (Size B)',
-                category: 'Ergonomic Chairs & Desks',
-                condition: 'Lightly Used',
-                location: 'Floor 4 (Storage Closet B)',
-                costCenter: '#MKT-101 (Marketing)',
-                estCost: 1250,
-                transferFee: 0,
-                procurementGate: true,
-                icon: 'fa-chair',
-                imageBg: 'bg-emerald-50 text-emerald-600',
-                desc: 'Fully adjustable posture fit, dark mesh. Surplus after floor 4 re-configuration.',
-                datePosted: '2 days ago'
-            },
-            {
-                id: 2,
-                title: 'Dell UltraSharp 27" 4K USB-C Monitor (U2720Q)',
-                category: 'Monitors & Displays',
-                condition: 'Brand New',
-                location: 'Floor 2 (Tech Storage)',
-                costCenter: '#IT-302 (IT Ops)',
-                estCost: 550,
-                transferFee: 0,
-                procurementGate: true,
-                icon: 'fa-desktop',
-                imageBg: 'bg-sky-50 text-sky-600',
-                desc: 'Unopened box with original cables and USB-C power delivery dock.',
-                datePosted: '1 day ago'
-            },
-            {
-                id: 3,
-                title: 'Logitech Rally Bar Mini Video Conferencing System',
-                category: 'AV & Conferencing',
-                condition: 'Lightly Used',
-                location: 'Floor 7 (AV Depot)',
-                costCenter: '#FAC-901 (Facilities)',
-                estCost: 980,
-                transferFee: 50,
-                procurementGate: false,
-                icon: 'fa-video',
-                imageBg: 'bg-purple-50 text-purple-600',
-                desc: 'Includes TV mount, power supply, and remote control. Cleaned and tested by AV.',
-                datePosted: '3 hours ago'
-            },
-            {
-                id: 4,
-                title: 'Fluke 87V Industrial Multimeter Calibration Kit',
-                category: 'Specialized Tools',
-                condition: 'Needs Cleaning',
-                location: 'East Campus Bay 12',
-                costCenter: '#LAB-804 (R&D Lab)',
-                estCost: 420,
-                transferFee: 0,
-                procurementGate: false,
-                icon: 'fa-toolbox',
-                imageBg: 'bg-amber-50 text-amber-600',
-                desc: 'Calibrated last quarter. Includes hard shell casing and silicone leads.',
-                datePosted: '4 days ago'
-            },
-            {
-                id: 5,
-                title: 'Apple Thunderbolt 4 Pro Docking Stations (Pack of 3)',
-                category: 'Mobile & Cables',
-                condition: 'Brand New',
-                location: 'Floor 2 (Tech Storage)',
-                costCenter: '#IT-302 (IT Ops)',
-                estCost: 320,
-                transferFee: 0,
-                procurementGate: true,
-                icon: 'fa-plug',
-                imageBg: 'bg-indigo-50 text-indigo-600',
-                desc: 'Sealed boxes. High-speed multi-monitor docks for M-series MacBooks.',
-                datePosted: '5 hours ago'
-            },
-            {
-                id: 6,
-                title: 'Standing Desk Converter Motorized Dual Monitor',
-                category: 'Ergonomic Chairs & Desks',
-                condition: 'Repair Needed',
-                location: 'Floor 4 (Storage Closet B)',
-                costCenter: '#HR-201 (Human Resources)',
-                estCost: 280,
-                transferFee: 0,
-                procurementGate: false,
-                icon: 'fa-chair',
-                imageBg: 'bg-rose-50 text-rose-600',
-                desc: 'Motor requires reset procedure. Great project asset for engineering workspace.',
-                datePosted: '1 week ago'
-            }
+        const categories = [
+            'ALL', 'Electronics', 'Fashion', 'Home & Living', 'Automotive'
         ];
 
-        // Intercept Requisitions Data
-        let procurementIntercepts = [
+        let products = [
             {
                 id: 101,
-                requestedBy: 'Engineering Ops (#ENG-402)',
-                itemRequested: '10x 27" 4K Monitors for New Software Cohort',
-                estExternalSpend: 4500,
-                matchingSurplus: '14 Units available in IT Storage Floor 2',
-                potentialSavings: 4500,
-                urgency: 'HIGH'
+                title: 'Ultra-Slim OLED 4K Smart TV 55"',
+                category: 'Electronics',
+                price: 899.99,
+                discount: '20% OFF Promo',
+                company: 'Apex Tech Solutions',
+                email: 'sales@apextech.com',
+                whatsapp: '15550192834',
+                phone: '+15550192834',
+                image: 'https://images.unsplash.com/photo-1593784991095-a205069470b6?w=600',
+                desc: 'Experience stunning color accuracy with our newest 55-inch OLED display. Includes 3-year factory warranty and free direct delivery.',
+                isTrial: true,
+                leadsCount: 24
             },
             {
                 id: 102,
-                requestedBy: 'Design Team (#DES-501)',
-                itemRequested: '4x Ergonomic Task Chairs',
-                estExternalSpend: 2400,
-                matchingSurplus: '6 Herman Miller Chairs available in Closet 4B',
-                potentialSavings: 2400,
-                urgency: 'MEDIUM'
+                title: 'Italian Leather Ergonomic Executive Chair',
+                category: 'Home & Living',
+                price: 340.00,
+                discount: 'Free Shipping',
+                company: 'GreenLeaf Home & Living',
+                email: 'contact@greenleafhome.com',
+                whatsapp: '15550182736',
+                phone: '+15550182736',
+                image: 'https://images.unsplash.com/photo-1580481072645-022f9a6d83d0?w=600',
+                desc: 'Premium top-grain leather with adjustable lumbar support. Tested for 12+ hours of continuous daily comfort.',
+                isTrial: false,
+                leadsCount: 18
             },
             {
                 id: 103,
-                requestedBy: 'Executive Ops (#EXEC-100)',
-                itemRequested: '4K Conference Video Soundbar',
-                estExternalSpend: 1200,
-                matchingSurplus: 'Logitech Rally Bar Mini in Floor 7 AV Depot',
-                potentialSavings: 1200,
-                urgency: 'LOW'
+                title: 'Noise-Cancelling Wireless Headphones Pro',
+                category: 'Electronics',
+                price: 199.50,
+                discount: 'Hot Seller',
+                company: 'Apex Tech Solutions',
+                email: 'sales@apextech.com',
+                whatsapp: '15550192834',
+                phone: '+15550192834',
+                image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600',
+                desc: 'Active ANC technology with 40-hour battery life. Universal USB-C rapid charging capability.',
+                isTrial: true,
+                leadsCount: 42
+            },
+            {
+                id: 104,
+                title: 'Designer Chronograph Steel Wristwatch',
+                category: 'Fashion',
+                price: 145.00,
+                discount: 'Limited Edition',
+                company: 'Urban Style Hub',
+                email: 'info@urbanstylehub.com',
+                whatsapp: '15550173625',
+                phone: '+15550173625',
+                image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600',
+                desc: 'Water-resistant stainless steel casing with sapphire crystal glass. Comes with a luxury display box.',
+                isTrial: true,
+                leadsCount: 12
+            },
+            {
+                id: 105,
+                title: 'High-Performance Ceramic Brake Pad Kit',
+                category: 'Automotive',
+                price: 89.99,
+                discount: '15% OFF',
+                company: 'Velocity Autos',
+                email: 'parts@velocityautos.com',
+                whatsapp: '15550164523',
+                phone: '+15550164523',
+                image: 'https://images.unsplash.com/photo-1486006920555-c77dce18193b?w=600',
+                desc: 'Low-dust noise-free ceramic formulation for extended pad life and superior stopping power.',
+                isTrial: false,
+                leadsCount: 9
+            },
+            {
+                id: 106,
+                title: 'Smart Touch Electric Espresso Maker',
+                category: 'Home & Living',
+                price: 279.00,
+                discount: 'New Arrival',
+                company: 'GreenLeaf Home & Living',
+                email: 'contact@greenleafhome.com',
+                whatsapp: '15550182736',
+                phone: '+15550182736',
+                image: 'https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?w=600',
+                desc: '19-bar Italian pressure pump with automated milk frothing wand for cafe-quality cappuccinos at home.',
+                isTrial: false,
+                leadsCount: 31
             }
         ];
 
-        // Ledger Transactions Audit Log
-        let ledgerTransactions = [
-            { id: 'TX-8821', asset: 'Anker USB-C Multiport Docks (x5)', source: '#IT-302', target: '#ENG-402', value: '$750.00', date: '2026-09-18', status: 'Completed' },
-            { id: 'TX-8820', asset: 'Ergonomic Mesh Footrests (x2)', source: '#HR-201', target: '#FIN-301', value: '$120.00', date: '2026-09-17', status: 'Completed' },
-            { id: 'TX-8819', asset: 'Jabra Speak 710 Conference Puck', source: '#MKT-101', target: '#SALES-202', value: '$240.00', date: '2026-09-15', status: 'Completed' }
-        ];
-
-        // Wishlist Items Data
-        let wishlistItems = [
-            { id: 1, title: 'USB-C Dual 4K Docking Station', category: 'Mobile & Cables', requestedBy: 'Sarah K. (Design)', notes: 'Need for color grading laptop hookup', matchesFound: 2 },
-            { id: 2, title: 'Oscilloscope / Signal Generator', category: 'Specialized Tools', requestedBy: 'Mark T. (Hardware Lab)', notes: 'For prototyping prototype rev2', matchesFound: 0 }
-        ];
-
         // =====================================================================
-        // INITIALIZATION & TAB NAVIGATION LOGIC
+        // INITIALIZATION & VIEW NAVIGATION
         // =====================================================================
 
         window.onload = function() {
-            renderAssets();
-            renderProcurementGate();
-            renderLedgerTable();
-            renderWishlist();
-            updateTicker();
+            renderCategoryPills();
+            renderProducts();
+            renderVendorDashboard();
         };
 
-        function switchTab(tabId) {
-            // Hide all view sections
-            const views = ['marketplace', 'procurement', 'list-asset', 'ledger', 'wishlist'];
+        function switchView(viewId) {
+            const views = ['view-browse', 'view-dashboard', 'view-pricing'];
             views.forEach(v => {
-                const el = document.getElementById(`view-${v}`);
+                const el = document.getElementById(v);
                 if (el) el.classList.add('hidden');
-                
-                const navBtn = document.getElementById(`nav-${v}`);
+
+                const navBtn = document.getElementById(`nav-btn-${v.replace('view-', '')}`);
                 if (navBtn) {
-                    navBtn.classList.remove('border-sky-400', 'text-sky-400');
-                    navBtn.classList.add('border-transparent', 'text-slate-400');
+                    navBtn.classList.remove('text-rose-400', 'bg-rose-500/10', 'border', 'border-rose-500/20');
+                    navBtn.classList.add('text-slate-300');
                 }
             });
 
-            // Show selected view section
-            const activeView = document.getElementById(`view-${tabId}`);
-            if (activeView) activeView.classList.remove('hidden');
+            const active = document.getElementById(viewId);
+            if (active) active.classList.remove('hidden');
 
-            const activeNav = document.getElementById(`nav-${tabId}`);
-            if (activeNav) {
-                activeNav.classList.remove('border-transparent', 'text-slate-400');
-                activeNav.classList.add('border-sky-400', 'text-sky-400');
+            const activeBtn = document.getElementById(`nav-btn-${viewId.replace('view-', '')}`);
+            if (activeBtn) {
+                activeBtn.classList.add('text-rose-400', 'bg-rose-500/10', 'border', 'border-rose-500/20');
+                activeBtn.classList.remove('text-slate-300');
             }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function switchUser(userId) {
-            if (userId === 'alex') {
-                currentUser = { id: 'alex', name: 'Alex Morgan', email: 'alex.morgan@acmecorp.com', dept: 'Engineering', costCenter: '#ENG-402', avatar: 'AM' };
-            } else if (userId === 'sarah') {
-                currentUser = { id: 'sarah', name: 'Sarah Jenkins', email: 'sarah.jenkins@acmecorp.com', dept: 'Procurement', costCenter: '#PROC-101', avatar: 'SJ' };
-            } else if (userId === 'david') {
-                currentUser = { id: 'david', name: 'David Chen', email: 'david.chen@acmecorp.com', dept: 'Marketing', costCenter: '#MKT-101', avatar: 'DC' };
-            }
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
 
-            document.getElementById('current-user-name').innerText = currentUser.name;
-            document.getElementById('current-user-dept').innerText = `${currentUser.dept} (${currentUser.costCenter})`;
-            document.getElementById('current-user-email').innerText = currentUser.email;
-            document.getElementById('current-user-avatar').innerText = currentUser.avatar;
-            document.getElementById('form-cost-center').value = `${currentUser.costCenter} (${currentUser.dept})`;
-
-            showToast(`SSO Switched: ${currentUser.name}`, `Active Budget Code: ${currentUser.costCenter}`);
+        function scrollToProducts() {
+            document.getElementById('product-section-anchor').scrollIntoView({ behavior: 'smooth' });
         }
 
         // =====================================================================
-        // MARKETPLACE RENDER & FILTER FUNCTIONS
+        // RENDER PRODUCTS & CATEGORY FILTERS
         // =====================================================================
 
-        function renderAssets() {
-            const container = document.getElementById('assets-container');
-            const emptyState = document.getElementById('empty-state');
-            
+        function renderCategoryPills() {
+            const container = document.getElementById('category-pills');
+            container.innerHTML = categories.map(cat => `
+                <button onclick="selectCategory('${cat}')" class="px-4 py-2 text-xs font-bold rounded-xl whitespace-nowrap transition ${activeCategory === cat ? 'bg-rose-600 text-white shadow-md' : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'}">
+                    ${cat === 'ALL' ? '🌟 All Categories' : cat}
+                </button>
+            `).join('');
+        }
+
+        function selectCategory(cat) {
+            activeCategory = cat;
+            renderCategoryPills();
+            renderProducts();
+        }
+
+        function filterProducts() {
+            renderProducts();
+        }
+
+        function resetFilters() {
+            document.getElementById('search-input').value = '';
+            document.getElementById('sort-select').value = 'featured';
+            activeCategory = 'ALL';
+            renderCategoryPills();
+            renderProducts();
+        }
+
+        function renderProducts() {
+            const grid = document.getElementById('products-grid');
+            const emptyState = document.getElementById('no-products-state');
             const searchVal = document.getElementById('search-input').value.toLowerCase();
-            const catVal = document.getElementById('filter-category').value;
-            const condVal = document.getElementById('filter-condition').value;
-            const locVal = document.getElementById('filter-location').value;
-            const gateVal = document.getElementById('filter-gate').value;
+            const sortVal = document.getElementById('sort-select').value;
 
-            // Filter logic
-            const filtered = assets.filter(item => {
-                const matchSearch = item.title.toLowerCase().includes(searchVal) || item.desc.toLowerCase().includes(searchVal);
-                const matchCat = (catVal === 'ALL' || item.category === catVal);
-                const matchCond = (condVal === 'ALL' || item.condition === condVal);
-                const matchLoc = (locVal === 'ALL' || item.location === locVal);
-                const matchGate = (gateVal === 'ALL' || (gateVal === 'MANDATORY' && item.procurementGate) || (gateVal === 'OPTIONAL' && !item.procurementGate));
-                
-                return matchSearch && matchCat && matchCond && matchLoc && matchGate;
+            let filtered = products.filter(p => {
+                const matchesSearch = p.title.toLowerCase().includes(searchVal) || p.company.toLowerCase().includes(searchVal) || p.desc.toLowerCase().includes(searchVal);
+                const matchesCat = (activeCategory === 'ALL' || p.category === activeCategory);
+                return matchesSearch && matchesCat;
             });
 
-            document.getElementById('active-item-count').innerText = filtered.length;
-            document.getElementById('nav-count-marketplace').innerText = filtered.length;
+            if (sortVal === 'price-low') {
+                filtered.sort((a, b) => a.price - b.price);
+            } else if (sortVal === 'price-high') {
+                filtered.sort((a, b) => b.price - a.price);
+            }
 
             if (filtered.length === 0) {
-                container.innerHTML = '';
+                grid.innerHTML = '';
                 emptyState.classList.remove('hidden');
                 return;
             }
 
             emptyState.classList.add('hidden');
 
-            // Render List or Grid
-            if (viewMode === 'grid') {
-                container.className = "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5";
-                container.innerHTML = filtered.map(item => `
-                    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition flex flex-col justify-between overflow-hidden group">
-                        <div class="p-5 space-y-3">
-                            <!-- Category Badge & Gate Pill -->
-                            <div class="flex items-center justify-between">
-                                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 bg-slate-100 px-2.5 py-1 rounded-lg">
-                                    ${item.category}
-                                </span>
-                                ${item.procurementGate ? `
-                                    <span class="text-[10px] font-bold text-amber-700 bg-amber-100 px-2 py-0.5 rounded-full border border-amber-200 flex items-center space-x-1" title="Mandatory check before submitting external PO">
-                                        <i class="fa-solid fa-shield"></i>
-                                        <span>Gate Mandatory</span>
-                                    </span>
-                                ` : ''}
+            grid.innerHTML = filtered.map(item => {
+                // Formatted WhatsApp message link
+                const waMessage = encodeURIComponent(`Hello ${item.company}, I am interested in ordering '${item.title}' advertised on PokieBoii Ads ($${item.price.toFixed(2)}). Please give me more details.`);
+                const waUrl = `https://wa.me/${item.whatsapp.replace(/\+/g, '')}?text=${waMessage}`;
+
+                return `
+                    <div class="glass-card rounded-3xl overflow-hidden shadow-xl hover:shadow-rose-500/10 hover:border-slate-700 transition group flex flex-col justify-between">
+                        <div>
+                            <!-- Product Image Container -->
+                            <div class="relative h-52 bg-slate-900 overflow-hidden cursor-pointer" onclick="openQuickView(${item.id})">
+                                <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                
+                                <div class="absolute top-3 left-3 bg-rose-600/90 backdrop-blur-md text-white text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider">
+                                    ${item.discount || item.category}
+                                </div>
+
+                                ${item.isTrial ? `
+                                    <div class="absolute top-3 right-3 bg-amber-500/90 text-slate-950 text-[9px] font-extrabold px-2 py-0.5 rounded-full shadow">
+                                        Free Trial Ad
+                                    </div>
+                                ` : `
+                                    <div class="absolute top-3 right-3 bg-emerald-500/90 text-white text-[9px] font-extrabold px-2 py-0.5 rounded-full shadow">
+                                        <i class="fa-solid fa-check-circle"></i> Verified
+                                    </div>
+                                `}
                             </div>
 
-                            <!-- Visual Placeholder & Title -->
-                            <div class="flex items-start space-x-3.5 pt-1">
-                                <div class="w-12 h-12 rounded-xl ${item.imageBg} flex items-center justify-center text-xl flex-shrink-0 shadow-inner">
-                                    <i class="fa-solid ${item.icon}"></i>
-                                </div>
+                            <!-- Product Details -->
+                            <div class="p-5 space-y-3">
                                 <div>
-                                    <h3 class="font-bold text-slate-800 text-sm leading-snug group-hover:text-sky-600 transition">${item.title}</h3>
-                                    <p class="text-[11px] text-slate-500 mt-0.5"><i class="fa-solid fa-location-dot text-slate-400 mr-1"></i>${item.location}</p>
+                                    <p class="text-[10px] font-bold text-amber-400 uppercase tracking-wider">${item.company}</p>
+                                    <h3 class="font-bold text-white text-sm line-clamp-1 group-hover:text-rose-400 transition cursor-pointer" onclick="openQuickView(${item.id})">${item.title}</h3>
                                 </div>
-                            </div>
 
-                            <p class="text-xs text-slate-600 line-clamp-2">${item.desc}</p>
+                                <p class="text-xs text-slate-400 line-clamp-2">${item.desc}</p>
 
-                            <!-- Condition Pill & Budget Savings -->
-                            <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
-                                <div>
-                                    <p class="text-[10px] text-slate-400 font-bold uppercase">Condition</p>
-                                    <span class="font-semibold text-slate-700">${item.condition}</span>
-                                </div>
-                                <div class="text-right">
-                                    <p class="text-[10px] text-slate-400 font-bold uppercase">Dept Capital Saved</p>
-                                    <span class="font-bold text-emerald-600">Saves $${item.estCost}</span>
+                                <div class="flex items-baseline space-x-2 pt-1">
+                                    <span class="text-xl font-black text-emerald-400">$${item.price.toFixed(2)}</span>
+                                    <span class="text-[10px] text-slate-500">Direct Factory Price</span>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Footer Action Bar -->
-                        <div class="bg-slate-50 px-5 py-3 border-t border-slate-100 flex items-center justify-between">
-                            <span class="text-[11px] text-slate-400 font-mono">${item.costCenter.split(' ')[0]}</span>
-                            <button onclick="openClaimModal(${item.id})" class="bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold px-3.5 py-1.5 rounded-xl shadow transition flex items-center space-x-1.5">
-                                <i class="fa-solid fa-hand-holding-hand"></i>
-                                <span>Claim Asset</span>
-                            </button>
+                        <!-- Direct Order / Inquiry Contact Bar -->
+                        <div class="p-4 bg-slate-900/80 border-t border-slate-800/80 space-y-2">
+                            <a href="${waUrl}" target="_blank" onclick="trackLead('whatsapp', ${item.id})" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center space-x-2 transition shadow">
+                                <i class="fa-brands fa-whatsapp text-base"></i>
+                                <span>Order via WhatsApp</span>
+                            </a>
+
+                            <div class="grid grid-cols-2 gap-2">
+                                <button onclick="openQuickView(${item.id})" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-bold py-2 rounded-xl transition">
+                                    <i class="fa-solid fa-eye mr-1"></i> Quick View
+                                </button>
+                                <a href="tel:${item.phone}" onclick="trackLead('call', ${item.id})" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-bold py-2 rounded-xl text-center transition">
+                                    <i class="fa-solid fa-phone mr-1"></i> Direct Call
+                                </a>
+                            </div>
                         </div>
                     </div>
-                `).join('');
-            } else {
-                // LIST VIEW RENDER
-                container.className = "space-y-3";
-                container.innerHTML = filtered.map(item => `
-                    <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm hover:shadow-md transition flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                        <div class="flex items-center space-x-4">
-                            <div class="w-12 h-12 rounded-xl ${item.imageBg} flex items-center justify-center text-xl flex-shrink-0">
-                                <i class="fa-solid ${item.icon}"></i>
-                            </div>
-                            <div>
-                                <div class="flex items-center space-x-2">
-                                    <h3 class="font-bold text-slate-800 text-sm">${item.title}</h3>
-                                    ${item.procurementGate ? `<span class="bg-amber-100 text-amber-800 text-[9px] font-bold px-1.5 py-0.5 rounded">Gate</span>` : ''}
-                                </div>
-                                <p class="text-xs text-slate-500">${item.category} • <i class="fa-solid fa-location-dot text-slate-400"></i> ${item.location}</p>
-                            </div>
-                        </div>
+                `;
+            }).join('');
+        }
 
-                        <div class="flex items-center space-x-6 w-full sm:w-auto justify-between sm:justify-end">
-                            <div class="text-right">
-                                <p class="text-xs font-bold text-emerald-600">Saves $${item.estCost}</p>
-                                <p class="text-[10px] text-slate-400">${item.condition}</p>
-                            </div>
-                            <button onclick="openClaimModal(${item.id})" class="bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold px-4 py-2 rounded-xl transition">
-                                Claim Asset
-                            </button>
-                        </div>
-                    </div>
-                `).join('');
+        // =====================================================================
+        // QUICK VIEW & CONTACT MODALS
+        // =====================================================================
+
+        function openQuickView(id) {
+            currentQuickViewItem = products.find(p => p.id === id);
+            if (!currentQuickViewItem) return;
+
+            document.getElementById('qv-title').innerText = currentQuickViewItem.title;
+            document.getElementById('qv-category').innerText = currentQuickViewItem.category;
+            document.getElementById('qv-company').querySelector('span').innerText = currentQuickViewItem.company;
+            document.getElementById('qv-price').innerText = `$${currentQuickViewItem.price.toFixed(2)}`;
+            document.getElementById('qv-discount').innerText = currentQuickViewItem.discount || 'Standard Rate';
+            document.getElementById('qv-desc').innerText = currentQuickViewItem.desc;
+            document.getElementById('qv-image').src = currentQuickViewItem.image;
+
+            const waMessage = encodeURIComponent(`Hello ${currentQuickViewItem.company}, I am interested in ordering '${currentQuickViewItem.title}' advertised on PokieBoii Ads ($${currentQuickViewItem.price.toFixed(2)}).`);
+            document.getElementById('qv-btn-whatsapp').href = `https://wa.me/${currentQuickViewItem.whatsapp.replace(/\+/g, '')}?text=${waMessage}`;
+            document.getElementById('qv-btn-call').href = `tel:${currentQuickViewItem.phone}`;
+
+            openModal('modal-quickview');
+        }
+
+        function openEmailForm() {
+            if (!currentQuickViewItem) return;
+            const subject = encodeURIComponent(`Product Inquiry: ${currentQuickViewItem.title}`);
+            const body = encodeURIComponent(`Hello ${currentQuickViewItem.company},\n\nI saw your advertisement on PokieBoii Ads for '${currentQuickViewItem.title}' and would like to place an order.\n\nPlease contact me back.`);
+            window.location.href = `mailto:${currentQuickViewItem.email}?subject=${subject}&body=${body}`;
+            trackLead('email', currentQuickViewItem.id);
+        }
+
+        function trackLead(type, productId) {
+            showToast("Direct Inquiry Initiated!", `Connecting directly to vendor via ${type.toUpperCase()}.`);
+            if (activeVendor && productId) {
+                const prod = products.find(p => p.id === productId);
+                if (prod) prod.leadsCount += 1;
+                renderVendorDashboard();
             }
         }
 
-        function applyFilters() {
-            renderAssets();
-        }
-
-        function resetFilters() {
-            document.getElementById('search-input').value = '';
-            document.getElementById('filter-category').value = 'ALL';
-            document.getElementById('filter-condition').value = 'ALL';
-            document.getElementById('filter-location').value = 'ALL';
-            document.getElementById('filter-gate').value = 'ALL';
-            renderAssets();
-        }
-
-        function setViewMode(mode) {
-            viewMode = mode;
-            const gridBtn = document.getElementById('view-mode-grid');
-            const listBtn = document.getElementById('view-mode-list');
-
-            if (mode === 'grid') {
-                gridBtn.className = "px-2.5 py-1.5 text-xs font-semibold rounded-lg bg-white shadow-sm text-slate-800";
-                listBtn.className = "px-2.5 py-1.5 text-xs font-semibold rounded-lg text-slate-500 hover:text-slate-800";
-            } else {
-                listBtn.className = "px-2.5 py-1.5 text-xs font-semibold rounded-lg bg-white shadow-sm text-slate-800";
-                gridBtn.className = "px-2.5 py-1.5 text-xs font-semibold rounded-lg text-slate-500 hover:text-slate-800";
-            }
-            renderAssets();
-        }
-
         // =====================================================================
-        // ASSET CLAIM & BUDGET LEDGER MODAL EXECUTION
+        // VENDOR REGISTRATION & PRODUCT SUBMISSION
         // =====================================================================
 
-        function openClaimModal(id) {
-            activeClaimItem = assets.find(a => a.id === id);
-            if (!activeClaimItem) return;
-
-            document.getElementById('claim-modal-title').innerText = activeClaimItem.title;
-            document.getElementById('claim-modal-location').innerText = `Location: ${activeClaimItem.location}`;
-            document.getElementById('claim-modal-savings').innerText = `Saves $${activeClaimItem.estCost} New Budget`;
-            document.getElementById('claim-modal-condition').innerText = activeClaimItem.condition;
-            document.getElementById('claim-modal-icon').innerHTML = `<i class="fa-solid ${activeClaimItem.icon}"></i>`;
-            
-            document.getElementById('claim-modal-source').innerText = activeClaimItem.costCenter;
-            document.getElementById('claim-modal-target').innerText = `${currentUser.costCenter} (${currentUser.dept})`;
-
-            if (activeClaimItem.transferFee > 0) {
-                document.getElementById('claim-modal-fee').innerText = `$${activeClaimItem.transferFee}.00 (Internal Credit Transfer)`;
-            } else {
-                document.getElementById('claim-modal-fee').innerText = '$0.00 (Free Adoption)';
-            }
-
-            document.getElementById('modal-claim').classList.remove('hidden');
-        }
-
-        function closeClaimModal() {
-            document.getElementById('modal-claim').classList.add('hidden');
-            activeClaimItem = null;
-        }
-
-        function confirmClaim() {
-            if (!activeClaimItem) return;
-
-            // Remove asset from available pool
-            assets = assets.filter(a => a.id !== activeClaimItem.id);
-
-            // Update stats metrics
-            metrics.savings += activeClaimItem.estCost;
-            metrics.rehomed += 1;
-            metrics.co2 = parseFloat((metrics.co2 + 0.05).toFixed(2));
-            updateTicker();
-
-            // Append transaction to audit log
-            const newTx = {
-                id: `TX-${Math.floor(1000 + Math.random() * 9000)}`,
-                asset: activeClaimItem.title,
-                source: activeClaimItem.costCenter.split(' ')[0],
-                target: currentUser.costCenter,
-                value: `$${activeClaimItem.transferFee}.00`,
-                date: new Date().toISOString().split('T')[0],
-                status: 'Completed'
-            };
-            ledgerTransactions.unshift(newTx);
-            renderLedgerTable();
-
-            closeClaimModal();
-            renderAssets();
-
-            showToast("Asset Successfully Claimed!", `Ledger Transfer recorded for ${currentUser.costCenter}`);
-        }
-
-        // =====================================================================
-        // LIST NEW ASSET SUBMISSION
-        // =====================================================================
-
-        function handleAssetSubmit(e) {
+        function handleVendorSignup(e) {
             e.preventDefault();
 
-            const title = document.getElementById('form-title').value;
-            const category = document.getElementById('form-category').value;
-            const condition = document.getElementById('form-condition').value;
-            const icon = document.getElementById('form-icon').value;
-            const location = document.getElementById('form-location').value;
-            const estCost = parseInt(document.getElementById('form-est-cost').value) || 0;
-            const transferFee = parseInt(document.getElementById('form-transfer-fee').value) || 0;
-            const procurementGate = document.getElementById('form-procurement-gate').checked;
-            const desc = document.getElementById('form-desc').value;
+            activeVendor.companyName = document.getElementById('reg-company-name').value;
+            activeVendor.email = document.getElementById('reg-company-email').value;
+            activeVendor.whatsapp = document.getElementById('reg-company-whatsapp').value;
+            activeVendor.phone = document.getElementById('reg-company-phone').value || activeVendor.whatsapp;
+            activeVendor.dept = document.getElementById('reg-company-dept').value;
+            
+            const logoInput = document.getElementById('reg-company-logo').value;
+            if (logoInput) activeVendor.logo = logoInput;
 
-            const newAsset = {
+            closeModal('modal-vendor-signup');
+            renderVendorDashboard();
+            switchView('view-dashboard');
+
+            showToast("Company Registered!", "7-Day Free Advertising Trial is now active.");
+        }
+
+        function handleProductSubmit(e) {
+            e.preventDefault();
+
+            const title = document.getElementById('add-prod-title').value;
+            const category = document.getElementById('add-prod-category').value;
+            const price = parseFloat(document.getElementById('add-prod-price').value) || 0;
+            const discount = document.getElementById('add-prod-discount').value || 'Free Ad Trial';
+            const image = document.getElementById('add-prod-image').value;
+            const desc = document.getElementById('add-prod-desc').value;
+
+            const newProduct = {
                 id: Date.now(),
                 title,
                 category,
-                condition,
-                location,
-                costCenter: `${currentUser.costCenter} (${currentUser.dept})`,
-                estCost,
-                transferFee,
-                procurementGate,
-                icon,
-                imageBg: 'bg-sky-50 text-sky-600',
-                desc: desc || 'Surplus asset available for immediate departmental adoption.',
-                datePosted: 'Just now'
+                price,
+                discount,
+                company: activeVendor.companyName,
+                email: activeVendor.email,
+                whatsapp: activeVendor.whatsapp,
+                phone: activeVendor.phone,
+                image,
+                desc,
+                isTrial: true,
+                leadsCount: 0
             };
 
-            assets.unshift(newAsset);
-            document.getElementById('form-list-asset').reset();
+            products.unshift(newProduct);
+            closeModal('modal-add-product');
+            renderProducts();
+            renderVendorDashboard();
 
-            showToast("Surplus Asset Listed!", "Item is now visible across the enterprise marketplace.");
-            switchTab('marketplace');
-            renderAssets();
+            showToast("Product Ad Published!", "Your item is now live for consumers enterprise-wide.");
         }
 
-        // =====================================================================
-        // PROCUREMENT GATE INTERCEPT RENDER
-        // =====================================================================
+        function renderVendorDashboard() {
+            document.getElementById('vendor-dash-name').innerText = activeVendor.companyName;
+            document.getElementById('vendor-dash-dept').innerText = `${activeVendor.dept} • Verified Company`;
+            document.getElementById('vendor-dash-logo').src = activeVendor.logo;
 
-        function renderProcurementGate() {
-            const list = document.getElementById('procurement-intercept-list');
-            if (procurementIntercepts.length === 0) {
-                list.innerHTML = `
-                    <div class="p-8 text-center text-slate-400">
-                        <i class="fa-solid fa-circle-check text-3xl text-emerald-500 mb-2"></i>
-                        <p class="text-xs font-bold text-slate-700">All External Purchase Orders Cleared</p>
-                        <p class="text-[11px]">No active external PO intercept matches at this time.</p>
-                    </div>
-                `;
-                return;
-            }
+            const myProducts = products.filter(p => p.company === activeVendor.companyName);
+            document.getElementById('dash-stat-listings').innerText = `${myProducts.length} Products`;
 
-            list.innerHTML = procurementIntercepts.map(item => `
-                <div class="p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 hover:bg-slate-50/80 transition">
-                    <div class="space-y-1">
-                        <div class="flex items-center space-x-2">
-                            <span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded">PO Intercept #${item.id}</span>
-                            <span class="text-xs text-slate-500">${item.requestedBy}</span>
-                        </div>
-                        <h4 class="font-bold text-slate-800 text-sm">${item.itemRequested}</h4>
-                        <p class="text-xs text-emerald-700 font-semibold flex items-center space-x-1">
-                            <i class="fa-solid fa-circle-nodes"></i>
-                            <span>Internal Match Found: ${item.matchingSurplus}</span>
-                        </p>
-                    </div>
+            let totalLeads = myProducts.reduce((sum, p) => sum + p.leadsCount, 0);
+            document.getElementById('dash-stat-whatsapp').innerText = `${totalLeads} Chats`;
 
-                    <div class="flex items-center space-x-3 w-full md:w-auto justify-end">
-                        <div class="text-right">
-                            <p class="text-xs font-bold text-slate-800">$${item.estExternalSpend} PO Value</p>
-                            <p class="text-[10px] text-emerald-600 font-bold">100% Capital Saved</p>
-                        </div>
-                        <button onclick="overrideProcurement(${item.id})" class="text-xs text-slate-500 hover:text-slate-800 px-3 py-2 font-medium">
-                            Override PO
-                        </button>
-                        <button onclick="redirectProcurement(${item.id})" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-2 rounded-xl shadow transition flex items-center space-x-1">
-                            <i class="fa-solid fa-arrow-right-arrow-left"></i>
-                            <span>Redirect to Internal Stock</span>
-                        </button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function redirectProcurement(id) {
-            const item = procurementIntercepts.find(p => p.id === id);
-            if (!item) return;
-
-            metrics.savings += item.estExternalSpend;
-            metrics.rehomed += 1;
-            updateTicker();
-
-            procurementIntercepts = procurementIntercepts.filter(p => p.id !== id);
-            document.getElementById('nav-count-procurement').innerText = `${procurementIntercepts.length} Alerts`;
-            renderProcurementGate();
-
-            showToast("External PO Blocked & Redirected!", `Saved $${item.estExternalSpend} by matching with existing internal surplus.`);
-        }
-
-        function overrideProcurement(id) {
-            procurementIntercepts = procurementIntercepts.filter(p => p.id !== id);
-            document.getElementById('nav-count-procurement').innerText = `${procurementIntercepts.length} Alerts`;
-            renderProcurementGate();
-
-            showToast("PO Approved for External Buy", "Manager override logged in audit history.");
-        }
-
-        // =====================================================================
-        // LEDGER TABLE & WISHLIST MODULES
-        // =====================================================================
-
-        function renderLedgerTable() {
-            const tbody = document.getElementById('ledger-table-body');
-            tbody.innerHTML = ledgerTransactions.map(tx => `
-                <tr class="hover:bg-slate-50">
-                    <td class="p-3.5 font-mono text-slate-500">${tx.id}</td>
-                    <td class="p-3.5 font-bold text-slate-800">${tx.asset}</td>
-                    <td class="p-3.5"><span class="bg-slate-100 text-slate-700 px-2 py-0.5 rounded font-mono">${tx.source}</span></td>
-                    <td class="p-3.5"><span class="bg-sky-100 text-sky-800 px-2 py-0.5 rounded font-mono">${tx.target}</span></td>
-                    <td class="p-3.5 font-bold text-emerald-600">${tx.value}</td>
-                    <td class="p-3.5 text-slate-500">${tx.date} • <span class="text-emerald-600 font-semibold">${tx.status}</span></td>
+            const tbody = document.getElementById('vendor-products-table');
+            tbody.innerHTML = myProducts.map(p => `
+                <tr class="hover:bg-slate-900/50">
+                    <td class="py-3 px-2 flex items-center space-x-3">
+                        <img src="${p.image}" class="w-10 h-10 object-cover rounded-lg border border-slate-700">
+                        <span class="font-bold text-white">${p.title}</span>
+                    </td>
+                    <td class="py-3 px-2 text-slate-400">${p.category}</td>
+                    <td class="py-3 px-2 font-bold text-emerald-400">$${p.price.toFixed(2)}</td>
+                    <td class="py-3 px-2">
+                        <span class="bg-amber-500/20 text-amber-300 text-[10px] px-2 py-0.5 rounded-full border border-amber-500/30">7-Day Free Trial</span>
+                    </td>
+                    <td class="py-3 px-2 font-bold text-white">${p.leadsCount} Inquiries</td>
+                    <td class="py-3 px-2 text-right">
+                        <button onclick="deleteProduct(${p.id})" class="text-rose-400 hover:text-rose-300 p-1"><i class="fa-solid fa-trash"></i></button>
+                    </td>
                 </tr>
             `).join('');
         }
 
-        function exportLedgerCSV() {
-            let csv = "TxID,Asset,SourceBudget,TargetBudget,Value,Date\n";
-            ledgerTransactions.forEach(t => {
-                csv += `${t.id},"${t.asset}",${t.source},${t.target},${t.value},${t.date}\n`;
-            });
-
-            const blob = new Blob([csv], { type: 'text/csv' });
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.setAttribute('href', url);
-            a.setAttribute('download', `CorpShare_Ledger_${Date.now()}.csv`);
-            a.click();
-            showToast("Ledger CSV Exported", "Downloaded audit log to local machine.");
+        function deleteProduct(id) {
+            products = products.filter(p => p.id !== id);
+            renderProducts();
+            renderVendorDashboard();
+            showToast("Listing Deleted", "Product removed from marketplace.");
         }
 
-        function renderWishlist() {
-            const container = document.getElementById('wishlist-container');
-            container.innerHTML = wishlistItems.map(item => `
-                <div class="border border-slate-200 rounded-2xl p-4 space-y-3 bg-slate-50/50 hover:bg-white transition">
-                    <div class="flex items-start justify-between">
-                        <div>
-                            <span class="text-[10px] font-bold text-slate-400 uppercase">${item.category}</span>
-                            <h4 class="font-bold text-slate-800 text-sm mt-0.5">${item.title}</h4>
-                            <p class="text-xs text-slate-500">Requested by ${item.requestedBy}</p>
-                        </div>
-                        <span class="bg-sky-100 text-sky-800 text-[10px] font-bold px-2 py-1 rounded-full">
-                            ${item.matchesFound} Matches
-                        </span>
-                    </div>
-                    <p class="text-xs text-slate-600 italic">"${item.notes}"</p>
-                    <button onclick="showToast('Alert Sent', 'Notified requester about surplus match.')" class="w-full bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs font-bold py-2 rounded-xl transition">
-                        I Have This Asset
-                    </button>
-                </div>
-            `).join('');
-        }
-
-        function openWishlistModal() { document.getElementById('modal-wishlist').classList.remove('hidden'); }
-        function closeWishlistModal() { document.getElementById('modal-wishlist').classList.add('hidden'); }
-
-        function handleWishlistSubmit(e) {
-            e.preventDefault();
-            const title = document.getElementById('wish-title').value;
-            const category = document.getElementById('wish-category').value;
-            const notes = document.getElementById('wish-notes').value;
-
-            wishlistItems.unshift({
-                id: Date.now(),
-                title,
-                category,
-                requestedBy: currentUser.name,
-                notes,
-                matchesFound: 0
-            });
-
-            renderWishlist();
-            closeWishlistModal();
-            showToast("Wishlist Need Posted", "Procurement & facilities will monitor for surplus.");
+        function processSubscriptionUpgrade() {
+            closeModal('modal-upgrade-plan');
+            showToast("Subscription Upgrade Active!", "Your company is now on the Pro Advertising Pass.");
         }
 
         // =====================================================================
-        // UTILITY FUNCTIONS: TICKER & TOAST NOTIFICATIONS
+        // UTILITY MODALS & TOASTS
         // =====================================================================
 
-        function updateTicker() {
-            document.getElementById('ticker-savings').innerText = `$${metrics.savings.toLocaleString()}`;
-            document.getElementById('ticker-rehomed').innerText = `${metrics.rehomed} Assets`;
-            document.getElementById('ticker-co2').innerText = `${metrics.co2} Tons`;
-            
-            document.getElementById('dash-total-savings').innerText = `$${metrics.savings.toLocaleString()}`;
-            document.getElementById('dash-transfers-count').innerText = metrics.rehomed;
+        function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
+        function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+
+        function openLegalModal(title) {
+            document.getElementById('legal-modal-title').innerText = title;
+            openModal('modal-legal');
         }
 
         function showToast(title, sub) {
-            const toast = document.getElementById('toast-notification');
-            document.getElementById('toast-message').innerText = title;
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-title').innerText = title;
             document.getElementById('toast-sub').innerText = sub;
 
             toast.classList.remove('translate-y-24', 'opacity-0');
