@@ -1,89 +1,1394 @@
+```html
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full bg-slate-50">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday!</title>
-<style>
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow: hidden;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CorpShare - Enterprise Internal Asset Marketplace & Redistribution Hub</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        }
+                    }
+                }
+            }
         }
-
-        .card {
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            text-align: center;
-            z-index: 10;
-            animation: popIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        h1 {
-            color: #ff4b5c;
-            font-size: 3rem;
-            margin-bottom: 10px;
-        }
-
-        p {
-            color: #555;
-            font-size: 1.2rem;
-        }
-
-        /* Floating Hearts Animation */
-        .heart {
-            position: absolute;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 20px;
-            user-select: none;
-            animation: float 5s linear infinite;
-            bottom: -50px;
-        }
-
-        @keyframes popIn {
-            0% { transform: scale(0.5); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
-        }
-</style>
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
 </head>
-<body>
+<body class="h-full flex flex-col text-slate-800 antialiased">
 
-<div class="card">
-<h1>🎉 Happy Birthday! 🎂</h1>
-<p>Wishing you a day filled with love, <br> laughter, and all your favorite things!</p>
-<p style="font-size: 2rem;">❤️✨🎈</p>
-</div>
+    <!-- TOP SSO & GLOBAL METRICS TICKER BAR -->
+    <header class="bg-slate-900 text-slate-200 border-b border-slate-800 sticky top-0 z-30 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Branding -->
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('marketplace')">
+                    <div class="bg-gradient-to-tr from-sky-500 to-emerald-400 p-2.5 rounded-xl shadow-lg shadow-sky-500/20 text-white flex items-center justify-center">
+                        <i class="fa-solid fa-boxes-packing text-xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-xl font-bold tracking-tight text-white">Corp<span class="text-sky-400">Share</span></span>
+                        <span class="hidden sm:inline-block ml-2 text-xs bg-slate-800 text-slate-300 font-medium px-2 py-0.5 rounded-full border border-slate-700">Internal Asset Hub</span>
+                    </div>
+                </div>
 
-<script>
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            heart.innerHTML = '❤️';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
-            heart.style.fontSize = Math.random() * 20 + 10 + 'px';
-            document.body.appendChild(heart);
+                <!-- Live Metrics Ticker -->
+                <div class="hidden lg:flex items-center space-x-6 text-xs bg-slate-800/80 px-4 py-2 rounded-xl border border-slate-700/60">
+                    <div class="flex items-center space-x-2">
+                        <span class="p-1 rounded bg-emerald-500/10 text-emerald-400"><i class="fa-solid fa-piggy-bank"></i></span>
+                        <div>
+                            <p class="text-slate-400 text-[10px] uppercase font-semibold tracking-wider">Q3 Savings</p>
+                            <p class="font-bold text-emerald-400 text-sm" id="ticker-savings">$42,850</p>
+                        </div>
+                    </div>
+                    <div class="h-6 w-px bg-slate-700"></div>
+                    <div class="flex items-center space-x-2">
+                        <span class="p-1 rounded bg-sky-500/10 text-sky-400"><i class="fa-solid fa-arrows-rotate"></i></span>
+                        <div>
+                            <p class="text-slate-400 text-[10px] uppercase font-semibold tracking-wider">Rehomed</p>
+                            <p class="font-bold text-sky-300 text-sm" id="ticker-rehomed">314 Assets</p>
+                        </div>
+                    </div>
+                    <div class="h-6 w-px bg-slate-700"></div>
+                    <div class="flex items-center space-x-2">
+                        <span class="p-1 rounded bg-teal-500/10 text-teal-400"><i class="fa-solid fa-leaf"></i></span>
+                        <div>
+                            <p class="text-slate-400 text-[10px] uppercase font-semibold tracking-wider">CO₂ Diverted</p>
+                            <p class="font-bold text-teal-300 text-sm" id="ticker-co2">1.2 Tons</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SSO Authentication Profile & Switcher -->
+                <div class="flex items-center space-x-3">
+                    <div class="text-right hidden sm:block">
+                        <div class="text-xs font-semibold text-slate-200" id="current-user-name">Alex Morgan</div>
+                        <div class="text-[11px] text-slate-400 flex items-center justify-end space-x-1">
+                            <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                            <span id="current-user-dept">Engineering (#ENG-402)</span>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <button class="flex items-center justify-center h-10 w-10 rounded-xl bg-slate-800 border border-slate-700 text-sky-400 font-bold hover:bg-slate-700 transition">
+                            <span id="current-user-avatar">AM</span>
+                        </button>
+                        <!-- SSO Dropdown -->
+                        <div class="absolute right-0 mt-2 w-72 bg-white rounded-xl shadow-2xl border border-slate-200 text-slate-800 py-2 hidden group-hover:block z-50">
+                            <div class="px-4 py-2 border-b border-slate-100 bg-slate-50/50">
+                                <p class="text-xs text-slate-500 uppercase font-semibold">SSO Authenticated Domain</p>
+                                <p class="text-xs font-bold text-slate-700" id="current-user-email">alex.morgan@acmecorp.com</p>
+                            </div>
+                            <div class="px-3 py-2 text-xs font-semibold text-slate-400 uppercase">Simulate Role Switch:</div>
+                            <button onclick="switchUser('alex')" class="w-full text-left px-4 py-2 text-xs hover:bg-slate-100 flex items-center justify-between">
+                                <div>
+                                    <p class="font-semibold text-slate-800">Alex Morgan</p>
+                                    <p class="text-slate-500">Engineering (#ENG-402)</p>
+                                </div>
+                                <span class="text-emerald-600 text-xs font-bold"><i class="fa-solid fa-check"></i></span>
+                            </button>
+                            <button onclick="switchUser('sarah')" class="w-full text-left px-4 py-2 text-xs hover:bg-slate-100 flex items-center justify-between">
+                                <div>
+                                    <p class="font-semibold text-slate-800">Sarah Jenkins</p>
+                                    <p class="text-slate-500">Procurement Manager (#PROC-101)</p>
+                                </div>
+                            </button>
+                            <button onclick="switchUser('david')" class="w-full text-left px-4 py-2 text-xs hover:bg-slate-100 flex items-center justify-between">
+                                <div>
+                                    <p class="font-semibold text-slate-800">David Chen</p>
+                                    <p class="text-slate-500">Marketing & Ops (#MKT-101)</p>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAIN NAVIGATION TABS -->
+        <div class="bg-slate-900/90 border-t border-slate-800/80 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto flex space-x-1 sm:space-x-6 overflow-x-auto custom-scrollbar">
+                <button onclick="switchTab('marketplace')" id="nav-marketplace" class="nav-tab active flex items-center space-x-2 py-3 px-3 text-xs sm:text-sm font-medium border-b-2 border-sky-400 text-sky-400 transition whitespace-nowrap">
+                    <i class="fa-solid fa-store"></i>
+                    <span>Browse Marketplace</span>
+                    <span class="ml-1 bg-sky-500/20 text-sky-300 text-[10px] px-1.5 py-0.5 rounded-full" id="nav-count-marketplace">18</span>
+                </button>
+
+                <button onclick="switchTab('procurement')" id="nav-procurement" class="nav-tab flex items-center space-x-2 py-3 px-3 text-xs sm:text-sm font-medium border-b-2 border-transparent text-slate-400 hover:text-slate-200 transition whitespace-nowrap">
+                    <i class="fa-solid fa-shield-halved text-amber-400"></i>
+                    <span>Procurement Gate</span>
+                    <span class="bg-amber-500/20 text-amber-300 text-[10px] font-bold px-2 py-0.5 rounded-full" id="nav-count-procurement">3 Alerts</span>
+                </button>
+
+                <button onclick="switchTab('list-asset')" id="nav-list-asset" class="nav-tab flex items-center space-x-2 py-3 px-3 text-xs sm:text-sm font-medium border-b-2 border-transparent text-slate-400 hover:text-slate-200 transition whitespace-nowrap">
+                    <i class="fa-solid fa-circle-plus text-emerald-400"></i>
+                    <span>List Surplus Asset</span>
+                </button>
+
+                <button onclick="switchTab('ledger')" id="nav-ledger" class="nav-tab flex items-center space-x-2 py-3 px-3 text-xs sm:text-sm font-medium border-b-2 border-transparent text-slate-400 hover:text-slate-200 transition whitespace-nowrap">
+                    <i class="fa-solid fa-chart-line text-indigo-400"></i>
+                    <span>Ledger & Analytics</span>
+                </button>
+
+                <button onclick="switchTab('wishlist')" id="nav-wishlist" class="nav-tab flex items-center space-x-2 py-3 px-3 text-xs sm:text-sm font-medium border-b-2 border-transparent text-slate-400 hover:text-slate-200 transition whitespace-nowrap">
+                    <i class="fa-solid fa-heart-pulse text-rose-400"></i>
+                    <span>Asset Wishlist</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8">
+
+        <!-- ================================================================= -->
+        <!-- VIEW 1: BROWSE MARKETPLACE VIEW -->
+        <!-- ================================================================= -->
+        <section id="view-marketplace" class="space-y-6">
+            
+            <!-- SEARCH AND FILTER BAR HUB -->
+            <div class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                <div class="flex flex-col md:flex-row gap-3 items-center justify-between">
+                    <!-- Main Search Input -->
+                    <div class="relative w-full md:w-1/2">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                        <input type="text" id="search-input" onkeyup="applyFilters()" placeholder="Search monitors, Herman Miller chairs, HDMI cables, lab tools..." 
+                               class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 focus:bg-white transition">
+                    </div>
+
+                    <!-- Quick View Switcher & Clear Filters -->
+                    <div class="flex items-center space-x-3 w-full md:w-auto justify-end">
+                        <button onclick="resetFilters()" class="text-xs text-slate-500 hover:text-slate-800 font-medium px-2 py-1 flex items-center space-x-1">
+                            <i class="fa-solid fa-rotate-left"></i>
+                            <span>Reset Filters</span>
+                        </button>
+                        <div class="h-4 w-px bg-slate-200"></div>
+                        <div class="bg-slate-100 p-1 rounded-xl flex items-center space-x-1 border border-slate-200">
+                            <button id="view-mode-grid" onclick="setViewMode('grid')" class="px-2.5 py-1.5 text-xs font-semibold rounded-lg bg-white shadow-sm text-slate-800">
+                                <i class="fa-solid fa-grip"></i> <span class="hidden sm:inline ml-1">Grid</span>
+                            </button>
+                            <button id="view-mode-list" onclick="setViewMode('list')" class="px-2.5 py-1.5 text-xs font-semibold rounded-lg text-slate-500 hover:text-slate-800">
+                                <i class="fa-solid fa-list"></i> <span class="hidden sm:inline ml-1">List</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category Pills & Filter Dropdowns -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-3 pt-2 border-t border-slate-100">
+                    <div>
+                        <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">Category</label>
+                        <select id="filter-category" onchange="applyFilters()" class="w-full bg-slate-50 border border-slate-200 rounded-lg text-xs py-2 px-2.5 focus:ring-2 focus:ring-sky-500">
+                            <option value="ALL">All Categories</option>
+                            <option value="Monitors & Displays">Monitors & Displays</option>
+                            <option value="Ergonomic Chairs & Desks">Ergonomic Chairs & Desks</option>
+                            <option value="AV & Conferencing">AV & Conferencing</option>
+                            <option value="Mobile & Cables">Mobile & Cables</option>
+                            <option value="Specialized Tools">Specialized Tools</option>
+                            <option value="Stationery & Supplies">Stationery & Supplies</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">Condition</label>
+                        <select id="filter-condition" onchange="applyFilters()" class="w-full bg-slate-50 border border-slate-200 rounded-lg text-xs py-2 px-2.5 focus:ring-2 focus:ring-sky-500">
+                            <option value="ALL">All Conditions</option>
+                            <option value="Brand New">Brand New</option>
+                            <option value="Lightly Used">Lightly Used</option>
+                            <option value="Needs Cleaning">Needs Cleaning</option>
+                            <option value="Repair Needed">Repair Needed</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">Location / Floor</label>
+                        <select id="filter-location" onchange="applyFilters()" class="w-full bg-slate-50 border border-slate-200 rounded-lg text-xs py-2 px-2.5 focus:ring-2 focus:ring-sky-500">
+                            <option value="ALL">All Locations</option>
+                            <option value="Floor 2 (Tech Storage)">Floor 2 (Tech Storage)</option>
+                            <option value="Floor 4 (Storage Closet B)">Floor 4 (Storage Closet B)</option>
+                            <option value="East Campus Bay 12">East Campus Bay 12</option>
+                            <option value="Floor 7 (AV Depot)">Floor 7 (AV Depot)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">Procurement Exemption</label>
+                        <select id="filter-gate" onchange="applyFilters()" class="w-full bg-slate-50 border border-slate-200 rounded-lg text-xs py-2 px-2.5 focus:ring-2 focus:ring-sky-500">
+                            <option value="ALL">All Listings</option>
+                            <option value="MANDATORY">Mandatory Procurement Check</option>
+                            <option value="OPTIONAL">Optional Surplus</option>
+                        </select>
+                    </div>
+
+                    <div class="col-span-2 sm:col-span-4 lg:col-span-1 flex items-end">
+                        <div class="text-xs text-slate-500 w-full text-right py-2">
+                            Showing <span id="active-item-count" class="font-bold text-slate-800">0</span> assets
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ASSET CARDS CONTAINER (GRID & LIST DYNAMIC) -->
+            <div id="assets-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                <!-- Javascript will inject assets here -->
+            </div>
+
+            <!-- EMPTY STATE -->
+            <div id="empty-state" class="hidden bg-white rounded-2xl border border-dashed border-slate-300 p-12 text-center space-y-3">
+                <div class="w-16 h-16 bg-slate-100 text-slate-400 rounded-full flex items-center justify-center mx-auto text-2xl">
+                    <i class="fa-solid fa-box-open"></i>
+                </div>
+                <h3 class="text-base font-bold text-slate-800">No surplus assets matched your filter</h3>
+                <p class="text-xs text-slate-500 max-w-sm mx-auto">Try clearing search terms or selecting a broader category filter to find available corporate surplus.</p>
+                <button onclick="resetFilters()" class="mt-2 bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold px-4 py-2 rounded-xl transition">Clear All Filters</button>
+            </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- VIEW 2: PROCUREMENT APPROVAL GATE -->
+        <!-- ================================================================= -->
+        <section id="view-procurement" class="hidden space-y-6">
+            <!-- Header Banner -->
+            <div class="bg-gradient-to-r from-amber-600 to-orange-600 text-white rounded-2xl p-6 shadow-md relative overflow-hidden">
+                <div class="absolute right-0 top-0 opacity-10 text-9xl transform translate-x-8 -translate-y-6 font-bold">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div class="relative z-10 max-w-2xl space-y-2">
+                    <div class="inline-flex items-center space-x-2 bg-amber-500/30 text-amber-100 text-xs px-3 py-1 rounded-full font-medium">
+                        <i class="fa-solid fa-triangle-exclamation text-amber-300"></i>
+                        <span>Active Procurement Intercept System</span>
+                    </div>
+                    <h2 class="text-2xl font-bold">Internal Redistribution Gate</h2>
+                    <p class="text-xs sm:text-sm text-amber-100 leading-relaxed">
+                        To eliminate redundant capital expenditure, external purchase requisitions are automatically matched against unallocated internal surplus before PO approval.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Active Pending Intercept Requests -->
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
+                    <div>
+                        <h3 class="font-bold text-slate-800 text-sm">Pending External Purchase Requisitions</h3>
+                        <p class="text-xs text-slate-500">Cross-referenced with internal stock</p>
+                    </div>
+                    <span class="bg-amber-100 text-amber-800 text-xs font-bold px-2.5 py-1 rounded-full border border-amber-200">
+                        3 Requisitions Intercepted
+                    </span>
+                </div>
+
+                <div class="divide-y divide-slate-100" id="procurement-intercept-list">
+                    <!-- Dynamic Intercept Items JS injected -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- VIEW 3: LIST NEW SURPLUS ASSET WORKFLOW -->
+        <!-- ================================================================= -->
+        <section id="view-list-asset" class="hidden max-w-3xl mx-auto space-y-6">
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                <div class="px-6 py-5 border-b border-slate-100 bg-slate-50/50 flex items-center justify-between">
+                    <div>
+                        <h2 class="text-lg font-bold text-slate-900">List Surplus Office Asset</h2>
+                        <p class="text-xs text-slate-500">Publish unused equipment for internal adoption & budget credit</p>
+                    </div>
+                    <div class="text-xs bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full font-medium flex items-center space-x-1">
+                        <i class="fa-solid fa-leaf text-emerald-600"></i>
+                        <span>Zero Waste Initiative</span>
+                    </div>
+                </div>
+
+                <form id="form-list-asset" onsubmit="handleAssetSubmit(event)" class="p-6 space-y-5">
+                    <!-- Title & Category -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div class="sm:col-span-2 space-y-1">
+                            <label class="block text-xs font-bold text-slate-700">Asset Title / Model <span class="text-rose-500">*</span></label>
+                            <input type="text" required id="form-title" placeholder="e.g. Dell UltraSharp 27&quot; 4K USB-C Monitor" 
+                                   class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-sky-500 focus:bg-white">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="block text-xs font-bold text-slate-700">Category <span class="text-rose-500">*</span></label>
+                            <select id="form-category" required class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-sky-500 focus:bg-white">
+                                <option value="Monitors & Displays">Monitors & Displays</option>
+                                <option value="Ergonomic Chairs & Desks">Ergonomic Chairs & Desks</option>
+                                <option value="AV & Conferencing">AV & Conferencing</option>
+                                <option value="Mobile & Cables">Mobile & Cables</option>
+                                <option value="Specialized Tools">Specialized Tools</option>
+                                <option value="Stationery & Supplies">Stationery & Supplies</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Condition & Image Selector Preset -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="space-y-1">
+                            <label class="block text-xs font-bold text-slate-700">Condition Assessment <span class="text-rose-500">*</span></label>
+                            <select id="form-condition" required class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-sky-500">
+                                <option value="Brand New">Brand New (Unopened Box)</option>
+                                <option value="Lightly Used" selected>Lightly Used (Fully Functional)</option>
+                                <option value="Needs Cleaning">Needs Cleaning / Minor Dust</option>
+                                <option value="Repair Needed">Repair Needed / As-Is</option>
+                            </select>
+                        </div>
+
+                        <div class="space-y-1">
+                            <label class="block text-xs font-bold text-slate-700">Asset Visual Icon Preset <span class="text-rose-500">*</span></label>
+                            <select id="form-icon" required class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-sky-500">
+                                <option value="fa-desktop">🖥️ Monitor / Screen</option>
+                                <option value="fa-chair">🪑 Ergonomic Chair / Desk</option>
+                                <option value="fa-laptop">💻 Laptop / Docking Station</option>
+                                <option value="fa-video">📹 Web Camera / AV Mic</option>
+                                <option value="fa-toolbox">🧰 Specialized Tool / Tester</option>
+                                <option value="fa-plug">🔌 Cable / Power Supply</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Location details -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="space-y-1">
+                            <label class="block text-xs font-bold text-slate-700">Physical Location <span class="text-rose-500">*</span></label>
+                            <input type="text" required id="form-location" placeholder="e.g. Floor 4 - Storage Closet B, Bay 12" 
+                                   class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-sky-500 focus:bg-white">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="block text-xs font-bold text-slate-700">Originating Cost Center Code</label>
+                            <input type="text" id="form-cost-center" readonly value="#ENG-402 (Engineering)" 
+                                   class="w-full px-3 py-2 bg-slate-100 border border-slate-200 text-slate-500 rounded-xl text-xs font-mono">
+                        </div>
+                    </div>
+
+                    <!-- Financial & Valuation Transfer -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 bg-slate-50 rounded-xl border border-slate-200">
+                        <div class="space-y-1">
+                            <label class="block text-xs font-bold text-slate-700">Est. Replacement / New Cost ($)</label>
+                            <input type="number" required id="form-est-cost" placeholder="350" min="0" 
+                                   class="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl text-xs font-semibold focus:ring-2 focus:ring-sky-500">
+                            <p class="text-[10px] text-slate-400">Calculates savings vs buying new</p>
+                        </div>
+                        <div class="space-y-1">
+                            <label class="block text-xs font-bold text-slate-700">Internal Ledger Transfer Fee ($)</label>
+                            <input type="number" required id="form-transfer-fee" value="0" min="0" 
+                                   class="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl text-xs font-semibold focus:ring-2 focus:ring-sky-500">
+                            <p class="text-[10px] text-slate-400">Set to $0 for free departmental adoption</p>
+                        </div>
+                    </div>
+
+                    <!-- Procurement Exemption Switch -->
+                    <div class="flex items-start space-x-3 p-3 bg-amber-50 rounded-xl border border-amber-200">
+                        <input type="checkbox" id="form-procurement-gate" class="mt-1 rounded text-sky-600 focus:ring-sky-500">
+                        <div>
+                            <label for="form-procurement-gate" class="text-xs font-bold text-amber-900 cursor-pointer">Flag as Mandatory Procurement Exemption Gate</label>
+                            <p class="text-[11px] text-amber-700">Requires teams submitting new PO requests in this category to adopt this asset before spending external budget.</p>
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="space-y-1">
+                        <label class="block text-xs font-bold text-slate-700">Asset Notes & Inspection Details</label>
+                        <textarea id="form-desc" rows="3" placeholder="Provide details regarding condition, accessories included, pickup instructions..." 
+                                  class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-sky-500 focus:bg-white"></textarea>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="pt-3 flex justify-end space-x-3 border-t border-slate-100">
+                        <button type="button" onclick="switchTab('marketplace')" class="px-4 py-2 border border-slate-200 text-slate-600 text-xs font-semibold rounded-xl hover:bg-slate-50">Cancel</button>
+                        <button type="submit" class="px-6 py-2 bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold rounded-xl shadow-md transition flex items-center space-x-2">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                            <span>Publish Asset to CorpShare</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- VIEW 4: DEPARTMENT BUDGET LEDGER & ANALYTICS DASHBOARD -->
+        <!-- ================================================================= -->
+        <section id="view-ledger" class="hidden space-y-6">
+            
+            <!-- Dashboard Top Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                    <p class="text-xs text-slate-400 font-bold uppercase tracking-wider">Internal Capital Saved</p>
+                    <h3 class="text-2xl font-black text-slate-800 mt-1" id="dash-total-savings">$42,850</h3>
+                    <p class="text-[11px] text-emerald-600 font-semibold mt-1 flex items-center space-x-1">
+                        <i class="fa-solid fa-arrow-trend-up"></i>
+                        <span>+18.4% vs last quarter</span>
+                    </p>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                    <p class="text-xs text-slate-400 font-bold uppercase tracking-wider">Internal Transfers</p>
+                    <h3 class="text-2xl font-black text-slate-800 mt-1" id="dash-transfers-count">314</h3>
+                    <p class="text-[11px] text-sky-600 font-semibold mt-1 flex items-center space-x-1">
+                        <i class="fa-solid fa-arrows-split-up-and-left"></i>
+                        <span>Zero procurement friction</span>
+                    </p>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                    <p class="text-xs text-slate-400 font-bold uppercase tracking-wider">PO Requisitions Blocked</p>
+                    <h3 class="text-2xl font-black text-slate-800 mt-1">47</h3>
+                    <p class="text-[11px] text-amber-600 font-semibold mt-1 flex items-center space-x-1">
+                        <i class="fa-solid fa-shield"></i>
+                        <span>Redirected to surplus</span>
+                    </p>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                    <p class="text-xs text-slate-400 font-bold uppercase tracking-wider">E-Waste Diverted</p>
+                    <h3 class="text-2xl font-black text-slate-800 mt-1">1.2 Tons</h3>
+                    <p class="text-[11px] text-teal-600 font-semibold mt-1 flex items-center space-x-1">
+                        <i class="fa-solid fa-leaf"></i>
+                        <span>ESG compliance verified</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- SVG Analytics Chart -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Main Savings Trend SVG Chart -->
+                <div class="lg:col-span-2 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h3 class="font-bold text-slate-800 text-sm">Monthly Capital Savings ($ USD)</h3>
+                            <p class="text-xs text-slate-500">Track cumulative procurement spend avoided</p>
+                        </div>
+                        <div class="text-xs bg-slate-100 text-slate-600 font-semibold px-2.5 py-1 rounded-lg">
+                            2026 Fiscal Year
+                        </div>
+                    </div>
+
+                    <!-- SVG Bar Chart Representation -->
+                    <div class="h-56 w-full pt-4">
+                        <svg class="w-full h-full" viewBox="0 0 500 200" preserveAspectRatio="none">
+                            <!-- Background Grid -->
+                            <line x1="0" y1="40" x2="500" y2="40" stroke="#f1f5f9" stroke-dasharray="4" />
+                            <line x1="0" y1="90" x2="500" y2="90" stroke="#f1f5f9" stroke-dasharray="4" />
+                            <line x1="0" y1="140" x2="500" y2="140" stroke="#f1f5f9" stroke-dasharray="4" />
+                            
+                            <!-- SVG Gradient -->
+                            <defs>
+                                <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#0284c7" stop-opacity="0.8"/>
+                                    <stop offset="100%" stop-color="#0284c7" stop-opacity="0.1"/>
+                                </linearGradient>
+                            </defs>
+
+                            <!-- Area Path -->
+                            <path d="M 30,160 Q 100,130 170,110 T 310,70 T 450,30 L 450,180 L 30,180 Z" fill="url(#chartGrad)" />
+
+                            <!-- Line Path -->
+                            <path d="M 30,160 Q 100,130 170,110 T 310,70 T 450,30" fill="none" stroke="#0284c7" stroke-width="3" />
+
+                            <!-- Data Points -->
+                            <circle cx="30" cy="160" r="4" fill="#0284c7" />
+                            <circle cx="170" cy="110" r="4" fill="#0284c7" />
+                            <circle cx="310" cy="70" r="4" fill="#0284c7" />
+                            <circle cx="450" cy="30" r="5" fill="#0284c7" stroke="#ffffff" stroke-width="2" />
+
+                            <!-- Values -->
+                            <text x="30" y="150" font-size="10" fill="#64748b" text-anchor="middle">$12k</text>
+                            <text x="170" y="100" font-size="10" fill="#64748b" text-anchor="middle">$22k</text>
+                            <text x="310" y="60" font-size="10" fill="#64748b" text-anchor="middle">$34k</text>
+                            <text x="450" y="20" font-size="10" fill="#0284c7" font-weight="bold" text-anchor="middle">$42.8k</text>
+
+                            <!-- Axis Labels -->
+                            <text x="30" y="195" font-size="10" fill="#94a3b8" text-anchor="middle">Q1 Jan</text>
+                            <text x="170" y="195" font-size="10" fill="#94a3b8" text-anchor="middle">Q2 Apr</text>
+                            <text x="310" y="195" font-size="10" fill="#94a3b8" text-anchor="middle">Q3 Jul</text>
+                            <text x="450" y="195" font-size="10" fill="#94a3b8" text-anchor="middle">Current</text>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Top Donating vs Adopting Departments -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                    <h3 class="font-bold text-slate-800 text-sm">Top Department Leaders</h3>
+                    <div class="space-y-3">
+                        <div class="p-3 bg-slate-50 rounded-xl space-y-1">
+                            <div class="flex justify-between text-xs font-semibold">
+                                <span class="text-slate-700">Facilities & Real Estate</span>
+                                <span class="text-sky-600">112 Assets Donated</span>
+                            </div>
+                            <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                                <div class="bg-sky-500 h-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+
+                        <div class="p-3 bg-slate-50 rounded-xl space-y-1">
+                            <div class="flex justify-between text-xs font-semibold">
+                                <span class="text-slate-700">IT Infrastructure</span>
+                                <span class="text-sky-600">84 Assets Donated</span>
+                            </div>
+                            <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                                <div class="bg-sky-500 h-full" style="width: 65%"></div>
+                            </div>
+                        </div>
+
+                        <div class="p-3 bg-slate-50 rounded-xl space-y-1">
+                            <div class="flex justify-between text-xs font-semibold">
+                                <span class="text-slate-700">Engineering Ops</span>
+                                <span class="text-emerald-600">54 Assets Adopted</span>
+                            </div>
+                            <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                                <div class="bg-emerald-500 h-full" style="width: 45%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Inter-Departmental Ledger Transaction Log Table -->
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
+                    <div>
+                        <h3 class="font-bold text-slate-800 text-sm">Inter-Departmental Budget Ledger Log</h3>
+                        <p class="text-xs text-slate-500">Automated cost center transfer auditing</p>
+                    </div>
+                    <button onclick="exportLedgerCSV()" class="text-xs bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold px-3 py-1.5 rounded-lg border border-slate-200 flex items-center space-x-1 transition">
+                        <i class="fa-solid fa-download"></i>
+                        <span>Export CSV</span>
+                    </button>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse text-xs">
+                        <thead>
+                            <tr class="bg-slate-50 text-slate-500 font-bold uppercase tracking-wider border-b border-slate-100">
+                                <th class="p-3.5">Tx ID</th>
+                                <th class="p-3.5">Asset Rehomed</th>
+                                <th class="p-3.5">Source Budget</th>
+                                <th class="p-3.5">Target Budget</th>
+                                <th class="p-3.5">Ledger Value</th>
+                                <th class="p-3.5">Date / Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ledger-table-body" class="divide-y divide-slate-100 font-medium">
+                            <!-- Injected JS Ledger Rows -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- VIEW 5: ASSET REQUESTS & WISHLIST -->
+        <!-- ================================================================= -->
+        <section id="view-wishlist" class="hidden space-y-6">
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-4">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="text-lg font-bold text-slate-900">Department Wishlist & Needed Assets</h2>
+                        <p class="text-xs text-slate-500">Post items your team needs before submitting new external POs</p>
+                    </div>
+                    <button onclick="openWishlistModal()" class="bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold px-4 py-2 rounded-xl transition flex items-center space-x-1">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>Post Asset Need</span>
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="wishlist-container">
+                    <!-- Dynamic Wishlist Cards injected here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ================================================================= -->
+    <!-- MODAL 1: CLAIM & BUDGET LEDGER TRANSFER MODAL -->
+    <!-- ================================================================= -->
+    <div id="modal-claim" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full shadow-2xl border border-slate-200 overflow-hidden transform transition-all">
+            <!-- Header -->
+            <div class="bg-slate-900 text-white p-5 flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-sky-500/20 text-sky-400 flex items-center justify-center text-lg">
+                        <i class="fa-solid fa-boxes-packing"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-sm text-white">Internal Asset Adoption</h3>
+                        <p class="text-xs text-slate-400">Ledger Transfer Authorization</p>
+                    </div>
+                </div>
+                <button onclick="closeClaimModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+
+            <div class="p-6 space-y-5">
+                <!-- Asset Brief Summary -->
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex items-start space-x-3">
+                    <div id="claim-modal-icon" class="text-3xl text-sky-600 p-2"></div>
+                    <div>
+                        <h4 id="claim-modal-title" class="font-bold text-slate-800 text-sm"></h4>
+                        <p id="claim-modal-location" class="text-xs text-slate-500 mt-0.5"></p>
+                        <div class="mt-2 flex items-center space-x-2">
+                            <span id="claim-modal-savings" class="text-[11px] font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded"></span>
+                            <span id="claim-modal-condition" class="text-[11px] font-medium text-slate-600 bg-slate-200 px-2 py-0.5 rounded"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ledger Transfer Calculation Box -->
+                <div class="border border-slate-200 rounded-xl p-4 space-y-3 bg-white">
+                    <h5 class="text-xs font-bold text-slate-700 uppercase tracking-wider">Budget Code Ledger Movement</h5>
+                    <div class="flex items-center justify-between text-xs font-mono">
+                        <div class="bg-slate-100 p-2 rounded text-slate-700">
+                            <p class="text-[10px] text-slate-400 uppercase font-sans">Source Cost Center</p>
+                            <p id="claim-modal-source" class="font-bold"></p>
+                        </div>
+                        <i class="fa-solid fa-arrow-right text-slate-400"></i>
+                        <div class="bg-sky-50 p-2 rounded text-sky-800 border border-sky-200">
+                            <p class="text-[10px] text-sky-600 uppercase font-sans">Target Cost Center</p>
+                            <p id="claim-modal-target" class="font-bold"></p>
+                        </div>
+                    </div>
+                    <div class="pt-2 border-t border-slate-100 flex justify-between text-xs">
+                        <span class="text-slate-500">Internal Transfer Fee:</span>
+                        <span id="claim-modal-fee" class="font-bold text-slate-800">$0.00 (Free Transfer)</span>
+                    </div>
+                </div>
+
+                <!-- Pickup & Dispatch Option -->
+                <div class="space-y-2">
+                    <label class="block text-xs font-bold text-slate-700">Fulfillment Method</label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <label class="border border-slate-200 p-3 rounded-xl flex items-center space-x-2 cursor-pointer hover:border-sky-500 transition">
+                            <input type="radio" name="dispatch-type" value="self" checked class="text-sky-600">
+                            <div class="text-xs">
+                                <p class="font-bold text-slate-800">Self Pickup</p>
+                                <p class="text-[10px] text-slate-400">Collect from Closet</p>
+                            </div>
+                        </label>
+                        <label class="border border-slate-200 p-3 rounded-xl flex items-center space-x-2 cursor-pointer hover:border-sky-500 transition">
+                            <input type="radio" name="dispatch-type" value="facilities" class="text-sky-600">
+                            <div class="text-xs">
+                                <p class="font-bold text-slate-800">Internal Dispatch</p>
+                                <p class="text-[10px] text-slate-400">Facilities Ticket ($15)</p>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button onclick="confirmClaim()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg transition flex items-center justify-center space-x-2 text-xs">
+                    <i class="fa-solid fa-check-double"></i>
+                    <span>Confirm Adoption & Authorize Ledger Transfer</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: WISHLIST REQUEST MODAL -->
+    <div id="modal-wishlist" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full shadow-2xl border border-slate-200 overflow-hidden">
+            <div class="bg-slate-900 text-white p-4 flex items-center justify-between">
+                <h3 class="font-bold text-sm">Post Needed Asset Request</h3>
+                <button onclick="closeWishlistModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form onsubmit="handleWishlistSubmit(event)" class="p-5 space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Asset Needed Title</label>
+                    <input type="text" id="wish-title" required placeholder="e.g. Ergonomic Standing Desk Converter" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Category</label>
+                    <select id="wish-category" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs">
+                        <option value="Monitors & Displays">Monitors & Displays</option>
+                        <option value="Ergonomic Chairs & Desks">Ergonomic Chairs & Desks</option>
+                        <option value="AV & Conferencing">AV & Conferencing</option>
+                        <option value="Mobile & Cables">Mobile & Cables</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Justification / Request Notes</label>
+                    <textarea id="wish-notes" required rows="2" placeholder="Needed for new onboarding cohort..." class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-sky-600 hover:bg-sky-700 text-white font-bold py-2.5 rounded-xl text-xs shadow-md">
+                    Publish Request to Wishlist
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION FLOATER -->
+    <div id="toast-notification" class="fixed bottom-5 right-5 z-50 bg-slate-900 text-white px-4 py-3 rounded-2xl shadow-2xl border border-slate-800 flex items-center space-x-3 transform translate-y-24 opacity-0 transition-all duration-300">
+        <div id="toast-icon" class="text-emerald-400 text-lg">
+            <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <div>
+            <p id="toast-message" class="text-xs font-bold text-white"></p>
+            <p id="toast-sub" class="text-[10px] text-slate-400"></p>
+        </div>
+    </div>
+
+    <script>
+        // =====================================================================
+        // APPLICATION STATE & MOCK INITIAL DATA
+        // =====================================================================
+        
+        let currentUser = {
+            id: 'alex',
+            name: 'Alex Morgan',
+            email: 'alex.morgan@acmecorp.com',
+            dept: 'Engineering',
+            costCenter: '#ENG-402',
+            avatar: 'AM'
+        };
+
+        let metrics = {
+            savings: 42850,
+            rehomed: 314,
+            co2: 1.2
+        };
+
+        let viewMode = 'grid'; // 'grid' | 'list'
+        let activeClaimItem = null;
+
+        // Mock Initial Surplus Assets Data
+        let assets = [
+            {
+                id: 1,
+                title: 'Herman Miller Aeron Ergonomic Chair (Size B)',
+                category: 'Ergonomic Chairs & Desks',
+                condition: 'Lightly Used',
+                location: 'Floor 4 (Storage Closet B)',
+                costCenter: '#MKT-101 (Marketing)',
+                estCost: 1250,
+                transferFee: 0,
+                procurementGate: true,
+                icon: 'fa-chair',
+                imageBg: 'bg-emerald-50 text-emerald-600',
+                desc: 'Fully adjustable posture fit, dark mesh. Surplus after floor 4 re-configuration.',
+                datePosted: '2 days ago'
+            },
+            {
+                id: 2,
+                title: 'Dell UltraSharp 27" 4K USB-C Monitor (U2720Q)',
+                category: 'Monitors & Displays',
+                condition: 'Brand New',
+                location: 'Floor 2 (Tech Storage)',
+                costCenter: '#IT-302 (IT Ops)',
+                estCost: 550,
+                transferFee: 0,
+                procurementGate: true,
+                icon: 'fa-desktop',
+                imageBg: 'bg-sky-50 text-sky-600',
+                desc: 'Unopened box with original cables and USB-C power delivery dock.',
+                datePosted: '1 day ago'
+            },
+            {
+                id: 3,
+                title: 'Logitech Rally Bar Mini Video Conferencing System',
+                category: 'AV & Conferencing',
+                condition: 'Lightly Used',
+                location: 'Floor 7 (AV Depot)',
+                costCenter: '#FAC-901 (Facilities)',
+                estCost: 980,
+                transferFee: 50,
+                procurementGate: false,
+                icon: 'fa-video',
+                imageBg: 'bg-purple-50 text-purple-600',
+                desc: 'Includes TV mount, power supply, and remote control. Cleaned and tested by AV.',
+                datePosted: '3 hours ago'
+            },
+            {
+                id: 4,
+                title: 'Fluke 87V Industrial Multimeter Calibration Kit',
+                category: 'Specialized Tools',
+                condition: 'Needs Cleaning',
+                location: 'East Campus Bay 12',
+                costCenter: '#LAB-804 (R&D Lab)',
+                estCost: 420,
+                transferFee: 0,
+                procurementGate: false,
+                icon: 'fa-toolbox',
+                imageBg: 'bg-amber-50 text-amber-600',
+                desc: 'Calibrated last quarter. Includes hard shell casing and silicone leads.',
+                datePosted: '4 days ago'
+            },
+            {
+                id: 5,
+                title: 'Apple Thunderbolt 4 Pro Docking Stations (Pack of 3)',
+                category: 'Mobile & Cables',
+                condition: 'Brand New',
+                location: 'Floor 2 (Tech Storage)',
+                costCenter: '#IT-302 (IT Ops)',
+                estCost: 320,
+                transferFee: 0,
+                procurementGate: true,
+                icon: 'fa-plug',
+                imageBg: 'bg-indigo-50 text-indigo-600',
+                desc: 'Sealed boxes. High-speed multi-monitor docks for M-series MacBooks.',
+                datePosted: '5 hours ago'
+            },
+            {
+                id: 6,
+                title: 'Standing Desk Converter Motorized Dual Monitor',
+                category: 'Ergonomic Chairs & Desks',
+                condition: 'Repair Needed',
+                location: 'Floor 4 (Storage Closet B)',
+                costCenter: '#HR-201 (Human Resources)',
+                estCost: 280,
+                transferFee: 0,
+                procurementGate: false,
+                icon: 'fa-chair',
+                imageBg: 'bg-rose-50 text-rose-600',
+                desc: 'Motor requires reset procedure. Great project asset for engineering workspace.',
+                datePosted: '1 week ago'
+            }
+        ];
+
+        // Intercept Requisitions Data
+        let procurementIntercepts = [
+            {
+                id: 101,
+                requestedBy: 'Engineering Ops (#ENG-402)',
+                itemRequested: '10x 27" 4K Monitors for New Software Cohort',
+                estExternalSpend: 4500,
+                matchingSurplus: '14 Units available in IT Storage Floor 2',
+                potentialSavings: 4500,
+                urgency: 'HIGH'
+            },
+            {
+                id: 102,
+                requestedBy: 'Design Team (#DES-501)',
+                itemRequested: '4x Ergonomic Task Chairs',
+                estExternalSpend: 2400,
+                matchingSurplus: '6 Herman Miller Chairs available in Closet 4B',
+                potentialSavings: 2400,
+                urgency: 'MEDIUM'
+            },
+            {
+                id: 103,
+                requestedBy: 'Executive Ops (#EXEC-100)',
+                itemRequested: '4K Conference Video Soundbar',
+                estExternalSpend: 1200,
+                matchingSurplus: 'Logitech Rally Bar Mini in Floor 7 AV Depot',
+                potentialSavings: 1200,
+                urgency: 'LOW'
+            }
+        ];
+
+        // Ledger Transactions Audit Log
+        let ledgerTransactions = [
+            { id: 'TX-8821', asset: 'Anker USB-C Multiport Docks (x5)', source: '#IT-302', target: '#ENG-402', value: '$750.00', date: '2026-09-18', status: 'Completed' },
+            { id: 'TX-8820', asset: 'Ergonomic Mesh Footrests (x2)', source: '#HR-201', target: '#FIN-301', value: '$120.00', date: '2026-09-17', status: 'Completed' },
+            { id: 'TX-8819', asset: 'Jabra Speak 710 Conference Puck', source: '#MKT-101', target: '#SALES-202', value: '$240.00', date: '2026-09-15', status: 'Completed' }
+        ];
+
+        // Wishlist Items Data
+        let wishlistItems = [
+            { id: 1, title: 'USB-C Dual 4K Docking Station', category: 'Mobile & Cables', requestedBy: 'Sarah K. (Design)', notes: 'Need for color grading laptop hookup', matchesFound: 2 },
+            { id: 2, title: 'Oscilloscope / Signal Generator', category: 'Specialized Tools', requestedBy: 'Mark T. (Hardware Lab)', notes: 'For prototyping prototype rev2', matchesFound: 0 }
+        ];
+
+        // =====================================================================
+        // INITIALIZATION & TAB NAVIGATION LOGIC
+        // =====================================================================
+
+        window.onload = function() {
+            renderAssets();
+            renderProcurementGate();
+            renderLedgerTable();
+            renderWishlist();
+            updateTicker();
+        };
+
+        function switchTab(tabId) {
+            // Hide all view sections
+            const views = ['marketplace', 'procurement', 'list-asset', 'ledger', 'wishlist'];
+            views.forEach(v => {
+                const el = document.getElementById(`view-${v}`);
+                if (el) el.classList.add('hidden');
+                
+                const navBtn = document.getElementById(`nav-${v}`);
+                if (navBtn) {
+                    navBtn.classList.remove('border-sky-400', 'text-sky-400');
+                    navBtn.classList.add('border-transparent', 'text-slate-400');
+                }
+            });
+
+            // Show selected view section
+            const activeView = document.getElementById(`view-${tabId}`);
+            if (activeView) activeView.classList.remove('hidden');
+
+            const activeNav = document.getElementById(`nav-${tabId}`);
+            if (activeNav) {
+                activeNav.classList.remove('border-transparent', 'text-slate-400');
+                activeNav.classList.add('border-sky-400', 'text-sky-400');
+            }
+        }
+
+        function switchUser(userId) {
+            if (userId === 'alex') {
+                currentUser = { id: 'alex', name: 'Alex Morgan', email: 'alex.morgan@acmecorp.com', dept: 'Engineering', costCenter: '#ENG-402', avatar: 'AM' };
+            } else if (userId === 'sarah') {
+                currentUser = { id: 'sarah', name: 'Sarah Jenkins', email: 'sarah.jenkins@acmecorp.com', dept: 'Procurement', costCenter: '#PROC-101', avatar: 'SJ' };
+            } else if (userId === 'david') {
+                currentUser = { id: 'david', name: 'David Chen', email: 'david.chen@acmecorp.com', dept: 'Marketing', costCenter: '#MKT-101', avatar: 'DC' };
+            }
+
+            document.getElementById('current-user-name').innerText = currentUser.name;
+            document.getElementById('current-user-dept').innerText = `${currentUser.dept} (${currentUser.costCenter})`;
+            document.getElementById('current-user-email').innerText = currentUser.email;
+            document.getElementById('current-user-avatar').innerText = currentUser.avatar;
+            document.getElementById('form-cost-center').value = `${currentUser.costCenter} (${currentUser.dept})`;
+
+            showToast(`SSO Switched: ${currentUser.name}`, `Active Budget Code: ${currentUser.costCenter}`);
+        }
+
+        // =====================================================================
+        // MARKETPLACE RENDER & FILTER FUNCTIONS
+        // =====================================================================
+
+        function renderAssets() {
+            const container = document.getElementById('assets-container');
+            const emptyState = document.getElementById('empty-state');
+            
+            const searchVal = document.getElementById('search-input').value.toLowerCase();
+            const catVal = document.getElementById('filter-category').value;
+            const condVal = document.getElementById('filter-condition').value;
+            const locVal = document.getElementById('filter-location').value;
+            const gateVal = document.getElementById('filter-gate').value;
+
+            // Filter logic
+            const filtered = assets.filter(item => {
+                const matchSearch = item.title.toLowerCase().includes(searchVal) || item.desc.toLowerCase().includes(searchVal);
+                const matchCat = (catVal === 'ALL' || item.category === catVal);
+                const matchCond = (condVal === 'ALL' || item.condition === condVal);
+                const matchLoc = (locVal === 'ALL' || item.location === locVal);
+                const matchGate = (gateVal === 'ALL' || (gateVal === 'MANDATORY' && item.procurementGate) || (gateVal === 'OPTIONAL' && !item.procurementGate));
+                
+                return matchSearch && matchCat && matchCond && matchLoc && matchGate;
+            });
+
+            document.getElementById('active-item-count').innerText = filtered.length;
+            document.getElementById('nav-count-marketplace').innerText = filtered.length;
+
+            if (filtered.length === 0) {
+                container.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+
+            // Render List or Grid
+            if (viewMode === 'grid') {
+                container.className = "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5";
+                container.innerHTML = filtered.map(item => `
+                    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition flex flex-col justify-between overflow-hidden group">
+                        <div class="p-5 space-y-3">
+                            <!-- Category Badge & Gate Pill -->
+                            <div class="flex items-center justify-between">
+                                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 bg-slate-100 px-2.5 py-1 rounded-lg">
+                                    ${item.category}
+                                </span>
+                                ${item.procurementGate ? `
+                                    <span class="text-[10px] font-bold text-amber-700 bg-amber-100 px-2 py-0.5 rounded-full border border-amber-200 flex items-center space-x-1" title="Mandatory check before submitting external PO">
+                                        <i class="fa-solid fa-shield"></i>
+                                        <span>Gate Mandatory</span>
+                                    </span>
+                                ` : ''}
+                            </div>
+
+                            <!-- Visual Placeholder & Title -->
+                            <div class="flex items-start space-x-3.5 pt-1">
+                                <div class="w-12 h-12 rounded-xl ${item.imageBg} flex items-center justify-center text-xl flex-shrink-0 shadow-inner">
+                                    <i class="fa-solid ${item.icon}"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-slate-800 text-sm leading-snug group-hover:text-sky-600 transition">${item.title}</h3>
+                                    <p class="text-[11px] text-slate-500 mt-0.5"><i class="fa-solid fa-location-dot text-slate-400 mr-1"></i>${item.location}</p>
+                                </div>
+                            </div>
+
+                            <p class="text-xs text-slate-600 line-clamp-2">${item.desc}</p>
+
+                            <!-- Condition Pill & Budget Savings -->
+                            <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
+                                <div>
+                                    <p class="text-[10px] text-slate-400 font-bold uppercase">Condition</p>
+                                    <span class="font-semibold text-slate-700">${item.condition}</span>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-[10px] text-slate-400 font-bold uppercase">Dept Capital Saved</p>
+                                    <span class="font-bold text-emerald-600">Saves $${item.estCost}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Footer Action Bar -->
+                        <div class="bg-slate-50 px-5 py-3 border-t border-slate-100 flex items-center justify-between">
+                            <span class="text-[11px] text-slate-400 font-mono">${item.costCenter.split(' ')[0]}</span>
+                            <button onclick="openClaimModal(${item.id})" class="bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold px-3.5 py-1.5 rounded-xl shadow transition flex items-center space-x-1.5">
+                                <i class="fa-solid fa-hand-holding-hand"></i>
+                                <span>Claim Asset</span>
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            } else {
+                // LIST VIEW RENDER
+                container.className = "space-y-3";
+                container.innerHTML = filtered.map(item => `
+                    <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm hover:shadow-md transition flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-xl ${item.imageBg} flex items-center justify-center text-xl flex-shrink-0">
+                                <i class="fa-solid ${item.icon}"></i>
+                            </div>
+                            <div>
+                                <div class="flex items-center space-x-2">
+                                    <h3 class="font-bold text-slate-800 text-sm">${item.title}</h3>
+                                    ${item.procurementGate ? `<span class="bg-amber-100 text-amber-800 text-[9px] font-bold px-1.5 py-0.5 rounded">Gate</span>` : ''}
+                                </div>
+                                <p class="text-xs text-slate-500">${item.category} • <i class="fa-solid fa-location-dot text-slate-400"></i> ${item.location}</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-6 w-full sm:w-auto justify-between sm:justify-end">
+                            <div class="text-right">
+                                <p class="text-xs font-bold text-emerald-600">Saves $${item.estCost}</p>
+                                <p class="text-[10px] text-slate-400">${item.condition}</p>
+                            </div>
+                            <button onclick="openClaimModal(${item.id})" class="bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold px-4 py-2 rounded-xl transition">
+                                Claim Asset
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function applyFilters() {
+            renderAssets();
+        }
+
+        function resetFilters() {
+            document.getElementById('search-input').value = '';
+            document.getElementById('filter-category').value = 'ALL';
+            document.getElementById('filter-condition').value = 'ALL';
+            document.getElementById('filter-location').value = 'ALL';
+            document.getElementById('filter-gate').value = 'ALL';
+            renderAssets();
+        }
+
+        function setViewMode(mode) {
+            viewMode = mode;
+            const gridBtn = document.getElementById('view-mode-grid');
+            const listBtn = document.getElementById('view-mode-list');
+
+            if (mode === 'grid') {
+                gridBtn.className = "px-2.5 py-1.5 text-xs font-semibold rounded-lg bg-white shadow-sm text-slate-800";
+                listBtn.className = "px-2.5 py-1.5 text-xs font-semibold rounded-lg text-slate-500 hover:text-slate-800";
+            } else {
+                listBtn.className = "px-2.5 py-1.5 text-xs font-semibold rounded-lg bg-white shadow-sm text-slate-800";
+                gridBtn.className = "px-2.5 py-1.5 text-xs font-semibold rounded-lg text-slate-500 hover:text-slate-800";
+            }
+            renderAssets();
+        }
+
+        // =====================================================================
+        // ASSET CLAIM & BUDGET LEDGER MODAL EXECUTION
+        // =====================================================================
+
+        function openClaimModal(id) {
+            activeClaimItem = assets.find(a => a.id === id);
+            if (!activeClaimItem) return;
+
+            document.getElementById('claim-modal-title').innerText = activeClaimItem.title;
+            document.getElementById('claim-modal-location').innerText = `Location: ${activeClaimItem.location}`;
+            document.getElementById('claim-modal-savings').innerText = `Saves $${activeClaimItem.estCost} New Budget`;
+            document.getElementById('claim-modal-condition').innerText = activeClaimItem.condition;
+            document.getElementById('claim-modal-icon').innerHTML = `<i class="fa-solid ${activeClaimItem.icon}"></i>`;
+            
+            document.getElementById('claim-modal-source').innerText = activeClaimItem.costCenter;
+            document.getElementById('claim-modal-target').innerText = `${currentUser.costCenter} (${currentUser.dept})`;
+
+            if (activeClaimItem.transferFee > 0) {
+                document.getElementById('claim-modal-fee').innerText = `$${activeClaimItem.transferFee}.00 (Internal Credit Transfer)`;
+            } else {
+                document.getElementById('claim-modal-fee').innerText = '$0.00 (Free Adoption)';
+            }
+
+            document.getElementById('modal-claim').classList.remove('hidden');
+        }
+
+        function closeClaimModal() {
+            document.getElementById('modal-claim').classList.add('hidden');
+            activeClaimItem = null;
+        }
+
+        function confirmClaim() {
+            if (!activeClaimItem) return;
+
+            // Remove asset from available pool
+            assets = assets.filter(a => a.id !== activeClaimItem.id);
+
+            // Update stats metrics
+            metrics.savings += activeClaimItem.estCost;
+            metrics.rehomed += 1;
+            metrics.co2 = parseFloat((metrics.co2 + 0.05).toFixed(2));
+            updateTicker();
+
+            // Append transaction to audit log
+            const newTx = {
+                id: `TX-${Math.floor(1000 + Math.random() * 9000)}`,
+                asset: activeClaimItem.title,
+                source: activeClaimItem.costCenter.split(' ')[0],
+                target: currentUser.costCenter,
+                value: `$${activeClaimItem.transferFee}.00`,
+                date: new Date().toISOString().split('T')[0],
+                status: 'Completed'
+            };
+            ledgerTransactions.unshift(newTx);
+            renderLedgerTable();
+
+            closeClaimModal();
+            renderAssets();
+
+            showToast("Asset Successfully Claimed!", `Ledger Transfer recorded for ${currentUser.costCenter}`);
+        }
+
+        // =====================================================================
+        // LIST NEW ASSET SUBMISSION
+        // =====================================================================
+
+        function handleAssetSubmit(e) {
+            e.preventDefault();
+
+            const title = document.getElementById('form-title').value;
+            const category = document.getElementById('form-category').value;
+            const condition = document.getElementById('form-condition').value;
+            const icon = document.getElementById('form-icon').value;
+            const location = document.getElementById('form-location').value;
+            const estCost = parseInt(document.getElementById('form-est-cost').value) || 0;
+            const transferFee = parseInt(document.getElementById('form-transfer-fee').value) || 0;
+            const procurementGate = document.getElementById('form-procurement-gate').checked;
+            const desc = document.getElementById('form-desc').value;
+
+            const newAsset = {
+                id: Date.now(),
+                title,
+                category,
+                condition,
+                location,
+                costCenter: `${currentUser.costCenter} (${currentUser.dept})`,
+                estCost,
+                transferFee,
+                procurementGate,
+                icon,
+                imageBg: 'bg-sky-50 text-sky-600',
+                desc: desc || 'Surplus asset available for immediate departmental adoption.',
+                datePosted: 'Just now'
+            };
+
+            assets.unshift(newAsset);
+            document.getElementById('form-list-asset').reset();
+
+            showToast("Surplus Asset Listed!", "Item is now visible across the enterprise marketplace.");
+            switchTab('marketplace');
+            renderAssets();
+        }
+
+        // =====================================================================
+        // PROCUREMENT GATE INTERCEPT RENDER
+        // =====================================================================
+
+        function renderProcurementGate() {
+            const list = document.getElementById('procurement-intercept-list');
+            if (procurementIntercepts.length === 0) {
+                list.innerHTML = `
+                    <div class="p-8 text-center text-slate-400">
+                        <i class="fa-solid fa-circle-check text-3xl text-emerald-500 mb-2"></i>
+                        <p class="text-xs font-bold text-slate-700">All External Purchase Orders Cleared</p>
+                        <p class="text-[11px]">No active external PO intercept matches at this time.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            list.innerHTML = procurementIntercepts.map(item => `
+                <div class="p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 hover:bg-slate-50/80 transition">
+                    <div class="space-y-1">
+                        <div class="flex items-center space-x-2">
+                            <span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded">PO Intercept #${item.id}</span>
+                            <span class="text-xs text-slate-500">${item.requestedBy}</span>
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-sm">${item.itemRequested}</h4>
+                        <p class="text-xs text-emerald-700 font-semibold flex items-center space-x-1">
+                            <i class="fa-solid fa-circle-nodes"></i>
+                            <span>Internal Match Found: ${item.matchingSurplus}</span>
+                        </p>
+                    </div>
+
+                    <div class="flex items-center space-x-3 w-full md:w-auto justify-end">
+                        <div class="text-right">
+                            <p class="text-xs font-bold text-slate-800">$${item.estExternalSpend} PO Value</p>
+                            <p class="text-[10px] text-emerald-600 font-bold">100% Capital Saved</p>
+                        </div>
+                        <button onclick="overrideProcurement(${item.id})" class="text-xs text-slate-500 hover:text-slate-800 px-3 py-2 font-medium">
+                            Override PO
+                        </button>
+                        <button onclick="redirectProcurement(${item.id})" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-2 rounded-xl shadow transition flex items-center space-x-1">
+                            <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                            <span>Redirect to Internal Stock</span>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function redirectProcurement(id) {
+            const item = procurementIntercepts.find(p => p.id === id);
+            if (!item) return;
+
+            metrics.savings += item.estExternalSpend;
+            metrics.rehomed += 1;
+            updateTicker();
+
+            procurementIntercepts = procurementIntercepts.filter(p => p.id !== id);
+            document.getElementById('nav-count-procurement').innerText = `${procurementIntercepts.length} Alerts`;
+            renderProcurementGate();
+
+            showToast("External PO Blocked & Redirected!", `Saved $${item.estExternalSpend} by matching with existing internal surplus.`);
+        }
+
+        function overrideProcurement(id) {
+            procurementIntercepts = procurementIntercepts.filter(p => p.id !== id);
+            document.getElementById('nav-count-procurement').innerText = `${procurementIntercepts.length} Alerts`;
+            renderProcurementGate();
+
+            showToast("PO Approved for External Buy", "Manager override logged in audit history.");
+        }
+
+        // =====================================================================
+        // LEDGER TABLE & WISHLIST MODULES
+        // =====================================================================
+
+        function renderLedgerTable() {
+            const tbody = document.getElementById('ledger-table-body');
+            tbody.innerHTML = ledgerTransactions.map(tx => `
+                <tr class="hover:bg-slate-50">
+                    <td class="p-3.5 font-mono text-slate-500">${tx.id}</td>
+                    <td class="p-3.5 font-bold text-slate-800">${tx.asset}</td>
+                    <td class="p-3.5"><span class="bg-slate-100 text-slate-700 px-2 py-0.5 rounded font-mono">${tx.source}</span></td>
+                    <td class="p-3.5"><span class="bg-sky-100 text-sky-800 px-2 py-0.5 rounded font-mono">${tx.target}</span></td>
+                    <td class="p-3.5 font-bold text-emerald-600">${tx.value}</td>
+                    <td class="p-3.5 text-slate-500">${tx.date} • <span class="text-emerald-600 font-semibold">${tx.status}</span></td>
+                </tr>
+            `).join('');
+        }
+
+        function exportLedgerCSV() {
+            let csv = "TxID,Asset,SourceBudget,TargetBudget,Value,Date\n";
+            ledgerTransactions.forEach(t => {
+                csv += `${t.id},"${t.asset}",${t.source},${t.target},${t.value},${t.date}\n`;
+            });
+
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.setAttribute('href', url);
+            a.setAttribute('download', `CorpShare_Ledger_${Date.now()}.csv`);
+            a.click();
+            showToast("Ledger CSV Exported", "Downloaded audit log to local machine.");
+        }
+
+        function renderWishlist() {
+            const container = document.getElementById('wishlist-container');
+            container.innerHTML = wishlistItems.map(item => `
+                <div class="border border-slate-200 rounded-2xl p-4 space-y-3 bg-slate-50/50 hover:bg-white transition">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <span class="text-[10px] font-bold text-slate-400 uppercase">${item.category}</span>
+                            <h4 class="font-bold text-slate-800 text-sm mt-0.5">${item.title}</h4>
+                            <p class="text-xs text-slate-500">Requested by ${item.requestedBy}</p>
+                        </div>
+                        <span class="bg-sky-100 text-sky-800 text-[10px] font-bold px-2 py-1 rounded-full">
+                            ${item.matchesFound} Matches
+                        </span>
+                    </div>
+                    <p class="text-xs text-slate-600 italic">"${item.notes}"</p>
+                    <button onclick="showToast('Alert Sent', 'Notified requester about surplus match.')" class="w-full bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs font-bold py-2 rounded-xl transition">
+                        I Have This Asset
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function openWishlistModal() { document.getElementById('modal-wishlist').classList.remove('hidden'); }
+        function closeWishlistModal() { document.getElementById('modal-wishlist').classList.add('hidden'); }
+
+        function handleWishlistSubmit(e) {
+            e.preventDefault();
+            const title = document.getElementById('wish-title').value;
+            const category = document.getElementById('wish-category').value;
+            const notes = document.getElementById('wish-notes').value;
+
+            wishlistItems.unshift({
+                id: Date.now(),
+                title,
+                category,
+                requestedBy: currentUser.name,
+                notes,
+                matchesFound: 0
+            });
+
+            renderWishlist();
+            closeWishlistModal();
+            showToast("Wishlist Need Posted", "Procurement & facilities will monitor for surplus.");
+        }
+
+        // =====================================================================
+        // UTILITY FUNCTIONS: TICKER & TOAST NOTIFICATIONS
+        // =====================================================================
+
+        function updateTicker() {
+            document.getElementById('ticker-savings').innerText = `$${metrics.savings.toLocaleString()}`;
+            document.getElementById('ticker-rehomed').innerText = `${metrics.rehomed} Assets`;
+            document.getElementById('ticker-co2').innerText = `${metrics.co2} Tons`;
+            
+            document.getElementById('dash-total-savings').innerText = `$${metrics.savings.toLocaleString()}`;
+            document.getElementById('dash-transfers-count').innerText = metrics.rehomed;
+        }
+
+        function showToast(title, sub) {
+            const toast = document.getElementById('toast-notification');
+            document.getElementById('toast-message').innerText = title;
+            document.getElementById('toast-sub').innerText = sub;
+
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
 
             setTimeout(() => {
-                heart.remove();
-            }, 5000);
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 3500);
         }
-
-        // Generate hearts every 300ms
-        setInterval(createHeart, 300);
-</script>
+    </script>
 </body>
 </html>
+```
