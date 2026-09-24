@@ -1,1114 +1,957 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full bg-slate-900 text-slate-100">
+<html lang="en" class="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PokieBoii Ads | Multi-Vendor Product Marketplace by P O K I E B O I I</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            50: '#fff1f2',
-                            100: '#ffe4e6',
-                            500: '#f43f5e',
-                            600: '#e11d48',
-                            700: '#be123c',
-                            800: '#9f1239',
-                            900: '#881337',
-                            accent: '#f59e0b'
-                        }
-                    }
-                }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Pokieboii Market - Global Marketplace</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              gold: '#F59E0B',
+              accent: '#8B5CF6',
+              dark: '#0F172A',
+              card: '#1E293B',
+              border: '#334155'
             }
+          }
         }
-    </script>
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
-        .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: #0f172a; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #475569; }
-        .glass-card {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-    </style>
+      }
+    };
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0F172A; color: #F8FAFC; }
+    .gold-gradient-text { background: linear-gradient(135deg, #FBBF24 0%, #F59E0B 50%, #D97706 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .violet-gradient-btn { background: linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%); }
+    .gold-gradient-btn { background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%); }
+    .glass-panel { background: rgba(30, 41, 59, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
+    /* Hide scrollbars for clean UI */
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
 </head>
-<body class="h-full flex flex-col antialiased custom-scrollbar selection:bg-rose-500 selection:text-white">
+<body class="bg-brand-dark min-h-screen flex flex-col pb-24 selection:bg-brand-gold selection:text-black">
 
-    <!-- TOP PROMOTIONAL ANNOUNCEMENT BAR -->
-    <div class="bg-gradient-to-r from-rose-700 via-amber-600 to-rose-700 text-white text-xs py-2 px-4 text-center font-bold tracking-wide shadow-md flex items-center justify-center space-x-2">
-        <span class="bg-black/30 px-2 py-0.5 rounded-full text-[10px] uppercase font-extrabold tracking-widest text-amber-300">Limited Promo</span>
-        <span>🔥 Advertise Your Company Products FREE For 7 Days! Created by P O K I E B O I I</span>
-        <button onclick="openModal('modal-vendor-signup')" class="underline hover:text-amber-200 ml-2 font-black">Register Business Now →</button>
+  <!-- TERMS & CONDITIONS MODAL -->
+  <div id="terms-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden">
+    <div class="glass-panel w-full max-w-lg rounded-2xl p-6 shadow-2xl border border-brand-border space-y-4 max-h-[90vh] flex flex-col">
+      <div class="flex items-center gap-3 border-b border-brand-border pb-3">
+        <i class="fa-solid fa-file-contract text-2xl text-brand-gold"></i>
+        <h2 class="text-xl font-bold text-white">Terms & Legal Agreement</h2>
+      </div>
+      <div class="overflow-y-auto space-y-3 text-sm text-gray-300 pr-2 leading-relaxed">
+        <p class="font-semibold text-white">Welcome to Pokieboii Market by Tinashe Chimugoti!</p>
+        <p>By registering or using this platform, you agree to comply with all community seller guidelines and privacy terms outlined below:</p>
+        <ul class="list-disc pl-5 space-y-1">
+          <li><strong>Content Integrity:</strong> All uploaded items must be authentic. Fake, illegal, or prohibited goods are prohibited.</li>
+          <li><strong>TeraBox Integration:</strong> File downloads and high-res media linked via TeraBox are subject to TeraBox terms of service.</li>
+          <li><strong>Buyer-Seller Direct Communication:</strong> Orders placed via WhatsApp or Call are directly handled between trading parties.</li>
+          <li><strong>Data Handling:</strong> Account details and uploaded media listings are managed securely within your local platform instance.</li>
+        </ul>
+      </div>
+      <div class="pt-3 border-t border-brand-border flex items-center justify-between gap-3">
+        <label class="flex items-center gap-2 text-xs text-gray-400 cursor-pointer">
+          <input type="checkbox" id="accept-terms-check" class="rounded border-gray-600 bg-gray-800 text-brand-gold focus:ring-brand-gold">
+          I accept the terms and conditions
+        </label>
+        <button id="agree-terms-btn" disabled onclick="confirmTerms()" class="gold-gradient-btn text-black font-bold px-5 py-2.5 rounded-xl opacity-50 cursor-not-allowed transition hover:shadow-lg">
+          Continue
+        </button>
+      </div>
     </div>
+  </div>
 
-    <!-- MAIN HEADER & NAVBAR -->
-    <header class="sticky top-0 z-40 bg-slate-900/90 backdrop-blur-md border-b border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                
-                <!-- BRANDING / LOGO -->
-                <div class="flex items-center space-x-3 cursor-pointer" onclick="switchView('view-browse')">
-                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-rose-500 to-amber-500 p-0.5 shadow-lg shadow-rose-500/20">
-                        <div class="w-full h-full bg-slate-900 rounded-[14px] flex items-center justify-center">
-                            <i class="fa-solid fa-bullhorn text-2xl text-rose-500"></i>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="flex items-center space-x-2">
-                            <span class="text-2xl font-black tracking-tight text-white">PokieBoii<span class="text-rose-500">Ads</span></span>
-                            <span class="bg-rose-500/10 text-rose-400 border border-rose-500/20 text-[10px] font-bold px-2 py-0.5 rounded-full">PRO</span>
-                        </div>
-                        <p class="text-[11px] font-semibold text-slate-400 tracking-wider uppercase">Created by <span class="text-amber-400 font-bold">P O K I E B O I I</span></p>
-                    </div>
-                </div>
-
-                <!-- DESKTOP QUICK NAV ACTION BUTTONS -->
-                <div class="hidden lg:flex items-center space-x-3">
-                    <button onclick="switchView('view-browse')" id="nav-btn-browse" class="px-4 py-2 text-xs font-bold rounded-xl text-rose-400 bg-rose-500/10 border border-rose-500/20 transition">
-                        <i class="fa-solid fa-store mr-1.5"></i> Browse Showcase
-                    </button>
-                    <button onclick="switchView('view-pricing')" id="nav-btn-pricing" class="px-4 py-2 text-xs font-bold rounded-xl text-slate-300 hover:text-white hover:bg-slate-800 transition">
-                        <i class="fa-solid fa-tags mr-1.5"></i> Pricing & Trial
-                    </button>
-                    <button onclick="switchView('view-dashboard')" id="nav-btn-dashboard" class="px-4 py-2 text-xs font-bold rounded-xl text-slate-300 hover:text-white hover:bg-slate-800 transition">
-                        <i class="fa-solid fa-chart-pie mr-1.5"></i> Vendor Portal
-                    </button>
-                    <button onclick="openModal('modal-vendor-signup')" class="bg-gradient-to-r from-rose-600 to-amber-600 hover:from-rose-500 hover:to-amber-500 text-white text-xs font-extrabold px-5 py-2.5 rounded-xl shadow-lg shadow-rose-600/25 transition transform hover:-translate-y-0.5">
-                        <i class="fa-solid fa-plus-circle mr-1.5"></i> List Your Products
-                    </button>
-                </div>
-
-                <!-- MOBILE MENU TOGGLE -->
-                <div class="lg:hidden flex items-center">
-                    <button onclick="toggleMobileMenu()" class="p-2.5 rounded-xl bg-slate-800 text-slate-300 hover:text-white">
-                        <i class="fa-solid fa-bars text-lg"></i>
-                    </button>
-                </div>
-            </div>
+  <!-- AUTHENTICATION OVERLAY / LOGIN / SIGNUP -->
+  <div id="auth-overlay" class="fixed inset-0 z-40 flex items-center justify-center p-4 bg-brand-dark/95 backdrop-blur-lg">
+    <div class="glass-panel w-full max-w-md rounded-3xl p-8 shadow-2xl border border-brand-border space-y-6">
+      <div class="text-center space-y-2">
+        <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-brand-gold/10 text-brand-gold mb-2 border border-brand-gold/30">
+          <i class="fa-solid fa-shop text-3xl"></i>
         </div>
+        <h1 class="text-2xl font-extrabold gold-gradient-text">Pokieboii Market</h1>
+        <p class="text-xs text-gray-400">Created by Tinashe Chimugoti</p>
+      </div>
 
-        <!-- MOBILE EXPANDABLE MENU -->
-        <div id="mobile-menu" class="hidden lg:hidden bg-slate-900 border-b border-slate-800 px-4 py-4 space-y-3">
-            <button onclick="switchView('view-browse'); toggleMobileMenu()" class="w-full text-left px-4 py-2.5 text-xs font-bold text-rose-400 bg-slate-800 rounded-xl">
-                <i class="fa-solid fa-store mr-2"></i> Browse Products
-            </button>
-            <button onclick="switchView('view-dashboard'); toggleMobileMenu()" class="w-full text-left px-4 py-2.5 text-xs font-bold text-slate-300 hover:bg-slate-800 rounded-xl">
-                <i class="fa-solid fa-chart-pie mr-2"></i> Vendor Dashboard
-            </button>
-            <button onclick="switchView('view-pricing'); toggleMobileMenu()" class="w-full text-left px-4 py-2.5 text-xs font-bold text-slate-300 hover:bg-slate-800 rounded-xl">
-                <i class="fa-solid fa-tags mr-2"></i> Ad Plans & Pricing
-            </button>
-            <button onclick="openModal('modal-vendor-signup'); toggleMobileMenu()" class="w-full text-center bg-rose-600 text-white text-xs font-extrabold py-3 rounded-xl shadow-md">
-                + Register Company & List Items
-            </button>
+      <!-- Quick Preset Badge for Tinashe Chimugoti -->
+      <div onclick="prefillAdmin()" class="bg-brand-accent/10 border border-brand-accent/30 rounded-xl p-3 flex items-center justify-between cursor-pointer hover:bg-brand-accent/20 transition">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-brand-accent flex items-center justify-center text-white text-xs font-bold">TC</div>
+          <div>
+            <div class="text-xs font-bold text-white">Owner Preset Login</div>
+            <div class="text-[11px] text-gray-400">tinashechimugoti451@gmail.com</div>
+          </div>
         </div>
-    </header>
+        <span class="text-xs text-brand-gold font-semibold">Click to Autofill &rarr;</span>
+      </div>
 
-    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-
-        <!-- ================================================================= -->
-        <!-- VIEW 1: CONSUMER BROWSING & PRODUCT SHOWCASE -->
-        <!-- ================================================================= -->
-        <section id="view-browse" class="space-y-8">
-
-            <!-- HERO BANNER -->
-            <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-slate-900 via-slate-800 to-rose-950 border border-slate-800 p-8 sm:p-12 shadow-2xl">
-                <div class="absolute -right-10 -bottom-10 w-96 h-96 bg-rose-600/10 rounded-full blur-3xl pointer-events-none"></div>
-                <div class="relative z-10 max-w-2xl space-y-4">
-                    <div class="inline-flex items-center space-x-2 bg-rose-500/10 border border-rose-500/20 px-3 py-1 rounded-full text-rose-400 text-xs font-bold">
-                        <i class="fa-solid fa-certificate text-amber-400"></i>
-                        <span>Official Marketplace Platform by P O K I E B O I I</span>
-                    </div>
-                    <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
-                        Direct Deals From Verified <span class="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-amber-400">Companies & Sellers</span>
-                    </h1>
-                    <p class="text-sm text-slate-300 leading-relaxed">
-                        Discover top deals directly from businesses. Order instantly via <strong class="text-emerald-400">WhatsApp</strong>, <strong class="text-sky-400">Email</strong>, or <strong class="text-amber-400">Direct Phone Call</strong> with no intermediary markup!
-                    </p>
-                    <div class="pt-2 flex flex-wrap gap-3">
-                        <button onclick="openModal('modal-vendor-signup')" class="bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold px-6 py-3 rounded-xl shadow-lg shadow-rose-600/30 transition">
-                            Start 7-Day Free Company Ad Trial
-                        </button>
-                        <button onclick="scrollToProducts()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold px-6 py-3 rounded-xl border border-slate-700 transition">
-                            Explore Featured Products
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SEARCH BAR & CATEGORY FILTER CONTROL BAR -->
-            <div id="product-section-anchor" class="glass-card p-5 rounded-2xl shadow-xl space-y-4">
-                <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
-                    <!-- Search Field -->
-                    <div class="relative w-full md:w-1/2">
-                        <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                        <input type="text" id="search-input" onkeyup="filterProducts()" placeholder="Search products, companies, models, electronics, apparel..." 
-                               class="w-full pl-11 pr-4 py-3 bg-slate-900/80 border border-slate-700 rounded-xl text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-rose-500">
-                    </div>
-
-                    <!-- Filter Controls -->
-                    <div class="flex items-center space-x-3 w-full md:w-auto justify-end">
-                        <select id="sort-select" onchange="filterProducts()" class="bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-slate-300 focus:ring-2 focus:ring-rose-500">
-                            <option value="featured">Featured / Newest</option>
-                            <option value="price-low">Price: Low to High</option>
-                            <option value="price-high">Price: High to Low</option>
-                        </select>
-                        <button onclick="resetFilters()" class="text-xs text-slate-400 hover:text-white px-3 py-2 bg-slate-800 rounded-xl border border-slate-700 transition">
-                            <i class="fa-solid fa-arrows-rotate mr-1"></i> Reset
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Category Pills -->
-                <div class="flex items-center space-x-2 overflow-x-auto pt-2 pb-1 custom-scrollbar" id="category-pills">
-                    <!-- JS Injected Pills -->
-                </div>
-            </div>
-
-            <!-- PRODUCT SHOWCASE GRID -->
-            <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                <!-- Dynamic Product Cards injected via JavaScript -->
-            </div>
-
-            <!-- EMPTY STATE -->
-            <div id="no-products-state" class="hidden glass-card rounded-2xl p-12 text-center space-y-3">
-                <div class="w-16 h-16 bg-slate-800 text-rose-500 rounded-full flex items-center justify-center mx-auto text-2xl">
-                    <i class="fa-solid fa-box-open"></i>
-                </div>
-                <h3 class="text-lg font-bold text-white">No items match your criteria</h3>
-                <p class="text-xs text-slate-400 max-w-md mx-auto">Try broadening your search term or select 'All Categories' to view available company products.</p>
-                <button onclick="resetFilters()" class="mt-2 bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold px-5 py-2.5 rounded-xl transition">Clear Filters</button>
-            </div>
-        </section>
-
-        <!-- ================================================================= -->
-        <!-- VIEW 2: VENDOR DASHBOARD & ANALYTICS -->
-        <!-- ================================================================= -->
-        <section id="view-dashboard" class="hidden space-y-8">
-            
-            <!-- VENDOR HEADER & STATS -->
-            <div class="glass-card p-6 sm:p-8 rounded-3xl space-y-6">
-                <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-                    <div class="flex items-center space-x-4">
-                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-rose-500 to-amber-500 p-0.5 shadow-lg">
-                            <img id="vendor-dash-logo" src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=150" alt="Vendor Logo" class="w-full h-full object-cover rounded-[14px]">
-                        </div>
-                        <div>
-                            <div class="flex items-center space-x-2">
-                                <h2 id="vendor-dash-name" class="text-xl font-bold text-white">Apex Tech Solutions</h2>
-                                <span id="vendor-dash-trial-badge" class="bg-amber-500/20 text-amber-300 border border-amber-500/30 text-[10px] font-bold px-2.5 py-0.5 rounded-full">
-                                    7-Day Free Trial (6 Days Remaining)
-                                </span>
-                            </div>
-                            <p id="vendor-dash-dept" class="text-xs text-slate-400">Electronics & Software Division • Verified Seller</p>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center space-x-3">
-                        <button onclick="openModal('modal-add-product')" class="bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow transition flex items-center space-x-2">
-                            <i class="fa-solid fa-plus"></i>
-                            <span>Add New Ad Product</span>
-                        </button>
-                        <button onclick="openModal('modal-upgrade-plan')" class="bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-extrabold text-xs px-4 py-2.5 rounded-xl shadow transition">
-                            <i class="fa-solid fa-crown mr-1"></i> Upgrade Ad Plan
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Trial Progress Bar -->
-                <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-800 space-y-2">
-                    <div class="flex justify-between text-xs font-semibold">
-                        <span class="text-slate-300"><i class="fa-solid fa-clock text-amber-400 mr-1.5"></i> 7-Day Advertising Trial Active</span>
-                        <span class="text-amber-400">6 Days 18 Hours Left</span>
-                    </div>
-                    <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
-                        <div class="bg-gradient-to-r from-amber-400 to-rose-500 h-full rounded-full" style="width: 85%"></div>
-                    </div>
-                </div>
-
-                <!-- Key Metrics Cards -->
-                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 pt-2">
-                    <div class="bg-slate-900/60 p-4 rounded-2xl border border-slate-800">
-                        <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Active Listings</p>
-                        <h3 class="text-2xl font-black text-white mt-1" id="dash-stat-listings">3 Products</h3>
-                    </div>
-                    <div class="bg-slate-900/60 p-4 rounded-2xl border border-slate-800">
-                        <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Ad Impressions</p>
-                        <h3 class="text-2xl font-black text-rose-400 mt-1" id="dash-stat-impressions">1,420 Views</h3>
-                    </div>
-                    <div class="bg-slate-900/60 p-4 rounded-2xl border border-slate-800">
-                        <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">WhatsApp Leads</p>
-                        <h3 class="text-2xl font-black text-emerald-400 mt-1" id="dash-stat-whatsapp">38 Chats</h3>
-                    </div>
-                    <div class="bg-slate-900/60 p-4 rounded-2xl border border-slate-800">
-                        <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Calls & Emails</p>
-                        <h3 class="text-2xl font-black text-sky-400 mt-1" id="dash-stat-calls">19 Inquiries</h3>
-                    </div>
-                </div>
-            </div>
-
-            <!-- MANAGED LISTINGS TABLE -->
-            <div class="glass-card rounded-3xl overflow-hidden space-y-4 p-6">
-                <div class="flex items-center justify-between border-b border-slate-800 pb-4">
-                    <div>
-                        <h3 class="font-bold text-white text-base">Your Active Product Advertisements</h3>
-                        <p class="text-xs text-slate-400">Manage listings visible to consumers enterprise-wide</p>
-                    </div>
-                    <button onclick="openModal('modal-add-product')" class="text-xs text-rose-400 hover:text-rose-300 font-bold">
-                        + New Listing
-                    </button>
-                </div>
-
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse text-xs">
-                        <thead>
-                            <tr class="text-slate-400 font-bold uppercase tracking-wider border-b border-slate-800">
-                                <th class="py-3 px-2">Product</th>
-                                <th class="py-3 px-2">Category</th>
-                                <th class="py-3 px-2">Price</th>
-                                <th class="py-3 px-2">Ad Status</th>
-                                <th class="py-3 px-2">Leads Generated</th>
-                                <th class="py-3 px-2 text-right">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="vendor-products-table" class="divide-y divide-slate-800/80 font-medium text-slate-200">
-                            <!-- JS Dynamic Injection -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-
-        <!-- ================================================================= -->
-        <!-- VIEW 3: PRICING & SUBSCRIPTION AD PLANS -->
-        <!-- ================================================================= -->
-        <section id="view-pricing" class="hidden space-y-8">
-            <div class="text-center max-w-2xl mx-auto space-y-3">
-                <div class="inline-flex items-center space-x-2 bg-amber-500/10 border border-amber-500/20 px-3 py-1 rounded-full text-amber-400 text-xs font-bold">
-                    <i class="fa-solid fa-crown"></i>
-                    <span>Official Ad Rates by P O K I E B O I I</span>
-                </div>
-                <h2 class="text-3xl font-black text-white">Simple, Transparent Advertising Plans</h2>
-                <p class="text-xs sm:text-sm text-slate-400">Start with our 100% free 7-day trial. Upgrade anytime to boost your products to top category positions.</p>
-            </div>
-
-            <!-- PRICING CARDS GRID -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pt-4">
-                
-                <!-- PLAN 1: 7-DAY FREE TRIAL -->
-                <div class="glass-card rounded-3xl p-6 space-y-6 border border-slate-700 relative flex flex-col justify-between">
-                    <div class="space-y-4">
-                        <span class="bg-slate-800 text-slate-300 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Starter Trial</span>
-                        <h3 class="text-xl font-bold text-white">7-Day Free Ad Trial</h3>
-                        <div class="flex items-baseline space-x-1">
-                            <span class="text-4xl font-black text-white">$0</span>
-                            <span class="text-xs text-slate-400">/ 7 Days</span>
-                        </div>
-                        <p class="text-xs text-slate-400 leading-relaxed">Perfect for testing consumer demand and generating direct WhatsApp orders.</p>
-                        
-                        <ul class="space-y-2.5 text-xs text-slate-300 pt-2">
-                            <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-400"></i><span>Up to 3 Product Ads Listed</span></li>
-                            <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-400"></i><span>Direct WhatsApp & Call Ordering</span></li>
-                            <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-400"></i><span>Basic Impression Analytics</span></li>
-                            <li class="flex items-center space-x-2 text-slate-500"><i class="fa-solid fa-xmark"></i><span>Featured Top Placement</span></li>
-                        </ul>
-                    </div>
-                    <button onclick="openModal('modal-vendor-signup')" class="w-full bg-slate-800 hover:bg-slate-700 text-white font-bold py-3 rounded-xl text-xs transition border border-slate-700">
-                        Start 7-Day Free Trial
-                    </button>
-                </div>
-
-                <!-- PLAN 2: PRO BUSINESS (HIGHLIGHTED) -->
-                <div class="glass-card rounded-3xl p-6 space-y-6 border-2 border-rose-500 relative flex flex-col justify-between shadow-2xl shadow-rose-600/10">
-                    <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-rose-500 to-amber-500 text-white text-[10px] font-black uppercase tracking-widest px-4 py-1 rounded-full shadow">
-                        Most Popular For Companies
-                    </div>
-                    <div class="space-y-4 pt-2">
-                        <span class="bg-rose-500/20 text-rose-300 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Pro Advertiser</span>
-                        <h3 class="text-xl font-bold text-white">Pro Ad Pass</h3>
-                        <div class="flex items-baseline space-x-1">
-                            <span class="text-4xl font-black text-white">$19.99</span>
-                            <span class="text-xs text-slate-400">/ month</span>
-                        </div>
-                        <p class="text-xs text-slate-400 leading-relaxed">Continuous product visibility with verified vendor badge and unlimited customer leads.</p>
-                        
-                        <ul class="space-y-2.5 text-xs text-slate-300 pt-2">
-                            <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-rose-400"></i><span>Up to 25 Active Product Listings</span></li>
-                            <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-rose-400"></i><span>Verified Company Badge</span></li>
-                            <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-rose-400"></i><span>WhatsApp, Call & Email Leads</span></li>
-                            <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-rose-400"></i><span>Real-Time Lead Dashboard</span></li>
-                        </ul>
-                    </div>
-                    <button onclick="openModal('modal-upgrade-plan')" class="w-full bg-rose-600 hover:bg-rose-500 text-white font-extrabold py-3 rounded-xl text-xs shadow-lg shadow-rose-600/30 transition">
-                        Subscribe Pro ($19.99/mo)
-                    </button>
-                </div>
-
-                <!-- PLAN 3: ENTERPRISE FEATURED -->
-                <div class="glass-card rounded-3xl p-6 space-y-6 border border-amber-500/30 relative flex flex-col justify-between">
-                    <div class="space-y-4">
-                        <span class="bg-amber-500/20 text-amber-300 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Maximum Reach</span>
-                        <h3 class="text-xl font-bold text-white">Enterprise Featured</h3>
-                        <div class="flex items-baseline space-x-1">
-                            <span class="text-4xl font-black text-white">$49.99</span>
-                            <span class="text-xs text-slate-400">/ month</span>
-                        </div>
-                        <p class="text-xs text-slate-400 leading-relaxed">Top homepage carousel placement and dedicated promotion across the PokieBoii network.</p>
-                        
-                        <ul class="space-y-2.5 text-xs text-slate-300 pt-2">
-                            <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-amber-400"></i><span>Unlimited Product Listings</span></li>
-                            <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-amber-400"></i><span>#1 Top Homepage Banner Feature</span></li>
-                            <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-amber-400"></i><span>Dedicated Account Support</span></li>
-                            <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-amber-400"></i><span>Weekly Blast Email Spotlight</span></li>
-                        </ul>
-                    </div>
-                    <button onclick="openModal('modal-upgrade-plan')" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold py-3 rounded-xl text-xs transition">
-                        Get Enterprise ($49.99/mo)
-                    </button>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- ================================================================= -->
-    <!-- MODALS & OVERLAYS -->
-    <!-- ================================================================= -->
-
-    <!-- MODAL 1: QUICK VIEW & ORDER MODAL -->
-    <div id="modal-quickview" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="glass-card rounded-3xl max-w-2xl w-full p-6 space-y-6 border border-slate-700 max-h-[90vh] overflow-y-auto custom-scrollbar relative">
-            <button onclick="closeModal('modal-quickview')" class="absolute right-5 top-5 text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <!-- Image Box -->
-                <div class="rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 h-64 sm:h-full">
-                    <img id="qv-image" src="" alt="Product Image" class="w-full h-full object-cover">
-                </div>
-
-                <!-- Product Specs -->
-                <div class="space-y-4">
-                    <div class="space-y-1">
-                        <span id="qv-category" class="text-[10px] font-bold text-rose-400 uppercase tracking-wider bg-rose-500/10 px-2.5 py-1 rounded-full"></span>
-                        <h3 id="qv-title" class="text-xl font-bold text-white pt-1"></h3>
-                        <p id="qv-company" class="text-xs text-slate-400 flex items-center"><i class="fa-solid fa-building mr-1.5 text-amber-400"></i><span></span></p>
-                    </div>
-
-                    <div class="flex items-baseline space-x-2">
-                        <span id="qv-price" class="text-2xl font-black text-emerald-400"></span>
-                        <span id="qv-discount" class="text-xs text-rose-400 font-bold bg-rose-500/10 px-2 py-0.5 rounded-full"></span>
-                    </div>
-
-                    <p id="qv-desc" class="text-xs text-slate-300 leading-relaxed"></p>
-
-                    <!-- Contact Channels -->
-                    <div class="pt-3 space-y-2 border-t border-slate-800">
-                        <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Choose Order / Inquiry Channel:</p>
-                        
-                        <a id="qv-btn-whatsapp" href="#" target="_blank" onclick="trackLead('whatsapp')" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 px-4 rounded-xl text-xs flex items-center justify-center space-x-2 transition shadow">
-                            <i class="fa-brands fa-whatsapp text-lg"></i>
-                            <span>Order via WhatsApp Chat</span>
-                        </a>
-
-                        <div class="grid grid-cols-2 gap-2">
-                            <button id="qv-btn-email" onclick="openEmailForm()" class="bg-sky-600 hover:bg-sky-500 text-white font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center space-x-1.5 transition">
-                                <i class="fa-solid fa-envelope"></i>
-                                <span>Email Seller</span>
-                            </button>
-                            <a id="qv-btn-call" href="#" onclick="trackLead('call')" class="bg-amber-600 hover:bg-amber-500 text-white font-bold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center space-x-1.5 transition">
-                                <i class="fa-solid fa-phone"></i>
-                                <span>Call Direct</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- MODAL 2: COMPANY / VENDOR SIGNUP (7-DAY TRIAL) -->
-    <div id="modal-vendor-signup" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="glass-card rounded-3xl max-w-lg w-full p-6 space-y-5 border border-slate-700 relative">
-            <button onclick="closeModal('modal-vendor-signup')" class="absolute right-5 top-5 text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
-
-            <div class="space-y-1">
-                <div class="inline-flex items-center space-x-1.5 bg-amber-500/20 text-amber-300 text-[10px] font-bold px-2.5 py-0.5 rounded-full">
-                    <i class="fa-solid fa-gift"></i>
-                    <span>7-Day Free Advertising Activation</span>
-                </div>
-                <h3 class="text-lg font-bold text-white">Register Business on PokieBoii Ads</h3>
-                <p class="text-xs text-slate-400">List your products for instant consumer WhatsApp orders. No credit card required!</p>
-            </div>
-
-            <form onsubmit="handleVendorSignup(event)" class="space-y-3">
-                <div>
-                    <label class="block text-xs font-bold text-slate-300 mb-1">Company / Store Name *</label>
-                    <input type="text" required id="reg-company-name" placeholder="e.g. Apex Tech Solutions Ltd" class="w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-xl text-xs text-white">
-                </div>
-
-                <div class="grid grid-cols-2 gap-3">
-                    <div>
-                        <label class="block text-xs font-bold text-slate-300 mb-1">Business Email *</label>
-                        <input type="email" required id="reg-company-email" placeholder="sales@apextech.com" class="w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-xl text-xs text-white">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-slate-300 mb-1">WhatsApp Number *</label>
-                        <input type="tel" required id="reg-company-whatsapp" placeholder="+1234567890" class="w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-xl text-xs text-white">
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-2 gap-3">
-                    <div>
-                        <label class="block text-xs font-bold text-slate-300 mb-1">Direct Phone Call</label>
-                        <input type="tel" id="reg-company-phone" placeholder="+1234567890" class="w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-xl text-xs text-white">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-slate-300 mb-1">Industry Department</label>
-                        <select id="reg-company-dept" class="w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-xl text-xs text-slate-300">
-                            <option value="Electronics & Tech">Electronics & Tech</option>
-                            <option value="Fashion & Apparel">Fashion & Apparel</option>
-                            <option value="Home & Furniture">Home & Furniture</option>
-                            <option value="Automotive & Parts">Automotive & Parts</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-slate-300 mb-1">Company Logo URL (Optional)</label>
-                    <input type="url" id="reg-company-logo" placeholder="https://images.unsplash.com/photo-..." class="w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-xl text-xs text-white">
-                </div>
-
-                <button type="submit" class="w-full bg-gradient-to-r from-rose-600 to-amber-600 hover:from-rose-500 hover:to-amber-500 text-white font-extrabold py-3 rounded-xl text-xs shadow-lg shadow-rose-600/30 transition mt-2">
-                    Activate 7-Day Free Advertising Trial
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <!-- MODAL 3: ADD NEW PRODUCT ADVERTISEMENT -->
-    <div id="modal-add-product" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="glass-card rounded-3xl max-w-lg w-full p-6 space-y-5 border border-slate-700 relative">
-            <button onclick="closeModal('modal-add-product')" class="absolute right-5 top-5 text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
-
-            <div class="space-y-1">
-                <h3 class="text-lg font-bold text-white">Post New Product Advertisement</h3>
-                <p class="text-xs text-slate-400">List item to receive WhatsApp and call inquiries directly.</p>
-            </div>
-
-            <form onsubmit="handleProductSubmit(event)" class="space-y-3">
-                <div>
-                    <label class="block text-xs font-bold text-slate-300 mb-1">Product Title *</label>
-                    <input type="text" required id="add-prod-title" placeholder="e.g. Wireless Noise-Cancelling Headphones" class="w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-xl text-xs text-white">
-                </div>
-
-                <div class="grid grid-cols-2 gap-3">
-                    <div>
-                        <label class="block text-xs font-bold text-slate-300 mb-1">Category *</label>
-                        <select id="add-prod-category" required class="w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-xl text-xs text-slate-300">
-                            <option value="Electronics">Electronics</option>
-                            <option value="Fashion">Fashion</option>
-                            <option value="Home & Living">Home & Living</option>
-                            <option value="Automotive">Automotive</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-slate-300 mb-1">Price ($ USD) *</label>
-                        <input type="number" step="0.01" required id="add-prod-price" placeholder="149.99" class="w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-xl text-xs text-white">
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-2 gap-3">
-                    <div>
-                        <label class="block text-xs font-bold text-slate-300 mb-1">Discount Tag (e.g. 20% OFF)</label>
-                        <input type="text" id="add-prod-discount" placeholder="15% OFF Promo" class="w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-xl text-xs text-white">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-slate-300 mb-1">Photo URL *</label>
-                        <input type="url" required id="add-prod-image" placeholder="https://images.unsplash.com/..." class="w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-xl text-xs text-white">
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-slate-300 mb-1">Product Description *</label>
-                    <textarea id="add-prod-desc" required rows="3" placeholder="Provide specs, warranty details, and availability..." class="w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-xl text-xs text-white"></textarea>
-                </div>
-
-                <button type="submit" class="w-full bg-rose-600 hover:bg-rose-500 text-white font-extrabold py-3 rounded-xl text-xs shadow-lg shadow-rose-600/30 transition mt-2">
-                    Publish Product Ad
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <!-- MODAL 4: UPGRADE PLAN PAYMENT MOCK -->
-    <div id="modal-upgrade-plan" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="glass-card rounded-3xl max-w-md w-full p-6 space-y-5 border border-slate-700 text-center relative">
-            <button onclick="closeModal('modal-upgrade-plan')" class="absolute right-5 top-5 text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
-
-            <div class="w-12 h-12 bg-amber-500/20 text-amber-400 rounded-full flex items-center justify-center mx-auto text-xl">
-                <i class="fa-solid fa-crown"></i>
-            </div>
-            <h3 class="text-xl font-bold text-white">Upgrade to Pro Ad Pass</h3>
-            <p class="text-xs text-slate-400">Lock in $19.99/month advertising rate for high-volume customer inquiries.</p>
-
-            <div class="bg-slate-900 p-4 rounded-2xl border border-slate-800 text-left space-y-2 text-xs">
-                <div class="flex justify-between">
-                    <span class="text-slate-400">Plan Rate:</span>
-                    <span class="font-bold text-white">$19.99 / mo</span>
-                </div>
-                <div class="flex justify-between">
-                    <span class="text-slate-400">Free Trial Remaining:</span>
-                    <span class="font-bold text-amber-400">6 Days Credit Applied</span>
-                </div>
-                <div class="pt-2 border-t border-slate-800 flex justify-between text-sm font-bold">
-                    <span class="text-white">Total Due Today:</span>
-                    <span class="text-emerald-400">$0.00 (Billed After Trial)</span>
-                </div>
-            </div>
-
-            <button onclick="processSubscriptionUpgrade()" class="w-full bg-gradient-to-r from-rose-600 to-amber-600 hover:from-rose-500 hover:to-amber-500 text-white font-extrabold py-3 rounded-xl text-xs shadow-lg transition">
-                Confirm & Lock In Subscription
-            </button>
-        </div>
-    </div>
-
-    <!-- MODAL 5: LEGAL FOOTER MODAL -->
-    <div id="modal-legal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="glass-card rounded-3xl max-w-2xl w-full p-6 space-y-4 border border-slate-700 relative max-h-[80vh] overflow-y-auto custom-scrollbar">
-            <button onclick="closeModal('modal-legal')" class="absolute right-5 top-5 text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
-            <h3 class="text-lg font-bold text-white" id="legal-modal-title">Terms of Service & Copyrights</h3>
-            <p class="text-xs text-slate-300 leading-relaxed" id="legal-modal-body">
-                © 2026 PokieBoii Ads. All rights reserved. Designed and developed exclusively by P O K I E B O I I. 
-                All registered company trademarks, logos, and product assets listed on this multi-vendor advertisement platform remain the intellectual property of their respective corporate owners. PokieBoii Ads operates strictly as an ad showcase venue and direct contact bridge between sellers and buyers.
-            </p>
-        </div>
-    </div>
-
-    <!-- TOAST NOTIFICATION -->
-    <div id="toast" class="fixed bottom-6 right-6 z-50 bg-slate-900 border border-slate-700 text-white px-4 py-3 rounded-2xl shadow-2xl flex items-center space-x-3 transform translate-y-24 opacity-0 transition-all duration-300">
-        <div id="toast-icon" class="text-rose-500 text-lg"><i class="fa-solid fa-circle-check"></i></div>
+      <form id="auth-form" onsubmit="handleAuth(event)" class="space-y-4">
         <div>
-            <p id="toast-title" class="text-xs font-bold text-white"></p>
-            <p id="toast-sub" class="text-[10px] text-slate-400"></p>
+          <label class="block text-xs font-semibold text-gray-400 mb-1">Email Address</label>
+          <div class="relative">
+            <i class="fa-solid fa-envelope absolute left-3.5 top-3.5 text-gray-500 text-sm"></i>
+            <input type="email" id="auth-email" required placeholder="tinashechimugoti451@gmail.com" class="w-full bg-brand-dark/80 border border-brand-border rounded-xl pl-10 pr-4 py-2.5 text-sm text-white focus:outline-none focus:border-brand-gold transition" />
+          </div>
         </div>
+        <div>
+          <label class="block text-xs font-semibold text-gray-400 mb-1">Password</label>
+          <div class="relative">
+            <i class="fa-solid fa-lock absolute left-3.5 top-3.5 text-gray-500 text-sm"></i>
+            <input type="password" id="auth-password" required placeholder="••••••••" class="w-full bg-brand-dark/80 border border-brand-border rounded-xl pl-10 pr-4 py-2.5 text-sm text-white focus:outline-none focus:border-brand-gold transition" />
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-gray-400 mb-1">Select Account Type</label>
+          <select id="auth-role" class="w-full bg-brand-dark/80 border border-brand-border rounded-xl px-3 py-2.5 text-sm text-white focus:outline-none focus:border-brand-gold transition">
+            <option value="seller">Seller / Administrator</option>
+            <option value="buyer" selected>Customer / Buyer</option>
+          </select>
+        </div>
+        <button type="submit" class="w-full gold-gradient-btn text-black font-bold py-3 rounded-xl shadow-lg hover:brightness-110 transition flex items-center justify-center gap-2">
+          <span>Enter Market</span>
+          <i class="fa-solid fa-arrow-right text-xs"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- TOP NAVIGATION HEADER -->
+  <header class="sticky top-0 z-30 glass-panel border-b border-brand-border px-4 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-brand-gold/10 border border-brand-gold/30 flex items-center justify-center text-brand-gold font-bold">
+        <i class="fa-solid fa-bag-shopping"></i>
+      </div>
+      <div>
+        <h1 class="font-extrabold text-base tracking-tight gold-gradient-text">Pokieboii Market</h1>
+        <p class="text-[10px] text-gray-400">By Tinashe Chimugoti • <span id="current-user-role-badge" class="text-brand-accent">Buyer Mode</span></p>
+      </div>
     </div>
 
-    <!-- ================================================================= -->
-    <!-- LEGIT CORPORATE FOOTER -->
-    <!-- ================================================================= -->
-    <footer class="bg-slate-950 border-t border-slate-800 mt-16 text-slate-400 text-xs">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                
-                <!-- Col 1: Brand -->
-                <div class="space-y-3 md:col-span-1">
-                    <div class="flex items-center space-x-2">
-                        <span class="text-lg font-black text-white">PokieBoii<span class="text-rose-500">Ads</span></span>
-                    </div>
-                    <p class="text-slate-400 text-[11px] leading-relaxed">
-                        The ultimate multi-vendor product showcase and advertising marketplace. Created by <strong class="text-amber-400">P O K I E B O I I</strong>.
-                    </p>
-                </div>
+    <!-- Right Controls -->
+    <div class="flex items-center gap-2">
+      <button onclick="switchRoleToggle()" title="Switch Seller/Buyer Role" class="px-3 py-1.5 rounded-lg border border-brand-border bg-brand-dark text-xs text-gray-300 hover:text-brand-gold flex items-center gap-1.5 transition">
+        <i class="fa-solid fa-repeat text-brand-gold"></i>
+        <span id="role-toggle-text">Seller Mode</span>
+      </button>
+      <button onclick="openModal('terabox-modal')" title="TeraBox Storage Hub" class="p-2 rounded-lg border border-brand-border bg-blue-950/40 text-blue-400 hover:bg-blue-900/40 transition">
+        <i class="fa-solid fa-cloud text-sm"></i>
+      </button>
+    </div>
+  </header>
 
-                <!-- Col 2: Categories -->
-                <div class="space-y-2">
-                    <p class="font-bold text-white uppercase tracking-wider text-[11px]">Popular Categories</p>
-                    <ul class="space-y-1.5 text-[11px]">
-                        <li><a href="#" onclick="selectCategory('Electronics')" class="hover:text-rose-400">Electronics & Tech</a></li>
-                        <li><a href="#" onclick="selectCategory('Fashion')" class="hover:text-rose-400">Fashion & Apparel</a></li>
-                        <li><a href="#" onclick="selectCategory('Home & Living')" class="hover:text-rose-400">Home & Furniture</a></li>
-                        <li><a href="#" onclick="selectCategory('Automotive')" class="hover:text-rose-400">Automotive Deals</a></li>
-                    </ul>
-                </div>
+  <main class="max-w-5xl mx-auto px-4 py-6 flex-1 w-full">
 
-                <!-- Col 3: Vendors -->
-                <div class="space-y-2">
-                    <p class="font-bold text-white uppercase tracking-wider text-[11px]">For Companies</p>
-                    <ul class="space-y-1.5 text-[11px]">
-                        <li><a href="#" onclick="openModal('modal-vendor-signup')" class="hover:text-rose-400">Start 7-Day Free Trial</a></li>
-                        <li><a href="#" onclick="switchView('view-pricing')" class="hover:text-rose-400">Ad Rates & Subscription</a></li>
-                        <li><a href="#" onclick="switchView('view-dashboard')" class="hover:text-rose-400">Vendor Analytics Portal</a></li>
-                    </ul>
-                </div>
-
-                <!-- Col 4: Legal & Copyright -->
-                <div class="space-y-2">
-                    <p class="font-bold text-white uppercase tracking-wider text-[11px]">Legit Governance</p>
-                    <ul class="space-y-1.5 text-[11px]">
-                        <li><a href="#" onclick="openLegalModal('Terms of Service')" class="hover:text-rose-400">Terms of Service</a></li>
-                        <li><a href="#" onclick="openLegalModal('Privacy Policy')" class="hover:text-rose-400">Privacy Policy</a></li>
-                        <li><a href="#" onclick="openLegalModal('Ad Policy')" class="hover:text-rose-400">Advertising Policy</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="pt-8 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500 space-y-2 sm:space-y-0">
-                <p>© 2026 PokieBoii Ads by <span class="font-bold text-amber-400">P O K I E B O I I</span>. All Rights Reserved.</p>
-                <div class="flex space-x-4">
-                    <span class="hover:text-slate-300 cursor-pointer"><i class="fa-brands fa-whatsapp"></i> Instant WhatsApp Bridge</span>
-                    <span class="hover:text-slate-300 cursor-pointer"><i class="fa-solid fa-shield-halved"></i> Verified Vendors</span>
-                </div>
-            </div>
+    <!-- TAB 1: CUSTOMER MARKETPLACE VIEW -->
+    <section id="view-marketplace" class="tab-view space-y-6">
+      <!-- Search & Filters -->
+      <div class="flex flex-col sm:flex-row gap-3">
+        <div class="relative flex-1">
+          <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-gray-500 text-sm"></i>
+          <input type="text" id="market-search" oninput="renderProducts()" placeholder="Search items, electronics, clothing..." class="w-full bg-brand-card border border-brand-border rounded-xl pl-10 pr-4 py-2.5 text-sm text-white focus:outline-none focus:border-brand-gold transition" />
         </div>
-    </footer>
+        <div class="flex gap-2">
+          <button onclick="filterCategory('all')" class="category-chip px-4 py-2.5 rounded-xl border border-brand-gold bg-brand-gold/10 text-brand-gold text-xs font-semibold whitespace-nowrap">All Items</button>
+          <button onclick="filterCategory('digital')" class="category-chip px-4 py-2.5 rounded-xl border border-brand-border bg-brand-card text-gray-400 hover:text-white text-xs font-semibold whitespace-nowrap">Digital Downloads</button>
+          <button onclick="filterCategory('physical')" class="category-chip px-4 py-2.5 rounded-xl border border-brand-border bg-brand-card text-gray-400 hover:text-white text-xs font-semibold whitespace-nowrap">Physical Goods</button>
+        </div>
+      </div>
 
-    <script>
-        // =====================================================================
-        // APPLICATION STATE & SEED DATA
-        // =====================================================================
+      <!-- Banner Announcement -->
+      <div class="glass-panel rounded-2xl p-5 border border-brand-gold/20 bg-gradient-to-r from-brand-card via-brand-dark to-purple-950/30 flex items-center justify-between">
+        <div class="space-y-1">
+          <span class="text-[10px] uppercase font-bold tracking-wider text-brand-gold bg-brand-gold/10 px-2 py-0.5 rounded border border-brand-gold/30">Official Store</span>
+          <h2 class="text-lg font-bold text-white">Direct WhatsApp Ordering & Cloud Files</h2>
+          <p class="text-xs text-gray-400">Order directly from seller or access TeraBox high-definition media links.</p>
+        </div>
+        <i class="fa-solid fa-cloud-arrow-down text-3xl text-brand-gold opacity-80 hidden sm:block"></i>
+      </div>
 
-        let activeCategory = 'ALL';
-        let currentQuickViewItem = null;
+      <!-- Products Grid -->
+      <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <!-- Products dynamically injected here -->
+      </div>
+    </section>
 
-        let activeVendor = {
-            id: 'vendor-1',
-            companyName: 'Apex Tech Solutions',
-            email: 'sales@apextech.com',
-            whatsapp: '+1234567890',
-            phone: '+1234567890',
-            dept: 'Electronics & Tech',
-            logo: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=150',
-            trialDaysLeft: 6,
-            isTrial: true
+    <section id="view-admin" class="tab-view hidden space-y-6">
+      <div class="glass-panel rounded-2xl p-6 border border-brand-border space-y-5">
+        <div class="flex items-center justify-between border-b border-brand-border pb-4">
+          <div>
+            <h2 class="text-lg font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-cloud-arrow-up text-brand-gold"></i>
+              <span>Admin / Seller Product Upload</span>
+            </h2>
+            <p class="text-xs text-gray-400">Add products to Pokieboii Market. Linked under account: tinashechimugoti451@gmail.com</p>
+          </div>
+          <span class="text-xs bg-brand-gold/10 text-brand-gold px-3 py-1 rounded-full font-bold border border-brand-gold/30">Seller Active</span>
+        </div>
+
+        <form id="upload-form" onsubmit="handleProductUpload(event)" class="space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-gray-400 mb-1">Product Title</label>
+              <input type="text" id="prod-title" required placeholder="e.g. Wireless Headphones / HD Preset Pack" class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-brand-gold transition" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-gray-400 mb-1">Price ($ USD)</label>
+              <input type="number" step="0.01" id="prod-price" required placeholder="25.00" class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-brand-gold transition" />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-gray-400 mb-1">Seller WhatsApp / Call Phone Number</label>
+              <input type="text" id="prod-phone" required placeholder="+263700000000" class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-brand-gold transition" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-gray-400 mb-1">Category Type</label>
+              <select id="prod-category" class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-brand-gold transition">
+                <option value="physical">Physical Product</option>
+                <option value="digital">Digital Product / TeraBox File</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- TeraBox Cloud Storage Link Attachment -->
+          <div class="p-4 rounded-xl border border-blue-900/50 bg-blue-950/20 space-y-2">
+            <label class="block text-xs font-bold text-blue-300 flex items-center gap-2">
+              <i class="fa-solid fa-cloud text-blue-400"></i>
+              TeraBox Shareable Link (Optional for High-Res Media / Digital Downloads)
+            </label>
+            <input type="url" id="prod-terabox-url" placeholder="https://terabox.com/s/1xxxxx or TeraBox download link" class="w-full bg-brand-dark border border-blue-800/40 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-blue-400 transition" />
+            <p class="text-[11px] text-gray-400">Allows customers to access high-res media files or full content directly stored on TeraBox.</p>
+          </div>
+
+          <!-- Image Picker -->
+          <div>
+            <label class="block text-xs font-semibold text-gray-400 mb-1">Upload Product Image (Gallery / Device)</label>
+            <div class="relative border-2 border-dashed border-brand-border rounded-xl p-4 text-center bg-brand-dark/50 hover:bg-brand-dark transition cursor-pointer">
+              <input type="file" id="prod-image-file" accept="image/*" onchange="previewUploadImage(event)" class="absolute inset-0 opacity-0 cursor-pointer w-full h-full" />
+              <div id="image-preview-container" class="flex flex-col items-center justify-center space-y-2">
+                <i class="fa-solid fa-image text-3xl text-gray-500"></i>
+                <span class="text-xs text-gray-400">Click or tap to choose image file</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-gray-400 mb-1">Description</label>
+            <textarea id="prod-desc" rows="3" placeholder="Provide product features, condition, or specifications..." class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-brand-gold transition"></textarea>
+          </div>
+
+          <button type="submit" class="w-full gold-gradient-btn text-black font-bold py-3 rounded-xl shadow-lg hover:brightness-110 transition flex items-center justify-center gap-2">
+            <i class="fa-solid fa-plus"></i>
+            <span>Publish Product Listing</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Managed Listings Table -->
+      <div class="glass-panel rounded-2xl p-6 border border-brand-border space-y-4">
+        <h3 class="text-md font-bold text-white">Your Listed Items</h3>
+        <div id="admin-inventory-list" class="space-y-3">
+          <!-- Seller Inventory rendered dynamically -->
+        </div>
+      </div>
+    </section>
+
+    <section id="view-terabox" class="tab-view hidden space-y-6">
+      <div class="glass-panel rounded-2xl p-6 border border-blue-900/50 bg-gradient-to-b from-blue-950/30 to-brand-card space-y-5">
+        <div class="flex items-center justify-between border-b border-brand-border pb-4">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-2xl bg-blue-600/20 border border-blue-500/40 flex items-center justify-center text-blue-400 text-xl">
+              <i class="fa-solid fa-cloud"></i>
+            </div>
+            <div>
+              <h2 class="text-lg font-bold text-white">TeraBox Cloud Storage Hub</h2>
+              <p class="text-xs text-blue-300">Connected Account: <span class="font-mono text-white">tinashechimugoti451@gmail.com</span></p>
+            </div>
+          </div>
+          <span class="text-xs bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full font-semibold border border-blue-500/40">Synchronized</span>
+        </div>
+
+        <!-- Add Link Box -->
+        <div class="bg-brand-dark/80 p-4 rounded-xl border border-brand-border space-y-3">
+          <h4 class="text-xs font-bold text-gray-300 uppercase tracking-wider">Quick Link Converter & Saver</h4>
+          <div class="flex flex-col sm:flex-row gap-2">
+            <input type="text" id="tb-link-title" placeholder="File Title (e.g., HD Catalog 2026)" class="bg-brand-card border border-brand-border rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-blue-400" />
+            <input type="url" id="tb-link-url" placeholder="Paste TeraBox Share URL (https://terabox...)" class="flex-1 bg-brand-card border border-brand-border rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-blue-400" />
+            <button onclick="saveTeraBoxLink()" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 justify-center">
+              <i class="fa-solid fa-save"></i>
+              <span>Save Link</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Saved Links Directory -->
+        <div class="space-y-3">
+          <h3 class="text-sm font-bold text-white flex items-center justify-between">
+            <span>Saved TeraBox Assets</span>
+            <span id="tb-count-badge" class="text-xs text-gray-400">0 Items</span>
+          </h3>
+          <div id="terabox-links-container" class="space-y-2">
+            <!-- Dynamic TeraBox storage items -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-messages" class="tab-view hidden space-y-6">
+      <div class="glass-panel rounded-2xl p-6 border border-brand-border space-y-4 h-[70vh] flex flex-col">
+        <div class="flex items-center justify-between border-b border-brand-border pb-3">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-brand-gold/20 flex items-center justify-center text-brand-gold font-bold">
+              <i class="fa-solid fa-comments"></i>
+            </div>
+            <div>
+              <h2 class="text-sm font-bold text-white">Direct Marketplace Chat</h2>
+              <p class="text-[11px] text-gray-400">Messaging: <span id="chat-partner-name">Seller (Tinashe Chimugoti)</span></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chat History -->
+        <div id="chat-messages-box" class="flex-1 overflow-y-auto space-y-3 pr-2 text-xs">
+          <!-- Messages dynamically rendered -->
+        </div>
+
+        <!-- Chat Input -->
+        <form onsubmit="sendPrivateMessage(event)" class="flex gap-2 pt-2 border-t border-brand-border">
+          <input type="text" id="chat-input" placeholder="Write a message regarding an order..." class="flex-1 bg-brand-dark border border-brand-border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-brand-gold" />
+          <button type="submit" class="gold-gradient-btn text-black font-bold px-4 py-2.5 rounded-xl text-xs transition">
+            <i class="fa-solid fa-paper-plane"></i>
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <section id="view-ai" class="tab-view hidden space-y-6">
+      <div class="glass-panel rounded-2xl p-6 border border-brand-accent/40 bg-gradient-to-b from-purple-950/20 to-brand-card space-y-4 h-[72vh] flex flex-col">
+        <div class="flex items-center justify-between border-b border-brand-border pb-3">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full violet-gradient-btn flex items-center justify-center text-white font-bold">
+              <i class="fa-solid fa-robot"></i>
+            </div>
+            <div>
+              <h2 class="text-sm font-bold text-white">Gemini Market AI Assistant</h2>
+              <p class="text-[11px] text-purple-300">Powered by Gemini 3 Flash • Instant Shopping & Tech Support</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="ai-messages-box" class="flex-1 overflow-y-auto space-y-3 pr-2 text-xs">
+          <div class="bg-brand-dark/80 p-3 rounded-xl border border-brand-border max-w-[85%]">
+            <p class="text-purple-300 font-semibold mb-1">Gemini AI Assistant</p>
+            <p class="text-gray-300">Hello! I am your AI assistant on Pokieboii Market. Ask me anything about products, TeraBox downloads, or price estimates!</p>
+          </div>
+        </div>
+
+        <form onsubmit="askGeminiAI(event)" class="flex gap-2 pt-2 border-t border-brand-border">
+          <input type="text" id="ai-input" placeholder="Ask Gemini AI a question about products or market items..." class="flex-1 bg-brand-dark border border-brand-border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-brand-accent" />
+          <button type="submit" class="violet-gradient-btn text-white font-bold px-4 py-2.5 rounded-xl text-xs transition flex items-center gap-1">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <span>Ask</span>
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <section id="view-profile" class="tab-view hidden space-y-6">
+      <div class="glass-panel rounded-2xl p-6 border border-brand-border space-y-6">
+        <div class="flex flex-col sm:flex-row items-center gap-5 border-b border-brand-border pb-6">
+          <div class="relative">
+            <img id="profile-avatar-img" src="https://placehold.co/120x120/1e293b/f59e0b?text=TC" class="w-24 h-24 rounded-full object-cover border-2 border-brand-gold shadow-lg" />
+            <label class="absolute bottom-0 right-0 bg-brand-gold text-black p-2 rounded-full cursor-pointer shadow hover:scale-110 transition">
+              <i class="fa-solid fa-camera text-xs"></i>
+              <input type="file" accept="image/*" onchange="updateProfileAvatar(event)" class="hidden" />
+            </label>
+          </div>
+          <div class="text-center sm:text-left space-y-1">
+            <h2 id="profile-display-name" class="text-xl font-bold text-white">Tinashe Chimugoti</h2>
+            <p id="profile-display-email" class="text-xs text-brand-gold">tinashechimugoti451@gmail.com</p>
+            <span class="inline-block text-[10px] bg-brand-gold/20 text-brand-gold px-2.5 py-0.5 rounded-full font-bold border border-brand-gold/30">
+              Platform Admin & Creator
+            </span>
+          </div>
+        </div>
+
+        <!-- Details Form -->
+        <div class="space-y-4">
+          <div>
+            <label class="block text-xs font-semibold text-gray-400 mb-1">Full Name</label>
+            <input type="text" id="edit-profile-name" value="Tinashe Chimugoti" class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-brand-gold" />
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-gray-400 mb-1">Contact Phone (WhatsApp)</label>
+            <input type="text" id="edit-profile-phone" value="+263700000000" class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-brand-gold" />
+          </div>
+          <button onclick="saveProfileDetails()" class="gold-gradient-btn text-black font-bold px-5 py-2.5 rounded-xl text-xs shadow transition">
+            Save Profile Changes
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- BOTTOM FIXED NAVIGATION -->
+  <nav class="fixed bottom-0 inset-x-0 z-40 glass-panel border-t border-brand-border py-2 px-4">
+    <div class="max-w-md mx-auto flex items-center justify-around">
+      <button onclick="switchTab('marketplace')" id="nav-btn-marketplace" class="nav-btn active flex flex-col items-center gap-1 text-brand-gold text-xs font-semibold transition">
+        <i class="fa-solid fa-store text-lg"></i>
+        <span class="text-[10px]">Market</span>
+      </button>
+
+      <button onclick="switchTab('admin')" id="nav-btn-admin" class="nav-btn flex flex-col items-center gap-1 text-gray-400 hover:text-white text-xs font-semibold transition">
+        <i class="fa-solid fa-circle-plus text-lg"></i>
+        <span class="text-[10px]">Sell</span>
+      </button>
+
+      <button onclick="switchTab('terabox')" id="nav-btn-terabox" class="nav-btn flex flex-col items-center gap-1 text-gray-400 hover:text-blue-400 text-xs font-semibold transition">
+        <i class="fa-solid fa-cloud text-lg"></i>
+        <span class="text-[10px]">TeraBox</span>
+      </button>
+
+      <!-- More Options Trigger Button -->
+      <button onclick="toggleMoreMenu()" class="flex flex-col items-center gap-1 text-gray-400 hover:text-white text-xs font-semibold transition relative">
+        <i class="fa-solid fa-ellipsis text-lg"></i>
+        <span class="text-[10px]">More</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MORE OPTIONS POPUP MENU -->
+  <div id="more-options-menu" class="fixed bottom-16 right-4 z-50 glass-panel rounded-2xl p-3 border border-brand-border shadow-2xl w-56 hidden space-y-1">
+    <button onclick="switchTab('ai'); toggleMoreMenu();" class="w-full text-left px-3 py-2 rounded-xl text-xs text-gray-300 hover:bg-brand-dark flex items-center gap-2">
+      <i class="fa-solid fa-robot text-purple-400"></i>
+      <span>Gemini AI Assistant</span>
+    </button>
+    <button onclick="switchTab('messages'); toggleMoreMenu();" class="w-full text-left px-3 py-2 rounded-xl text-xs text-gray-300 hover:bg-brand-dark flex items-center gap-2">
+      <i class="fa-solid fa-comments text-brand-gold"></i>
+      <span>Messages</span>
+    </button>
+    <button onclick="switchTab('profile'); toggleMoreMenu();" class="w-full text-left px-3 py-2 rounded-xl text-xs text-gray-300 hover:bg-brand-dark flex items-center gap-2">
+      <i class="fa-solid fa-user text-blue-400"></i>
+      <span>My Profile</span>
+    </button>
+    <div class="border-t border-brand-border my-1"></div>
+    <button onclick="logoutUser()" class="w-full text-left px-3 py-2 rounded-xl text-xs text-red-400 hover:bg-red-950/30 flex items-center gap-2">
+      <i class="fa-solid fa-right-from-bracket"></i>
+      <span>Sign Out</span>
+    </button>
+  </div>
+
+  <!-- FOOTER COPYRIGHT -->
+  <footer class="mt-auto py-4 text-center text-xs text-gray-500 border-t border-brand-border/40">
+    <p>&copy; Made by Tinashe Chimugoti - Pokieboii Market (<span id="footer-year">2026</span>)</p>
+  </footer>
+
+  <script>
+    // GLOBAL STATE MANAGEMENT
+    let currentUser = null;
+    let products = [];
+    let teraboxLinks = [];
+    let chatMessages = [];
+    let currentUploadedImageBase64 = '';
+    let selectedCategoryFilter = 'all';
+
+    // INITIALIZATION ON PAGE LOAD
+    window.onload = function() {
+      document.getElementById('footer-year').textContent = new Date().getFullYear();
+      loadStoredData();
+      checkAuthStatus();
+
+      // Listen for terms agreement check
+      document.getElementById('accept-terms-check').addEventListener('change', function(e) {
+        const btn = document.getElementById('agree-terms-btn');
+        btn.disabled = !e.target.checked;
+        if(e.target.checked) {
+          btn.classList.remove('opacity-50', 'cursor-not-allowed');
+        } else {
+          btn.classList.add('opacity-50', 'cursor-not-allowed');
+        }
+      });
+    };
+
+    // LOCAL STORAGE LOADERS
+    function loadStoredData() {
+      // Default products if none exist
+      const defaultProducts = [
+        {
+          id: 101,
+          title: 'Premium Preset Pack & HD Wallpaper Suite',
+          price: 15.00,
+          phone: '+263700000000',
+          category: 'digital',
+          teraboxUrl: 'https://terabox.com/s/1demo_pokieboii_pack',
+          image: 'https://placehold.co/600x400/1e293b/f59e0b?text=Digital+Pack',
+          description: 'High resolution asset suite. Includes direct TeraBox cloud download link after order.',
+          createdAt: new Date().toISOString()
+        },
+        {
+          id: 102,
+          title: 'Wireless Studio Headphones (Black)',
+          price: 45.00,
+          phone: '+263700000000',
+          category: 'physical',
+          teraboxUrl: '',
+          image: 'https://placehold.co/600x400/1e293b/8b5cf6?text=Headphones',
+          description: 'Brand new noise cancelling Bluetooth headphones available for instant dispatch.',
+          createdAt: new Date().toISOString()
+        }
+      ];
+
+      products = JSON.parse(localStorage.getItem('pokieboii_products')) || defaultProducts;
+      teraboxLinks = JSON.parse(localStorage.getItem('pokieboii_terabox')) || [
+        { id: 1, title: 'Owner Product Catalog 2026', url: 'https://terabox.com/s/1tinashe_catalog' }
+      ];
+      chatMessages = JSON.parse(localStorage.getItem('pokieboii_chats')) || [
+        { sender: 'Seller', text: 'Hello! Welcome to Pokieboii Market. Feel free to ask any questions about my listings.', time: '12:00 PM' }
+      ];
+
+      renderProducts();
+      renderTeraBoxLinks();
+      renderChatMessages();
+    }
+
+    function prefillAdmin() {
+      document.getElementById('auth-email').value = 'tinashechimugoti451@gmail.com';
+      document.getElementById('auth-password').value = 'pokieboii2026';
+      document.getElementById('auth-role').value = 'seller';
+    }
+
+    function handleAuth(e) {
+      e.preventDefault();
+      const email = document.getElementById('auth-email').value;
+      const role = document.getElementById('auth-role').value;
+
+      currentUser = {
+        email: email,
+        role: role,
+        name: email.includes('tinashe') ? 'Tinashe Chimugoti' : email.split('@')[0]
+      };
+
+      localStorage.setItem('pokieboii_user', JSON.stringify(currentUser));
+      document.getElementById('auth-overlay').classList.add('hidden');
+
+      // Show Terms modal if not accepted
+      if (!localStorage.getItem('pokieboii_terms_accepted')) {
+        document.getElementById('terms-modal').classList.remove('hidden');
+      }
+
+      updateUserUI();
+    }
+
+    function confirmTerms() {
+      localStorage.setItem('pokieboii_terms_accepted', 'true');
+      document.getElementById('terms-modal').classList.add('hidden');
+    }
+
+    function checkAuthStatus() {
+      const savedUser = localStorage.getItem('pokieboii_user');
+      if (savedUser) {
+        currentUser = JSON.parse(savedUser);
+        document.getElementById('auth-overlay').classList.add('hidden');
+        updateUserUI();
+      }
+    }
+
+    function logoutUser() {
+      localStorage.removeItem('pokieboii_user');
+      location.reload();
+    }
+
+    function updateUserUI() {
+      if (!currentUser) return;
+      document.getElementById('current-user-role-badge').textContent = currentUser.role === 'seller' ? 'Seller / Admin Mode' : 'Buyer Mode';
+      document.getElementById('role-toggle-text').textContent = currentUser.role === 'seller' ? 'Buyer Mode' : 'Seller Mode';
+      document.getElementById('profile-display-name').textContent = currentUser.name;
+      document.getElementById('profile-display-email').textContent = currentUser.email;
+      document.getElementById('edit-profile-name').value = currentUser.name;
+    }
+
+    function switchRoleToggle() {
+      if (!currentUser) return;
+      currentUser.role = currentUser.role === 'seller' ? 'buyer' : 'seller';
+      localStorage.setItem('pokieboii_user', JSON.stringify(currentUser));
+      updateUserUI();
+      if (currentUser.role === 'seller') {
+        switchTab('admin');
+      } else {
+        switchTab('marketplace');
+      }
+    }
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-view').forEach(view => view.classList.add('hidden'));
+      document.getElementById(`view-${tabId}`).classList.remove('hidden');
+
+      // Update Nav highlighting
+      document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('text-brand-gold', 'text-blue-400'));
+      const activeBtn = document.getElementById(`nav-btn-${tabId}`);
+      if (activeBtn) {
+        if(tabId === 'terabox') {
+          activeBtn.classList.add('text-blue-400');
+        } else {
+          activeBtn.classList.add('text-brand-gold');
+        }
+      }
+    }
+
+    function toggleMoreMenu() {
+      document.getElementById('more-options-menu').classList.toggle('hidden');
+    }
+
+    function previewUploadImage(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        currentUploadedImageBase64 = evt.target.result;
+        document.getElementById('image-preview-container').innerHTML = `
+          <img src="${currentUploadedImageBase64}" class="h-32 object-contain rounded-lg border border-brand-gold" />
+          <span class="text-[10px] text-green-400">Image loaded successfully</span>
+        `;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function handleProductUpload(e) {
+      e.preventDefault();
+      const title = document.getElementById('prod-title').value;
+      const price = parseFloat(document.getElementById('prod-price').value);
+      const phone = document.getElementById('prod-phone').value;
+      const category = document.getElementById('prod-category').value;
+      const teraboxUrl = document.getElementById('prod-terabox-url').value;
+      const desc = document.getElementById('prod-desc').value;
+
+      const newProd = {
+        id: Date.now(),
+        title: title,
+        price: price,
+        phone: phone,
+        category: category,
+        teraboxUrl: teraboxUrl,
+        image: currentUploadedImageBase64 || 'https://placehold.co/600x400/1e293b/f59e0b?text=Pokieboii+Item',
+        description: desc,
+        createdAt: new Date().toISOString()
+      };
+
+      products.unshift(newProd);
+      localStorage.setItem('pokieboii_products', JSON.stringify(products));
+
+      // Reset Form
+      document.getElementById('upload-form').reset();
+      document.getElementById('image-preview-container').innerHTML = `
+        <i class="fa-solid fa-image text-3xl text-gray-500"></i>
+        <span class="text-xs text-gray-400">Click or tap to choose image file</span>
+      `;
+      currentUploadedImageBase64 = '';
+
+      alert('Product published successfully!');
+      renderProducts();
+      switchTab('marketplace');
+    }
+
+    function renderProducts() {
+      const grid = document.getElementById('products-grid');
+      const search = document.getElementById('market-search').value.toLowerCase();
+      grid.innerHTML = '';
+
+      const filtered = products.filter(p => {
+        const matchesSearch = p.title.toLowerCase().includes(search) || p.description.toLowerCase().includes(search);
+        const matchesCat = selectedCategoryFilter === 'all' || p.category === selectedCategoryFilter;
+        return matchesSearch && matchesCat;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `<p class="col-span-full text-center py-10 text-gray-500 text-sm">No items found matching your criteria.</p>`;
+        return;
+      }
+
+      filtered.forEach(p => {
+        const cleanPhone = p.phone.replace(/[^0-9]/g, '');
+        const waMessage = encodeURIComponent(`Hi! I want to order "${p.title}" ($${p.price}) listed on Pokieboii Market.`);
+        const waUrl = `https://wa.me/${cleanPhone}?text=${waMessage}`;
+
+        const card = document.createElement('div');
+        card.className = 'glass-panel rounded-2xl overflow-hidden border border-brand-border hover:border-brand-gold/50 transition duration-300 flex flex-col';
+        card.innerHTML = `
+          <div class="relative h-48 bg-brand-dark">
+            <img src="${p.image}" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400/1e293b/f59e0b?text=Product'" />
+            <span class="absolute top-3 right-3 bg-black/70 backdrop-blur-md text-brand-gold font-extrabold text-xs px-3 py-1 rounded-full border border-brand-gold/30">
+              $${p.price.toFixed(2)}
+            </span>
+            ${p.category === 'digital' ? `
+              <span class="absolute top-3 left-3 bg-blue-600/80 backdrop-blur-md text-white text-[10px] px-2 py-0.5 rounded font-bold">
+                <i class="fa-solid fa-cloud"></i> TeraBox Digital
+              </span>
+            ` : ''}
+          </div>
+          <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+            <div>
+              <h3 class="font-bold text-white text-base leading-snug">${p.title}</h3>
+              <p class="text-xs text-gray-400 mt-1 line-clamp-2">${p.description}</p>
+            </div>
+
+            ${p.teraboxUrl ? `
+              <a href="${p.teraboxUrl}" target="_blank" class="w-full py-1.5 px-3 bg-blue-950/60 border border-blue-500/40 text-blue-300 hover:bg-blue-900/60 rounded-xl text-xs flex items-center justify-center gap-1.5 transition">
+                <i class="fa-solid fa-cloud-arrow-down"></i>
+                <span>Access TeraBox Cloud File</span>
+              </a>
+            ` : ''}
+
+            <div class="grid grid-cols-2 gap-2 pt-2 border-t border-brand-border">
+              <a href="${waUrl}" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2 rounded-xl text-xs flex items-center justify-center gap-1 transition shadow">
+                <i class="fa-brands fa-whatsapp text-sm"></i>
+                <span>Order WA</span>
+              </a>
+              <a href="tel:${p.phone}" class="bg-brand-dark border border-brand-border hover:bg-brand-border text-white font-bold py-2 rounded-xl text-xs flex items-center justify-center gap-1 transition">
+                <i class="fa-solid fa-phone text-xs"></i>
+                <span>Call Seller</span>
+              </a>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+
+      renderAdminInventory();
+    }
+
+    function filterCategory(cat) {
+      selectedCategoryFilter = cat;
+      renderProducts();
+    }
+
+    function renderAdminInventory() {
+      const container = document.getElementById('admin-inventory-list');
+      if (!container) return;
+      container.innerHTML = '';
+
+      products.forEach(p => {
+        const item = document.createElement('div');
+        item.className = 'bg-brand-dark/80 p-3 rounded-xl border border-brand-border flex items-center justify-between gap-3';
+        item.innerHTML = `
+          <div class="flex items-center gap-3">
+            <img src="${p.image}" class="w-12 h-12 rounded-lg object-cover" />
+            <div>
+              <div class="text-xs font-bold text-white">${p.title}</div>
+              <div class="text-[11px] text-brand-gold">$${p.price.toFixed(2)}</div>
+            </div>
+          </div>
+          <button onclick="deleteProduct(${p.id})" class="text-red-400 hover:text-red-300 p-2 text-xs">
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        `;
+        container.appendChild(item);
+      });
+    }
+
+    function deleteProduct(id) {
+      products = products.filter(p => p.id !== id);
+      localStorage.setItem('pokieboii_products', JSON.stringify(products));
+      renderProducts();
+    }
+
+    function saveTeraBoxLink() {
+      const title = document.getElementById('tb-link-title').value || 'TeraBox Storage Link';
+      const url = document.getElementById('tb-link-url').value;
+
+      if (!url) {
+        alert('Please enter a valid TeraBox share link.');
+        return;
+      }
+
+      teraboxLinks.unshift({ id: Date.now(), title, url });
+      localStorage.setItem('pokieboii_terabox', JSON.stringify(teraboxLinks));
+
+      document.getElementById('tb-link-title').value = '';
+      document.getElementById('tb-link-url').value = '';
+
+      renderTeraBoxLinks();
+    }
+
+    function renderTeraBoxLinks() {
+      const container = document.getElementById('terabox-links-container');
+      const badge = document.getElementById('tb-count-badge');
+      if (!container) return;
+
+      container.innerHTML = '';
+      badge.textContent = `${teraboxLinks.length} Items Saved`;
+
+      teraboxLinks.forEach(link => {
+        const div = document.createElement('div');
+        div.className = 'bg-brand-dark/90 p-3 rounded-xl border border-blue-900/40 flex items-center justify-between gap-3';
+        div.innerHTML = `
+          <div class="flex items-center gap-3 overflow-hidden">
+            <i class="fa-solid fa-cloud text-blue-400"></i>
+            <div class="truncate">
+              <div class="text-xs font-bold text-white truncate">${link.title}</div>
+              <a href="${link.url}" target="_blank" class="text-[11px] text-blue-400 hover:underline truncate block">${link.url}</a>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="copyToClipboard('${link.url}')" class="text-xs text-gray-400 hover:text-white p-1" title="Copy Link">
+              <i class="fa-solid fa-copy"></i>
+            </button>
+            <button onclick="deleteTeraBoxLink(${link.id})" class="text-xs text-red-400 hover:text-red-300 p-1">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </div>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function deleteTeraBoxLink(id) {
+      teraboxLinks = teraboxLinks.filter(l => l.id !== id);
+      localStorage.setItem('pokieboii_terabox', JSON.stringify(teraboxLinks));
+      renderTeraBoxLinks();
+    }
+
+    function copyToClipboard(text) {
+      const el = document.createElement('textarea');
+      el.value = text;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+      alert('Link copied to clipboard!');
+    }
+
+    function sendPrivateMessage(e) {
+      e.preventDefault();
+      const input = document.getElementById('chat-input');
+      const text = input.value.trim();
+      if (!text) return;
+
+      const msg = {
+        sender: currentUser ? currentUser.name : 'Buyer',
+        text: text,
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      };
+
+      chatMessages.push(msg);
+      localStorage.setItem('pokieboii_chats', JSON.stringify(chatMessages));
+      input.value = '';
+      renderChatMessages();
+    }
+
+    function renderChatMessages() {
+      const box = document.getElementById('chat-messages-box');
+      if (!box) return;
+      box.innerHTML = '';
+
+      chatMessages.forEach(m => {
+        const isMe = currentUser && m.sender === currentUser.name;
+        const div = document.createElement('div');
+        div.className = `flex flex-col ${isMe ? 'items-end' : 'items-start'}`;
+        div.innerHTML = `
+          <div class="max-w-[80%] p-3 rounded-2xl ${isMe ? 'gold-gradient-btn text-black' : 'bg-brand-dark border border-brand-border text-white'}">
+            <div class="text-[10px] opacity-75 font-bold mb-0.5">${m.sender} • ${m.time}</div>
+            <p class="text-xs">${m.text}</p>
+          </div>
+        `;
+        box.appendChild(div);
+      });
+
+      box.scrollTop = box.scrollHeight;
+    }
+
+    async function askGeminiAI(e) {
+      e.preventDefault();
+      const input = document.getElementById('ai-input');
+      const prompt = input.value.trim();
+      if (!prompt) return;
+
+      const box = document.getElementById('ai-messages-box');
+
+      // Append user prompt
+      const userDiv = document.createElement('div');
+      userDiv.className = 'flex flex-col items-end';
+      userDiv.innerHTML = `
+        <div class="max-w-[80%] p-3 rounded-2xl violet-gradient-btn text-white">
+          <p class="text-[10px] text-purple-200 font-bold mb-0.5">You</p>
+          <p class="text-xs">${prompt}</p>
+        </div>
+      `;
+      box.appendChild(userDiv);
+      input.value = '';
+      box.scrollTop = box.scrollHeight;
+
+      // Loading state
+      const loadingDiv = document.createElement('div');
+      loadingDiv.className = 'bg-brand-dark/80 p-3 rounded-xl border border-brand-border max-w-[85%] text-gray-400 text-xs italic';
+      loadingDiv.textContent = 'Gemini AI thinking...';
+      box.appendChild(loadingDiv);
+      box.scrollTop = box.scrollHeight;
+
+      try {
+        const apiKey = "";
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+
+        const payload = {
+          contents: [{ parts: [{ text: prompt }] }],
+          systemInstruction: {
+            parts: [{ text: "You are the helpful AI Assistant for Pokieboii Market, owned by Tinashe Chimugoti (tinashechimugoti451@gmail.com). Provide brief, friendly advice about online buying, selling, and TeraBox cloud storage." }]
+          }
         };
 
-        const categories = [
-            'ALL', 'Electronics', 'Fashion', 'Home & Living', 'Automotive'
-        ];
+        const response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
 
-        let products = [
-            {
-                id: 101,
-                title: 'Ultra-Slim OLED 4K Smart TV 55"',
-                category: 'Electronics',
-                price: 899.99,
-                discount: '20% OFF Promo',
-                company: 'Apex Tech Solutions',
-                email: 'sales@apextech.com',
-                whatsapp: '15550192834',
-                phone: '+15550192834',
-                image: 'https://images.unsplash.com/photo-1593784991095-a205069470b6?w=600',
-                desc: 'Experience stunning color accuracy with our newest 55-inch OLED display. Includes 3-year factory warranty and free direct delivery.',
-                isTrial: true,
-                leadsCount: 24
-            },
-            {
-                id: 102,
-                title: 'Italian Leather Ergonomic Executive Chair',
-                category: 'Home & Living',
-                price: 340.00,
-                discount: 'Free Shipping',
-                company: 'GreenLeaf Home & Living',
-                email: 'contact@greenleafhome.com',
-                whatsapp: '15550182736',
-                phone: '+15550182736',
-                image: 'https://images.unsplash.com/photo-1580481072645-022f9a6d83d0?w=600',
-                desc: 'Premium top-grain leather with adjustable lumbar support. Tested for 12+ hours of continuous daily comfort.',
-                isTrial: false,
-                leadsCount: 18
-            },
-            {
-                id: 103,
-                title: 'Noise-Cancelling Wireless Headphones Pro',
-                category: 'Electronics',
-                price: 199.50,
-                discount: 'Hot Seller',
-                company: 'Apex Tech Solutions',
-                email: 'sales@apextech.com',
-                whatsapp: '15550192834',
-                phone: '+15550192834',
-                image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600',
-                desc: 'Active ANC technology with 40-hour battery life. Universal USB-C rapid charging capability.',
-                isTrial: true,
-                leadsCount: 42
-            },
-            {
-                id: 104,
-                title: 'Designer Chronograph Steel Wristwatch',
-                category: 'Fashion',
-                price: 145.00,
-                discount: 'Limited Edition',
-                company: 'Urban Style Hub',
-                email: 'info@urbanstylehub.com',
-                whatsapp: '15550173625',
-                phone: '+15550173625',
-                image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600',
-                desc: 'Water-resistant stainless steel casing with sapphire crystal glass. Comes with a luxury display box.',
-                isTrial: true,
-                leadsCount: 12
-            },
-            {
-                id: 105,
-                title: 'High-Performance Ceramic Brake Pad Kit',
-                category: 'Automotive',
-                price: 89.99,
-                discount: '15% OFF',
-                company: 'Velocity Autos',
-                email: 'parts@velocityautos.com',
-                whatsapp: '15550164523',
-                phone: '+15550164523',
-                image: 'https://images.unsplash.com/photo-1486006920555-c77dce18193b?w=600',
-                desc: 'Low-dust noise-free ceramic formulation for extended pad life and superior stopping power.',
-                isTrial: false,
-                leadsCount: 9
-            },
-            {
-                id: 106,
-                title: 'Smart Touch Electric Espresso Maker',
-                category: 'Home & Living',
-                price: 279.00,
-                discount: 'New Arrival',
-                company: 'GreenLeaf Home & Living',
-                email: 'contact@greenleafhome.com',
-                whatsapp: '15550182736',
-                phone: '+15550182736',
-                image: 'https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?w=600',
-                desc: '19-bar Italian pressure pump with automated milk frothing wand for cafe-quality cappuccinos at home.',
-                isTrial: false,
-                leadsCount: 31
-            }
-        ];
+        const result = await response.json();
+        const replyText = result.candidates?.[0]?.content?.parts?.[0]?.text || "I'm having trouble retrieving a response right now. Please try again.";
 
-        // =====================================================================
-        // INITIALIZATION & VIEW NAVIGATION
-        // =====================================================================
+        box.removeChild(loadingDiv);
 
-        window.onload = function() {
-            renderCategoryPills();
-            renderProducts();
-            renderVendorDashboard();
-        };
+        const aiReplyDiv = document.createElement('div');
+        aiReplyDiv.className = 'bg-brand-dark/80 p-3 rounded-xl border border-brand-border max-w-[85%]';
+        aiReplyDiv.innerHTML = `
+          <p class="text-purple-300 font-semibold mb-1">Gemini AI</p>
+          <p class="text-gray-300 text-xs leading-relaxed">${replyText}</p>
+        `;
+        box.appendChild(aiReplyDiv);
+      } catch (err) {
+        box.removeChild(loadingDiv);
+        const errDiv = document.createElement('div');
+        errDiv.className = 'bg-red-950/40 p-3 rounded-xl border border-red-800 text-red-300 text-xs';
+        errDiv.textContent = 'Network or API response error. Please try again.';
+        box.appendChild(errDiv);
+      }
 
-        function switchView(viewId) {
-            const views = ['view-browse', 'view-dashboard', 'view-pricing'];
-            views.forEach(v => {
-                const el = document.getElementById(v);
-                if (el) el.classList.add('hidden');
+      box.scrollTop = box.scrollHeight;
+    }
 
-                const navBtn = document.getElementById(`nav-btn-${v.replace('view-', '')}`);
-                if (navBtn) {
-                    navBtn.classList.remove('text-rose-400', 'bg-rose-500/10', 'border', 'border-rose-500/20');
-                    navBtn.classList.add('text-slate-300');
-                }
-            });
+    function updateProfileAvatar(e) {
+      const file = e.target.files[0];
+      if (!file) return;
 
-            const active = document.getElementById(viewId);
-            if (active) active.classList.remove('hidden');
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        document.getElementById('profile-avatar-img').src = evt.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
 
-            const activeBtn = document.getElementById(`nav-btn-${viewId.replace('view-', '')}`);
-            if (activeBtn) {
-                activeBtn.classList.add('text-rose-400', 'bg-rose-500/10', 'border', 'border-rose-500/20');
-                activeBtn.classList.remove('text-slate-300');
-            }
-
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        }
-
-        function scrollToProducts() {
-            document.getElementById('product-section-anchor').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // =====================================================================
-        // RENDER PRODUCTS & CATEGORY FILTERS
-        // =====================================================================
-
-        function renderCategoryPills() {
-            const container = document.getElementById('category-pills');
-            container.innerHTML = categories.map(cat => `
-                <button onclick="selectCategory('${cat}')" class="px-4 py-2 text-xs font-bold rounded-xl whitespace-nowrap transition ${activeCategory === cat ? 'bg-rose-600 text-white shadow-md' : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'}">
-                    ${cat === 'ALL' ? '🌟 All Categories' : cat}
-                </button>
-            `).join('');
-        }
-
-        function selectCategory(cat) {
-            activeCategory = cat;
-            renderCategoryPills();
-            renderProducts();
-        }
-
-        function filterProducts() {
-            renderProducts();
-        }
-
-        function resetFilters() {
-            document.getElementById('search-input').value = '';
-            document.getElementById('sort-select').value = 'featured';
-            activeCategory = 'ALL';
-            renderCategoryPills();
-            renderProducts();
-        }
-
-        function renderProducts() {
-            const grid = document.getElementById('products-grid');
-            const emptyState = document.getElementById('no-products-state');
-            const searchVal = document.getElementById('search-input').value.toLowerCase();
-            const sortVal = document.getElementById('sort-select').value;
-
-            let filtered = products.filter(p => {
-                const matchesSearch = p.title.toLowerCase().includes(searchVal) || p.company.toLowerCase().includes(searchVal) || p.desc.toLowerCase().includes(searchVal);
-                const matchesCat = (activeCategory === 'ALL' || p.category === activeCategory);
-                return matchesSearch && matchesCat;
-            });
-
-            if (sortVal === 'price-low') {
-                filtered.sort((a, b) => a.price - b.price);
-            } else if (sortVal === 'price-high') {
-                filtered.sort((a, b) => b.price - a.price);
-            }
-
-            if (filtered.length === 0) {
-                grid.innerHTML = '';
-                emptyState.classList.remove('hidden');
-                return;
-            }
-
-            emptyState.classList.add('hidden');
-
-            grid.innerHTML = filtered.map(item => {
-                // Formatted WhatsApp message link
-                const waMessage = encodeURIComponent(`Hello ${item.company}, I am interested in ordering '${item.title}' advertised on PokieBoii Ads ($${item.price.toFixed(2)}). Please give me more details.`);
-                const waUrl = `https://wa.me/${item.whatsapp.replace(/\+/g, '')}?text=${waMessage}`;
-
-                return `
-                    <div class="glass-card rounded-3xl overflow-hidden shadow-xl hover:shadow-rose-500/10 hover:border-slate-700 transition group flex flex-col justify-between">
-                        <div>
-                            <!-- Product Image Container -->
-                            <div class="relative h-52 bg-slate-900 overflow-hidden cursor-pointer" onclick="openQuickView(${item.id})">
-                                <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                                
-                                <div class="absolute top-3 left-3 bg-rose-600/90 backdrop-blur-md text-white text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider">
-                                    ${item.discount || item.category}
-                                </div>
-
-                                ${item.isTrial ? `
-                                    <div class="absolute top-3 right-3 bg-amber-500/90 text-slate-950 text-[9px] font-extrabold px-2 py-0.5 rounded-full shadow">
-                                        Free Trial Ad
-                                    </div>
-                                ` : `
-                                    <div class="absolute top-3 right-3 bg-emerald-500/90 text-white text-[9px] font-extrabold px-2 py-0.5 rounded-full shadow">
-                                        <i class="fa-solid fa-check-circle"></i> Verified
-                                    </div>
-                                `}
-                            </div>
-
-                            <!-- Product Details -->
-                            <div class="p-5 space-y-3">
-                                <div>
-                                    <p class="text-[10px] font-bold text-amber-400 uppercase tracking-wider">${item.company}</p>
-                                    <h3 class="font-bold text-white text-sm line-clamp-1 group-hover:text-rose-400 transition cursor-pointer" onclick="openQuickView(${item.id})">${item.title}</h3>
-                                </div>
-
-                                <p class="text-xs text-slate-400 line-clamp-2">${item.desc}</p>
-
-                                <div class="flex items-baseline space-x-2 pt-1">
-                                    <span class="text-xl font-black text-emerald-400">$${item.price.toFixed(2)}</span>
-                                    <span class="text-[10px] text-slate-500">Direct Factory Price</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Direct Order / Inquiry Contact Bar -->
-                        <div class="p-4 bg-slate-900/80 border-t border-slate-800/80 space-y-2">
-                            <a href="${waUrl}" target="_blank" onclick="trackLead('whatsapp', ${item.id})" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold py-2.5 px-3 rounded-xl text-xs flex items-center justify-center space-x-2 transition shadow">
-                                <i class="fa-brands fa-whatsapp text-base"></i>
-                                <span>Order via WhatsApp</span>
-                            </a>
-
-                            <div class="grid grid-cols-2 gap-2">
-                                <button onclick="openQuickView(${item.id})" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-bold py-2 rounded-xl transition">
-                                    <i class="fa-solid fa-eye mr-1"></i> Quick View
-                                </button>
-                                <a href="tel:${item.phone}" onclick="trackLead('call', ${item.id})" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-[11px] font-bold py-2 rounded-xl text-center transition">
-                                    <i class="fa-solid fa-phone mr-1"></i> Direct Call
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-        }
-
-        // =====================================================================
-        // QUICK VIEW & CONTACT MODALS
-        // =====================================================================
-
-        function openQuickView(id) {
-            currentQuickViewItem = products.find(p => p.id === id);
-            if (!currentQuickViewItem) return;
-
-            document.getElementById('qv-title').innerText = currentQuickViewItem.title;
-            document.getElementById('qv-category').innerText = currentQuickViewItem.category;
-            document.getElementById('qv-company').querySelector('span').innerText = currentQuickViewItem.company;
-            document.getElementById('qv-price').innerText = `$${currentQuickViewItem.price.toFixed(2)}`;
-            document.getElementById('qv-discount').innerText = currentQuickViewItem.discount || 'Standard Rate';
-            document.getElementById('qv-desc').innerText = currentQuickViewItem.desc;
-            document.getElementById('qv-image').src = currentQuickViewItem.image;
-
-            const waMessage = encodeURIComponent(`Hello ${currentQuickViewItem.company}, I am interested in ordering '${currentQuickViewItem.title}' advertised on PokieBoii Ads ($${currentQuickViewItem.price.toFixed(2)}).`);
-            document.getElementById('qv-btn-whatsapp').href = `https://wa.me/${currentQuickViewItem.whatsapp.replace(/\+/g, '')}?text=${waMessage}`;
-            document.getElementById('qv-btn-call').href = `tel:${currentQuickViewItem.phone}`;
-
-            openModal('modal-quickview');
-        }
-
-        function openEmailForm() {
-            if (!currentQuickViewItem) return;
-            const subject = encodeURIComponent(`Product Inquiry: ${currentQuickViewItem.title}`);
-            const body = encodeURIComponent(`Hello ${currentQuickViewItem.company},\n\nI saw your advertisement on PokieBoii Ads for '${currentQuickViewItem.title}' and would like to place an order.\n\nPlease contact me back.`);
-            window.location.href = `mailto:${currentQuickViewItem.email}?subject=${subject}&body=${body}`;
-            trackLead('email', currentQuickViewItem.id);
-        }
-
-        function trackLead(type, productId) {
-            showToast("Direct Inquiry Initiated!", `Connecting directly to vendor via ${type.toUpperCase()}.`);
-            if (activeVendor && productId) {
-                const prod = products.find(p => p.id === productId);
-                if (prod) prod.leadsCount += 1;
-                renderVendorDashboard();
-            }
-        }
-
-        // =====================================================================
-        // VENDOR REGISTRATION & PRODUCT SUBMISSION
-        // =====================================================================
-
-        function handleVendorSignup(e) {
-            e.preventDefault();
-
-            activeVendor.companyName = document.getElementById('reg-company-name').value;
-            activeVendor.email = document.getElementById('reg-company-email').value;
-            activeVendor.whatsapp = document.getElementById('reg-company-whatsapp').value;
-            activeVendor.phone = document.getElementById('reg-company-phone').value || activeVendor.whatsapp;
-            activeVendor.dept = document.getElementById('reg-company-dept').value;
-            
-            const logoInput = document.getElementById('reg-company-logo').value;
-            if (logoInput) activeVendor.logo = logoInput;
-
-            closeModal('modal-vendor-signup');
-            renderVendorDashboard();
-            switchView('view-dashboard');
-
-            showToast("Company Registered!", "7-Day Free Advertising Trial is now active.");
-        }
-
-        function handleProductSubmit(e) {
-            e.preventDefault();
-
-            const title = document.getElementById('add-prod-title').value;
-            const category = document.getElementById('add-prod-category').value;
-            const price = parseFloat(document.getElementById('add-prod-price').value) || 0;
-            const discount = document.getElementById('add-prod-discount').value || 'Free Ad Trial';
-            const image = document.getElementById('add-prod-image').value;
-            const desc = document.getElementById('add-prod-desc').value;
-
-            const newProduct = {
-                id: Date.now(),
-                title,
-                category,
-                price,
-                discount,
-                company: activeVendor.companyName,
-                email: activeVendor.email,
-                whatsapp: activeVendor.whatsapp,
-                phone: activeVendor.phone,
-                image,
-                desc,
-                isTrial: true,
-                leadsCount: 0
-            };
-
-            products.unshift(newProduct);
-            closeModal('modal-add-product');
-            renderProducts();
-            renderVendorDashboard();
-
-            showToast("Product Ad Published!", "Your item is now live for consumers enterprise-wide.");
-        }
-
-        function renderVendorDashboard() {
-            document.getElementById('vendor-dash-name').innerText = activeVendor.companyName;
-            document.getElementById('vendor-dash-dept').innerText = `${activeVendor.dept} • Verified Company`;
-            document.getElementById('vendor-dash-logo').src = activeVendor.logo;
-
-            const myProducts = products.filter(p => p.company === activeVendor.companyName);
-            document.getElementById('dash-stat-listings').innerText = `${myProducts.length} Products`;
-
-            let totalLeads = myProducts.reduce((sum, p) => sum + p.leadsCount, 0);
-            document.getElementById('dash-stat-whatsapp').innerText = `${totalLeads} Chats`;
-
-            const tbody = document.getElementById('vendor-products-table');
-            tbody.innerHTML = myProducts.map(p => `
-                <tr class="hover:bg-slate-900/50">
-                    <td class="py-3 px-2 flex items-center space-x-3">
-                        <img src="${p.image}" class="w-10 h-10 object-cover rounded-lg border border-slate-700">
-                        <span class="font-bold text-white">${p.title}</span>
-                    </td>
-                    <td class="py-3 px-2 text-slate-400">${p.category}</td>
-                    <td class="py-3 px-2 font-bold text-emerald-400">$${p.price.toFixed(2)}</td>
-                    <td class="py-3 px-2">
-                        <span class="bg-amber-500/20 text-amber-300 text-[10px] px-2 py-0.5 rounded-full border border-amber-500/30">7-Day Free Trial</span>
-                    </td>
-                    <td class="py-3 px-2 font-bold text-white">${p.leadsCount} Inquiries</td>
-                    <td class="py-3 px-2 text-right">
-                        <button onclick="deleteProduct(${p.id})" class="text-rose-400 hover:text-rose-300 p-1"><i class="fa-solid fa-trash"></i></button>
-                    </td>
-                </tr>
-            `).join('');
-        }
-
-        function deleteProduct(id) {
-            products = products.filter(p => p.id !== id);
-            renderProducts();
-            renderVendorDashboard();
-            showToast("Listing Deleted", "Product removed from marketplace.");
-        }
-
-        function processSubscriptionUpgrade() {
-            closeModal('modal-upgrade-plan');
-            showToast("Subscription Upgrade Active!", "Your company is now on the Pro Advertising Pass.");
-        }
-
-        // =====================================================================
-        // UTILITY MODALS & TOASTS
-        // =====================================================================
-
-        function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
-        function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
-
-        function openLegalModal(title) {
-            document.getElementById('legal-modal-title').innerText = title;
-            openModal('modal-legal');
-        }
-
-        function showToast(title, sub) {
-            const toast = document.getElementById('toast');
-            document.getElementById('toast-title').innerText = title;
-            document.getElementById('toast-sub').innerText = sub;
-
-            toast.classList.remove('translate-y-24', 'opacity-0');
-            toast.classList.add('translate-y-0', 'opacity-100');
-
-            setTimeout(() => {
-                toast.classList.remove('translate-y-0', 'opacity-100');
-                toast.classList.add('translate-y-24', 'opacity-0');
-            }, 3500);
-        }
-    </script>
+    function saveProfileDetails() {
+      const name = document.getElementById('edit-profile-name').value;
+      if (currentUser) {
+        currentUser.name = name;
+        localStorage.setItem('pokieboii_user', JSON.stringify(currentUser));
+        updateUserUI();
+        alert('Profile saved successfully!');
+      }
+    }
+  </script>
 </body>
 </html>
