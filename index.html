@@ -1,1016 +1,1212 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full">
+<html lang="en" class="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokieboii Market - Direct Ads & Marketplace</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            50: '#f0f9ff',
-                            100: '#e0f2fe',
-                            500: '#0284c7',
-                            600: '#0369a1',
-                            700: '#075985',
-                            900: '#0c4a6e',
-                        },
-                        accent: {
-                            500: '#10b981',
-                            600: '#059669',
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                    }
-                }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokieboii Market - Futuristic Global Ad Platform</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            cyber: {
+              black: '#0a0d14',
+              dark: '#121824',
+              card: 'rgba(20, 27, 44, 0.7)',
+              cyan: '#00f3ff',
+              magenta: '#ff007f',
+              purple: '#7928ca',
+              green: '#00ff88',
+              gold: '#ffb700'
             }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Orbitron', 'sans-serif']
+          },
+          animation: {
+            'glow-pulse': 'glow 2s infinite alternate',
+            'float': 'float 4s ease-in-out infinite',
+          },
+          keyframes: {
+            glow: {
+              '0%': { boxShadow: '0 0 10px rgba(0,243,255,0.3)' },
+              '100%': { boxShadow: '0 0 25px rgba(0,243,255,0.8), 0 0 35px rgba(255,0,127,0.4)' }
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-6px)' }
+            }
+          }
         }
-    </script>
-    <style>
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-        .dark .glass-panel {
-            background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-        .hide-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .hide-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-        @keyframes pulse-subtle {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.75; }
-        }
-        .animate-pulse-subtle {
-            animation: pulse-subtle 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-    </style>
+      }
+    }
+  </script>
+
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0a0d14;
+      color: #e2e8f0;
+      overflow-x: hidden;
+    }
+    .font-orbitron {
+      font-family: 'Orbitron', sans-serif;
+    }
+    .glass-panel {
+      background: rgba(18, 24, 36, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(0, 243, 255, 0.15);
+    }
+    .glass-card {
+      background: rgba(26, 34, 52, 0.6);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .glass-card:hover {
+      border-color: rgba(0, 243, 255, 0.5);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px -5px rgba(0, 243, 255, 0.15);
+    }
+    .neon-text-cyan {
+      text-shadow: 0 0 10px rgba(0, 243, 255, 0.6);
+    }
+    .neon-border {
+      box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0a0d14;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #00f3ff;
+    }
+  </style>
 </head>
-<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-full flex flex-col transition-colors duration-300">
+<body class="min-h-screen flex flex-col justify-between selection:bg-cyber-cyan selection:text-black">
 
-    <!-- 1. LOGIN MODAL -->
-    <div id="loginModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-md">
-        <div class="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl max-w-md w-full p-8 border border-slate-200 dark:border-slate-800 transition-all transform scale-100">
-            <div class="text-center mb-8">
-                <div class="w-16 h-16 bg-gradient-to-tr from-brand-600 to-accent-500 rounded-2xl flex items-center justify-center text-white mx-auto shadow-lg shadow-brand-500/30 mb-4">
-                    <i class="fa-solid fa-store text-2xl"></i>
-                </div>
-                <h1 class="text-2xl font-bold bg-gradient-to-r from-brand-600 to-accent-500 bg-clip-text text-transparent">pokieboii market</h1>
-                <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Sign in to your account</p>
+  <div id="app" class="flex-grow flex flex-col relative min-h-screen pb-16 md:pb-0">
+
+    <!-- Top Navigation Header (Visible when logged in) -->
+    <header id="mainHeader" class="hidden sticky top-0 z-40 glass-panel border-b border-cyber-cyan/20 px-4 py-3">
+      <div class="max-w-7xl mx-auto flex items-center justify-between">
+        
+        <!-- Logo & Title -->
+        <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('marketplace')">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyber-cyan to-cyber-magenta p-[2px] shadow-lg shadow-cyber-cyan/20">
+            <div class="w-full h-full bg-cyber-black rounded-[10px] flex items-center justify-center">
+              <i class="fa-solid fa-bolt text-cyber-cyan text-lg"></i>
             </div>
-
-            <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-4">
-                <div>
-                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">Gmail / Email Address</label>
-                    <div class="relative">
-                        <i class="fa-solid fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                        <input type="email" id="loginEmail" required placeholder="name@gmail.com" oninput="autoRecognizeUser(this.value)"
-                            class="w-full pl-11 pr-4 py-3 bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-brand-500 focus:outline-none dark:text-white transition-all">
-                    </div>
-                    <span id="recognizedBadge" class="hidden inline-flex items-center gap-1 text-xs text-accent-600 dark:text-accent-500 font-medium mt-1">
-                        <i class="fa-solid fa-circle-check"></i> Recognized Account (Password Auto-Verified)
-                    </span>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">Password</label>
-                    <div class="relative">
-                        <i class="fa-solid fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                        <input type="password" id="loginPassword" required placeholder="••••••••"
-                            class="w-full pl-11 pr-4 py-3 bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-brand-500 focus:outline-none dark:text-white transition-all">
-                    </div>
-                </div>
-
-                <div class="flex items-center justify-between text-xs text-slate-500">
-                    <label class="flex items-center gap-2 cursor-pointer">
-                        <input type="checkbox" id="rememberMe" checked class="rounded border-slate-300 text-brand-600 focus:ring-brand-500">
-                        <span>Remember Email & Auto-login</span>
-                    </label>
-                    <a href="#" onclick="showNotification('A password reset link was simulated to your email!', 'info')" class="text-brand-600 hover:underline">Forgot?</a>
-                </div>
-
-                <button type="submit" class="w-full py-3.5 px-4 bg-gradient-to-r from-brand-600 to-brand-700 hover:from-brand-500 hover:to-brand-600 text-white font-semibold rounded-xl shadow-lg shadow-brand-600/30 transition duration-200 flex items-center justify-center gap-2">
-                    <span>Continue to Market</span>
-                    <i class="fa-solid fa-arrow-right text-sm"></i>
-                </button>
-            </form>
-
-            <div class="mt-6 text-center text-xs text-slate-400">
-                <span>By continuing you accept Pokieboii Market terms</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- 2. WEBSITE DETAILS & AGREEMENT MODAL -->
-    <div id="termsModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-md">
-        <div class="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl max-w-lg w-full p-6 sm:p-8 border border-slate-200 dark:border-slate-800 space-y-6">
-            <div class="flex items-center gap-3 border-b border-slate-100 dark:border-slate-800 pb-4">
-                <div class="w-12 h-12 bg-amber-500/10 text-amber-600 dark:text-amber-400 rounded-2xl flex items-center justify-center text-xl">
-                    <i class="fa-solid fa-shield-halved"></i>
-                </div>
-                <div>
-                    <h2 class="text-xl font-bold dark:text-white">Welcome to Pokieboii Market</h2>
-                    <p class="text-xs text-slate-500">Please review market operation rules</p>
-                </div>
-            </div>
-
-            <div class="space-y-4 text-sm text-slate-600 dark:text-slate-300 max-h-60 overflow-y-auto pr-2">
-                <p class="font-medium text-slate-900 dark:text-white">What is Pokieboii Market?</p>
-                <p>Pokieboii Market is a direct ad and product promotion portal built for instant buyer-to-seller connection.</p>
-
-                <div class="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl border border-slate-100 dark:border-slate-800 space-y-2 text-xs">
-                    <div class="flex items-start gap-2">
-                        <i class="fa-solid fa-check text-accent-500 mt-0.5"></i>
-                        <span><strong>Sellers / Admins:</strong> Can instantly upload photos from device gallery or files, add price tags, contact numbers, and list items for sale.</span>
-                    </div>
-                    <div class="flex items-start gap-2">
-                        <i class="fa-solid fa-check text-accent-500 mt-0.5"></i>
-                        <span><strong>Customers:</strong> Browse verified ads, compare prices, and connect directly via instant Call or WhatsApp buttons.</span>
-                    </div>
-                    <div class="flex items-start gap-2">
-                        <i class="fa-solid fa-check text-accent-500 mt-0.5"></i>
-                        <span><strong>Real-time Updates:</strong> Uploaded items sync immediately across device sessions and browsers.</span>
-                    </div>
-                </div>
-
-                <p class="text-xs text-slate-400">Do you agree to proceed into Pokieboii Market under these community standards?</p>
-            </div>
-
-            <div class="flex gap-3 pt-2">
-                <button onclick="handleDisagreeTerms()" class="w-1/2 py-3 px-4 border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold rounded-xl transition">
-                    Disagree
-                </button>
-                <button onclick="handleAgreeTerms()" class="w-1/2 py-3 px-4 bg-gradient-to-r from-brand-600 to-accent-600 hover:from-brand-500 hover:to-accent-500 text-white font-semibold rounded-xl shadow-lg transition">
-                    Agree & Proceed
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- MAIN APPLICATION HEADER -->
-    <header class="sticky top-0 z-40 glass-panel border-b border-slate-200/80 dark:border-slate-800/80 transition-all">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16 gap-4">
-                <!-- Brand Title -->
-                <div class="flex items-center gap-3 cursor-pointer" onclick="switchTab('customer')">
-                    <div class="w-10 h-10 bg-gradient-to-tr from-brand-600 to-accent-500 rounded-xl flex items-center justify-center text-white shadow-md shadow-brand-500/20">
-                        <i class="fa-solid fa-store text-lg"></i>
-                    </div>
-                    <div>
-                        <span class="text-lg font-extrabold tracking-tight bg-gradient-to-r from-brand-600 via-brand-500 to-accent-500 bg-clip-text text-transparent">pokieboii market</span>
-                        <span class="hidden sm:inline-block text-[10px] uppercase font-bold tracking-wider ml-2 px-2 py-0.5 bg-brand-500/10 text-brand-600 dark:text-brand-400 rounded-full">Ads & Sales</span>
-                    </div>
-                </div>
-
-                <!-- Desktop Navigation Links -->
-                <nav class="hidden md:flex items-center gap-1 bg-slate-100 dark:bg-slate-900 p-1 rounded-2xl border border-slate-200/50 dark:border-slate-800/50">
-                    <button onclick="switchTab('customer')" id="nav-customer" class="nav-btn px-4 py-2 rounded-xl text-xs font-semibold transition flex items-center gap-2 text-brand-600 dark:text-brand-400 bg-white dark:bg-slate-800 shadow-sm">
-                        <i class="fa-solid fa-shop"></i>
-                        <span>Products</span>
-                    </button>
-                    <button onclick="switchTab('admin')" id="nav-admin" class="nav-btn px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition flex items-center gap-2">
-                        <i class="fa-solid fa-plus-circle"></i>
-                        <span>Admin / Seller Portal</span>
-                    </button>
-                    <button onclick="switchTab('ai')" id="nav-ai" class="nav-btn px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition flex items-center gap-2">
-                        <i class="fa-solid fa-robot"></i>
-                        <span>AI Assistant</span>
-                    </button>
-                    <button onclick="switchTab('messages')" id="nav-messages" class="nav-btn px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition flex items-center gap-2 relative">
-                        <i class="fa-solid fa-paper-plane"></i>
-                        <span>Messages</span>
-                        <span id="unreadBadge" class="w-2 h-2 rounded-full bg-accent-500 absolute top-2 right-2"></span>
-                    </button>
-                    <button onclick="switchTab('profile')" id="nav-profile" class="nav-btn px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition flex items-center gap-2">
-                        <i class="fa-solid fa-user"></i>
-                        <span>Profile</span>
-                    </button>
-                </nav>
-
-                <!-- Action Controls -->
-                <div class="flex items-center gap-2">
-                    <button onclick="toggleOptionsDrawer()" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition" title="Options & Settings">
-                        <i class="fa-solid fa-sliders"></i>
-                    </button>
-                    <div id="currentUserDisplay" class="hidden sm:flex items-center gap-2 pl-2 border-l border-slate-200 dark:border-slate-800">
-                        <img id="headerUserAvatar" src="https://placehold.co/100x100/0284c7/ffffff?text=U" class="w-8 h-8 rounded-full object-cover border border-brand-500">
-                        <div class="text-left text-xs leading-tight">
-                            <p id="headerUserName" class="font-bold text-slate-800 dark:text-white truncate max-w-[100px]">User</p>
-                            <span id="headerUserRole" class="text-[10px] text-slate-400 uppercase font-semibold">Customer</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          </div>
+          <div>
+            <h1 class="font-orbitron font-bold text-lg md:text-xl tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan via-white to-cyber-magenta">
+              POKIEBOII
+            </h1>
+            <p class="text-[10px] text-gray-400 font-mono tracking-widest uppercase -mt-1">Global Marketplace</p>
+          </div>
         </div>
 
-        <!-- Mobile Bottom Nav -->
-        <div class="md:hidden flex items-center justify-around bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 px-2 py-2 fixed bottom-0 left-0 right-0 z-40 shadow-lg">
-            <button onclick="switchTab('customer')" id="mnav-customer" class="flex flex-col items-center gap-1 text-[10px] font-medium text-brand-600 dark:text-brand-400">
-                <i class="fa-solid fa-shop text-lg"></i>
-                <span>Products</span>
-            </button>
-            <button onclick="switchTab('admin')" id="mnav-admin" class="flex flex-col items-center gap-1 text-[10px] font-medium text-slate-500 dark:text-slate-400">
-                <i class="fa-solid fa-cloud-arrow-up text-lg"></i>
-                <span>Seller/Admin</span>
-            </button>
-            <button onclick="switchTab('ai')" id="mnav-ai" class="flex flex-col items-center gap-1 text-[10px] font-medium text-slate-500 dark:text-slate-400">
-                <i class="fa-solid fa-robot text-lg"></i>
-                <span>AI Help</span>
-            </button>
-            <button onclick="switchTab('messages')" id="mnav-messages" class="flex flex-col items-center gap-1 text-[10px] font-medium text-slate-500 dark:text-slate-400">
-                <i class="fa-solid fa-paper-plane text-lg"></i>
-                <span>Chats</span>
-            </button>
-            <button onclick="switchTab('profile')" id="mnav-profile" class="flex flex-col items-center gap-1 text-[10px] font-medium text-slate-500 dark:text-slate-400">
-                <i class="fa-solid fa-user text-lg"></i>
-                <span>Profile</span>
-            </button>
+        <!-- Desktop Navigation Tabs -->
+        <nav class="hidden md:flex items-center space-x-1 bg-cyber-dark/80 p-1.5 rounded-2xl border border-white/10">
+          <button onclick="switchTab('marketplace')" id="nav-marketplace" class="px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 text-cyber-cyan bg-cyber-cyan/10 border border-cyber-cyan/30">
+            <i class="fa-solid fa-store mr-2"></i>Marketplace
+          </button>
+          <button onclick="switchTab('upload')" id="nav-upload" class="px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 text-gray-300 hover:text-white hover:bg-white/5">
+            <i class="fa-solid fa-plus-circle mr-2"></i>Sell / Upload
+          </button>
+          <button onclick="switchTab('chat')" id="nav-chat" class="px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 text-gray-300 hover:text-white hover:bg-white/5 relative">
+            <i class="fa-solid fa-comments mr-2"></i>Messages
+            <span id="chatBadge" class="hidden absolute -top-1 -right-1 w-3 h-3 bg-cyber-magenta rounded-full animate-ping"></span>
+          </button>
+          <button onclick="switchTab('ai')" id="nav-ai" class="px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 text-gray-300 hover:text-white hover:bg-white/5 text-cyber-gold">
+            <i class="fa-solid fa-robot mr-2 text-cyber-gold"></i>AI Helper
+          </button>
+        </nav>
+
+        <!-- Right User Actions & Controls -->
+        <div class="flex items-center space-x-3">
+          <!-- Role Switcher Badge -->
+          <div id="roleToggleBtn" onclick="toggleRole()" class="cursor-pointer px-3 py-1.5 rounded-full border border-cyber-cyan/40 bg-cyber-cyan/10 flex items-center space-x-2 text-xs font-semibold text-cyber-cyan hover:bg-cyber-cyan/20 transition-all">
+            <span class="w-2 h-2 rounded-full bg-cyber-cyan animate-pulse"></span>
+            <span id="currentRoleDisplay">Customer Mode</span>
+            <i class="fa-solid fa-arrows-rotate text-[10px] ml-1"></i>
+          </div>
+
+          <!-- Profile Avatar Button -->
+          <button onclick="switchTab('profile')" class="relative group p-0.5 rounded-full border-2 border-cyber-cyan/50 hover:border-cyber-magenta transition-colors">
+            <img id="headerUserAvatar" src="https://placehold.co/100x100/1e293b/00f3ff?text=User" alt="Avatar" class="w-8 h-8 rounded-full object-cover">
+          </button>
+
+          <!-- Drawer Menu Toggle -->
+          <button onclick="toggleDrawer()" class="p-2 rounded-xl border border-white/10 text-gray-300 hover:text-white hover:bg-white/10">
+            <i class="fa-solid fa-bars text-lg"></i>
+          </button>
         </div>
+      </div>
     </header>
 
-    <!-- MAIN CONTENT CONTAINER -->
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 pb-24 md:pb-8">
+    <main class="flex-grow max-w-7xl w-full mx-auto p-4 md:p-6">
 
-        <!-- 1. CUSTOMER / PRODUCTS INTERFACE TAB -->
-        <section id="tab-customer" class="space-y-6">
-            <!-- Hero Banner -->
-            <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-brand-900 via-brand-700 to-slate-900 p-6 sm:p-10 text-white shadow-xl">
-                <div class="relative z-10 max-w-xl space-y-3">
-                    <span class="inline-block px-3 py-1 bg-white/10 backdrop-blur-md text-brand-100 text-xs font-semibold rounded-full border border-white/10">
-                        ⚡ Direct Ads Marketplace
-                    </span>
-                    <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight">Find Products & Connect Directly With Sellers</h1>
-                    <p class="text-xs sm:text-sm text-slate-300">Browse live product uploads from verified sellers. Tap Call or WhatsApp to agree on prices and make instant purchases!</p>
-                </div>
-                <div class="absolute -right-10 -bottom-10 opacity-10 text-[200px] text-white pointer-events-none">
-                    <i class="fa-solid fa-bag-shopping"></i>
-                </div>
+      <!-- 1. AUTHENTICATION / LOGIN VIEW -->
+      <section id="view-auth" class="min-h-[80vh] flex items-center justify-center py-8">
+        <div class="w-full max-w-md glass-panel p-6 md:p-8 rounded-3xl border border-cyber-cyan/30 shadow-2xl relative overflow-hidden">
+          <!-- Cyber Ambient Background Effect -->
+          <div class="absolute -top-24 -left-24 w-48 h-48 bg-cyber-cyan/20 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="absolute -bottom-24 -right-24 w-48 h-48 bg-cyber-magenta/20 rounded-full blur-3xl pointer-events-none"></div>
+
+          <div class="text-center mb-8 relative">
+            <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-tr from-cyber-cyan via-cyber-purple to-cyber-magenta p-[2px] shadow-lg shadow-cyber-cyan/30">
+              <div class="w-full h-full bg-cyber-black rounded-[14px] flex items-center justify-center">
+                <i class="fa-solid fa-globe text-2xl text-cyber-cyan"></i>
+              </div>
+            </div>
+            <h2 class="font-orbitron text-2xl font-bold tracking-wide text-white">POKIEBOII MARKET</h2>
+            <p class="text-xs text-gray-400 mt-1">Cross-Platform Global Advertisement Portal</p>
+          </div>
+
+          <!-- Auth Tab Switcher -->
+          <div class="flex bg-cyber-dark/90 p-1 rounded-xl mb-6 border border-white/10">
+            <button id="authTabLogin" onclick="setAuthMode('login')" class="flex-1 py-2 text-xs font-semibold rounded-lg bg-cyber-cyan/20 text-cyber-cyan border border-cyber-cyan/30 transition-all">Sign In</button>
+            <button id="authTabRegister" onclick="setAuthMode('register')" class="flex-1 py-2 text-xs font-semibold rounded-lg text-gray-400 hover:text-white transition-all">Create Account</button>
+          </div>
+
+          <!-- Login/Register Form -->
+          <form id="authForm" onsubmit="handleAuthSubmit(event)" class="space-x-0 space-y-4">
+            <div>
+              <label class="block text-xs font-mono text-gray-400 mb-1">GMAIL / EMAIL ADDRESS</label>
+              <div class="relative">
+                <i class="fa-solid fa-envelope absolute left-3.5 top-3.5 text-gray-500 text-sm"></i>
+                <input type="email" id="authEmail" required placeholder="user@gmail.com" class="w-full bg-cyber-black/70 border border-white/15 rounded-xl py-2.5 pl-10 pr-4 text-sm text-white focus:outline-none focus:border-cyber-cyan transition-colors">
+              </div>
             </div>
 
-            <!-- Filter & Search Bar -->
-            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
-                <div class="relative w-full sm:w-80">
-                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-                    <input type="text" id="searchInput" oninput="renderCustomerProducts()" placeholder="Search products, phones, cars..."
-                        class="w-full pl-10 pr-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs sm:text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
-                </div>
-
-                <div class="flex items-center gap-2 w-full sm:w-auto overflow-x-auto hide-scrollbar">
-                    <button onclick="setCategoryFilter('All')" class="cat-filter active-cat px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition bg-brand-600 text-white">All Items</button>
-                    <button onclick="setCategoryFilter('Electronics')" class="cat-filter px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200">Electronics</button>
-                    <button onclick="setCategoryFilter('Fashion')" class="cat-filter px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200">Fashion</button>
-                    <button onclick="setCategoryFilter('Vehicles')" class="cat-filter px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200">Vehicles</button>
-                    <button onclick="setCategoryFilter('Home')" class="cat-filter px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200">Home & Living</button>
-                </div>
+            <div>
+              <label class="block text-xs font-mono text-gray-400 mb-1">PASSWORD</label>
+              <div class="relative">
+                <i class="fa-solid fa-key absolute left-3.5 top-3.5 text-gray-500 text-sm"></i>
+                <input type="password" id="authPassword" required minlength="6" placeholder="••••••••" class="w-full bg-cyber-black/70 border border-white/15 rounded-xl py-2.5 pl-10 pr-4 text-sm text-white focus:outline-none focus:border-cyber-cyan transition-colors">
+              </div>
             </div>
 
-            <!-- Products Grid Container -->
-            <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                <!-- Dynamically populated via JavaScript -->
+            <!-- Remember Me Checkbox -->
+            <div class="flex items-center justify-between text-xs text-gray-400 py-1">
+              <label class="flex items-center space-x-2 cursor-pointer">
+                <input type="checkbox" id="authRemember" checked class="rounded border-gray-700 bg-cyber-black text-cyber-cyan focus:ring-cyber-cyan">
+                <span>Remember Credentials</span>
+              </label>
+              <a href="#" onclick="alertModal('Password Reset', 'Password reset instructions have been sent to your registered Gmail address.')" class="text-cyber-cyan hover:underline">Forgot?</a>
             </div>
-        </section>
 
-        <!-- 2. ADMINISTRATOR / SELLER PORTAL TAB -->
-        <section id="tab-admin" class="hidden space-y-8">
-            <div class="bg-gradient-to-r from-slate-900 to-brand-950 p-6 sm:p-8 rounded-3xl text-white flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+            <button type="submit" id="authSubmitBtn" class="w-full py-3 rounded-xl bg-gradient-to-r from-cyber-cyan to-cyber-purple hover:from-cyber-cyan/80 hover:to-cyber-purple/80 text-black font-bold font-orbitron tracking-wider text-sm shadow-lg shadow-cyber-cyan/20 transition-all transform active:scale-95">
+              ENTER PLATFORM
+            </button>
+          </form>
+
+          <p class="text-[11px] text-center text-gray-500 mt-6">
+            Compatible with iOS, Android, macOS, Windows & Linux.
+          </p>
+        </div>
+      </section>
+
+      <!-- 2. TERMS & CONDITIONS INTERSTITIAL MODAL -->
+      <div id="modalTerms" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="glass-panel w-full max-w-2xl rounded-3xl p-6 border border-cyber-cyan/40 shadow-2xl max-h-[90vh] flex flex-col">
+          <div class="flex items-center justify-between border-b border-white/10 pb-4 mb-4">
+            <div class="flex items-center space-x-3">
+              <i class="fa-solid fa-file-contract text-cyber-cyan text-xl"></i>
+              <h3 class="font-orbitron font-bold text-lg text-white">TERMS OF SERVICE & AD AGREEMENT</h3>
+            </div>
+            <span class="text-xs font-mono text-cyber-magenta px-2.5 py-1 bg-cyber-magenta/10 rounded-full border border-cyber-magenta/30">Mandatory Review</span>
+          </div>
+
+          <div class="overflow-y-auto space-y-4 text-xs text-gray-300 pr-2 my-2 leading-relaxed">
+            <p><strong class="text-cyber-cyan">1. Global Public Advertisement Access:</strong> Pokieboii Market is an open, multi-user global platform built for individuals, vendors, and businesses. Content uploaded by any registered member will be immediately available for viewing by buyers worldwide.</p>
+            <p><strong class="text-cyber-cyan">2. Ad Content & Regulatory Compliance:</strong> You warrant that any items, electronics, vehicles, or services listed comply with local and international sales regulations. Misleading items or fraudulent listings are strictly prohibited and subject to account suspension.</p>
+            <p><strong class="text-cyber-cyan">3. Secure Communications:</strong> Buyers and sellers agree to transact respectfully. Direct WhatsApp messaging links and in-app chats provided by Pokieboii Market are maintained for seamless communication.</p>
+            <p><strong class="text-cyber-cyan">4. Device Compatibility & Storage:</strong> Pokieboii Market is fully optimized for cross-platform usage across desktop (Windows, macOS, Linux) and mobile OS (iOS, Android). Uploads are processed instantly with responsive media handling.</p>
+          </div>
+
+          <div class="pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <label class="flex items-center space-x-2 text-xs text-gray-400 cursor-pointer">
+              <input type="checkbox" id="acceptTermsCheckbox" onchange="toggleTermsAcceptance()" class="rounded border-gray-700 bg-cyber-black text-cyber-cyan">
+              <span>I have read and agree to all terms and platform disclosures.</span>
+            </label>
+            <button id="btnAgreeTerms" disabled onclick="confirmTerms()" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-gray-700 text-gray-400 font-bold font-orbitron text-xs transition-all cursor-not-allowed">
+              I AGREE & CONTINUE
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. ROLE SELECTION DASHBOARD OVERLAY / MODAL -->
+      <div id="modalRoleSelect" class="hidden fixed inset-0 z-40 bg-cyber-black/90 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="glass-panel w-full max-w-xl rounded-3xl p-6 md:p-8 border border-cyber-cyan/40 shadow-2xl text-center">
+          <h2 class="font-orbitron text-2xl font-bold text-white mb-2">CHOOSE YOUR PORTAL MODE</h2>
+          <p class="text-xs text-gray-400 mb-8">Select how you would like to interact with Pokieboii Market today. You can switch modes anytime from the top navigation header.</p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- Customer Role Option -->
+            <div onclick="selectInitialRole('customer')" class="glass-card p-6 rounded-2xl cursor-pointer hover:border-cyber-cyan group flex flex-col items-center justify-center text-center">
+              <div class="w-16 h-16 rounded-full bg-cyber-cyan/10 border border-cyber-cyan/30 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <i class="fa-solid fa-cart-shopping text-2xl text-cyber-cyan"></i>
+              </div>
+              <h3 class="font-orbitron font-bold text-base text-white mb-1">Customer / Buyer</h3>
+              <p class="text-[11px] text-gray-400">Browse global listings, contact sellers on WhatsApp, chat live, and save favorites.</p>
+            </div>
+
+            <!-- Seller Role Option -->
+            <div onclick="selectInitialRole('seller')" class="glass-card p-6 rounded-2xl cursor-pointer hover:border-cyber-magenta group flex flex-col items-center justify-center text-center">
+              <div class="w-16 h-16 rounded-full bg-cyber-magenta/10 border border-cyber-magenta/30 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <i class="fa-solid fa-store text-2xl text-cyber-magenta"></i>
+              </div>
+              <h3 class="font-orbitron font-bold text-base text-white mb-1">Seller / Advertiser</h3>
+              <p class="text-[11px] text-gray-400">Upload new advertisements from any device, manage active inventory, and connect with buyers.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. PUBLIC MARKETPLACE FEED VIEW -->
+      <section id="view-marketplace" class="hidden space-y-6">
+        
+        <!-- Hero Banner & Global Search Bar -->
+        <div class="glass-panel p-6 rounded-3xl border border-cyber-cyan/20 relative overflow-hidden">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 relative z-10">
+            <div>
+              <span class="text-[10px] font-mono tracking-widest text-cyber-cyan uppercase bg-cyber-cyan/10 px-2.5 py-1 rounded-full border border-cyber-cyan/30">Live Global Feed</span>
+              <h2 class="font-orbitron text-2xl md:text-3xl font-bold text-white mt-2">EXPLORE ADVERTISEMENTS</h2>
+              <p class="text-xs text-gray-400">Discover authentic products uploaded by users across all operating systems globally.</p>
+            </div>
+
+            <!-- Search Inputs -->
+            <div class="w-full md:w-96 flex items-center space-x-2">
+              <div class="relative flex-grow">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-gray-400 text-sm"></i>
+                <input type="text" id="searchInput" onkeyup="filterMarketplace()" placeholder="Search products, locations..." class="w-full bg-cyber-black/80 border border-white/15 rounded-xl py-2.5 pl-10 pr-4 text-xs text-white focus:outline-none focus:border-cyber-cyan">
+              </div>
+            </div>
+          </div>
+
+          <!-- Category Chips -->
+          <div class="flex items-center space-x-2 overflow-x-auto pb-1 mt-6 pt-2 text-xs font-medium border-t border-white/10 no-scrollbar">
+            <button onclick="filterCategory('All')" class="cat-chip px-3.5 py-1.5 rounded-xl bg-cyber-cyan/20 text-cyber-cyan border border-cyber-cyan/40 whitespace-nowrap">All Items</button>
+            <button onclick="filterCategory('Electronics')" class="cat-chip px-3.5 py-1.5 rounded-xl bg-cyber-dark text-gray-400 hover:text-white border border-white/10 whitespace-nowrap"><i class="fa-solid fa-laptop mr-1.5"></i>Electronics</button>
+            <button onclick="filterCategory('Vehicles')" class="cat-chip px-3.5 py-1.5 rounded-xl bg-cyber-dark text-gray-400 hover:text-white border border-white/10 whitespace-nowrap"><i class="fa-solid fa-car mr-1.5"></i>Vehicles</button>
+            <button onclick="filterCategory('Fashion')" class="cat-chip px-3.5 py-1.5 rounded-xl bg-cyber-dark text-gray-400 hover:text-white border border-white/10 whitespace-nowrap"><i class="fa-solid fa-shirt mr-1.5"></i>Fashion</button>
+            <button onclick="filterCategory('Real Estate')" class="cat-chip px-3.5 py-1.5 rounded-xl bg-cyber-dark text-gray-400 hover:text-white border border-white/10 whitespace-nowrap"><i class="fa-solid fa-house mr-1.5"></i>Real Estate</button>
+            <button onclick="filterCategory('General')" class="cat-chip px-3.5 py-1.5 rounded-xl bg-cyber-dark text-gray-400 hover:text-white border border-white/10 whitespace-nowrap"><i class="fa-solid fa-box mr-1.5"></i>General</button>
+          </div>
+        </div>
+
+        <!-- Marketplace Grid -->
+        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+          <!-- Dynamically Rendered Ads Will Appear Here -->
+        </div>
+
+        <!-- Empty State Fallback -->
+        <div id="emptyGridState" class="hidden text-center py-16 glass-panel rounded-3xl">
+          <i class="fa-solid fa-box-open text-4xl text-gray-600 mb-3"></i>
+          <h3 class="font-orbitron text-lg font-bold text-gray-300">No Listings Found</h3>
+          <p class="text-xs text-gray-500 max-w-sm mx-auto mt-1">Be the first advertiser to upload a product to the global marketplace!</p>
+          <button onclick="switchTab('upload')" class="mt-4 px-5 py-2.5 rounded-xl bg-cyber-cyan/20 text-cyber-cyan border border-cyber-cyan/40 text-xs font-bold font-orbitron">
+            <i class="fa-solid fa-plus mr-1.5"></i>Create Advert
+          </button>
+        </div>
+      </section>
+
+      <!-- 5. SELLER UPLOAD TAB & MANAGEMENT HUB -->
+      <section id="view-upload" class="hidden space-y-6">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          
+          <!-- Upload New Form -->
+          <div class="lg:col-span-2 glass-panel p-6 rounded-3xl border border-cyber-cyan/30">
+            <div class="flex items-center space-x-3 mb-6 pb-4 border-b border-white/10">
+              <div class="p-2.5 rounded-xl bg-cyber-magenta/20 text-cyber-magenta border border-cyber-magenta/30">
+                <i class="fa-solid fa-cloud-arrow-up text-lg"></i>
+              </div>
+              <div>
+                <h2 class="font-orbitron text-xl font-bold text-white">UPLOAD ADVERTISEMENT</h2>
+                <p class="text-xs text-gray-400">Post your item for all global buyers to see immediately.</p>
+              </div>
+            </div>
+
+            <form onsubmit="handleProductUpload(event)" class="space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                    <h2 class="text-2xl font-bold">Administrator & Seller Upload Portal</h2>
-                    <p class="text-xs sm:text-sm text-slate-300 mt-1">Upload products directly from your device gallery. Details are immediately published to the market!</p>
+                  <label class="block text-xs font-mono text-gray-400 mb-1">PRODUCT TITLE *</label>
+                  <input type="text" id="uploadTitle" required placeholder="e.g. iPhone 15 Pro Max 256GB" class="w-full bg-cyber-black/80 border border-white/15 rounded-xl py-2.5 px-3.5 text-xs text-white focus:outline-none focus:border-cyber-cyan">
                 </div>
-                <span class="px-3 py-1 bg-accent-500/20 text-accent-400 border border-accent-500/30 rounded-full text-xs font-semibold flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-accent-500 animate-pulse"></span> Live Publisher Connected
-                </span>
+                <div>
+                  <label class="block text-xs font-mono text-gray-400 mb-1">CATEGORY *</label>
+                  <select id="uploadCategory" required class="w-full bg-cyber-black/80 border border-white/15 rounded-xl py-2.5 px-3.5 text-xs text-white focus:outline-none focus:border-cyber-cyan">
+                    <option value="Electronics">Electronics</option>
+                    <option value="Vehicles">Vehicles</option>
+                    <option value="Fashion">Fashion</option>
+                    <option value="Real Estate">Real Estate</option>
+                    <option value="General">General</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-mono text-gray-400 mb-1">PRICE ($ USD) *</label>
+                  <input type="number" id="uploadPrice" step="0.01" required placeholder="250.00" class="w-full bg-cyber-black/80 border border-white/15 rounded-xl py-2.5 px-3.5 text-xs text-white focus:outline-none focus:border-cyber-cyan">
+                </div>
+                <div>
+                  <label class="block text-xs font-mono text-gray-400 mb-1">LOCATION / CITY *</label>
+                  <input type="text" id="uploadLocation" required placeholder="e.g. Harare, Zimbabwe / London, UK" class="w-full bg-cyber-black/80 border border-white/15 rounded-xl py-2.5 px-3.5 text-xs text-white focus:outline-none focus:border-cyber-cyan">
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-mono text-gray-400 mb-1">WHATSAPP CONTACT PHONE NUMBER *</label>
+                <input type="tel" id="uploadPhone" required placeholder="+263771234567" class="w-full bg-cyber-black/80 border border-white/15 rounded-xl py-2.5 px-3.5 text-xs text-white focus:outline-none focus:border-cyber-cyan">
+                <p class="text-[10px] text-gray-500 mt-1">Include country code so buyers can click to message you directly on WhatsApp.</p>
+              </div>
+
+              <!-- Cross-OS Native Media Picker -->
+              <div>
+                <label class="block text-xs font-mono text-gray-400 mb-1">PRODUCT PHOTO (UPLOAD FROM PHONE/PC) *</label>
+                <div onclick="document.getElementById('productFileInput').click()" class="border-2 border-dashed border-cyber-cyan/40 hover:border-cyber-cyan bg-cyber-black/40 rounded-2xl p-6 text-center cursor-pointer transition-all">
+                  <input type="file" id="productFileInput" accept="image/*" onchange="previewProductImage(event)" class="hidden">
+                  <div id="uploadImagePreviewContainer" class="hidden mb-3">
+                    <img id="uploadImagePreview" src="" alt="Preview" class="max-h-48 mx-auto rounded-xl border border-cyber-cyan/40 object-cover">
+                  </div>
+                  <div id="uploadImagePlaceholder">
+                    <i class="fa-solid fa-image text-3xl text-cyber-cyan mb-2"></i>
+                    <p class="text-xs font-semibold text-gray-300">Click or Tap to Choose Photo</p>
+                    <p class="text-[10px] text-gray-500">Supports iOS Gallery, Android Files, Windows, Linux & Mac</p>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex items-center justify-between mb-1">
+                  <label class="block text-xs font-mono text-gray-400">PRODUCT DESCRIPTION *</label>
+                  <button type="button" onclick="generateAIDescription()" class="text-[10px] text-cyber-gold hover:underline flex items-center">
+                    <i class="fa-solid fa-wand-magic-sparkles mr-1"></i>Auto-Write with AI
+                  </button>
+                </div>
+                <textarea id="uploadDescription" rows="4" required placeholder="Describe condition, specifications, delivery terms..." class="w-full bg-cyber-black/80 border border-white/15 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-cyber-cyan"></textarea>
+              </div>
+
+              <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-cyber-magenta via-cyber-purple to-cyber-cyan text-white font-bold font-orbitron tracking-wider text-xs shadow-lg shadow-cyber-magenta/20 hover:opacity-90 transition-all">
+                PUBLISH TO GLOBAL MARKETPLACE
+              </button>
+            </form>
+          </div>
+
+          <!-- My Active Listings Column -->
+          <div class="glass-panel p-6 rounded-3xl border border-white/10 flex flex-col h-full">
+            <div class="flex items-center justify-between pb-4 mb-4 border-b border-white/10">
+              <h3 class="font-orbitron font-bold text-sm text-white">MY ACTIVE ADVERTS</h3>
+              <span id="myAdCount" class="text-xs font-mono px-2 py-0.5 rounded bg-cyber-cyan/20 text-cyber-cyan border border-cyber-cyan/30">0</span>
             </div>
-
-            <!-- Product Upload Form Card -->
-            <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-xl">
-                <h3 class="text-lg font-bold dark:text-white mb-6 flex items-center gap-2">
-                    <i class="fa-solid fa-cloud-arrow-up text-brand-500"></i>
-                    <span>Upload New Product / Ad</span>
-                </h3>
-
-                <form id="productUploadForm" onsubmit="handleProductSubmit(event)" class="space-y-6">
-                    <!-- Gallery File Picker Section -->
-                    <div class="space-y-2">
-                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                            Product Picture (Select from phone gallery / laptop files)
-                        </label>
-                        <div class="relative border-2 border-dashed border-slate-300 dark:border-slate-700 rounded-2xl p-6 text-center hover:border-brand-500 transition-colors bg-slate-50/50 dark:bg-slate-800/30">
-                            <input type="file" id="productImageInput" accept="image/*" onchange="previewProductImage(event)" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
-                            <div id="imagePreviewContainer" class="hidden flex-col items-center">
-                                <img id="imagePreview" src="#" alt="Preview" class="max-h-48 rounded-xl object-contain shadow-md mb-3">
-                                <span class="text-xs text-brand-600 font-semibold cursor-pointer">Click to change picture</span>
-                            </div>
-                            <div id="imagePlaceholder" class="space-y-2">
-                                <div class="w-12 h-12 bg-brand-50 dark:bg-slate-800 text-brand-600 rounded-full flex items-center justify-center mx-auto text-xl">
-                                    <i class="fa-solid fa-image"></i>
-                                </div>
-                                <p class="text-xs text-slate-600 dark:text-slate-300 font-medium">Tap to browse Gallery or File Manager</p>
-                                <p class="text-[10px] text-slate-400">Supports PNG, JPG, WEBP formats</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Input Fields Grid -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1">Product Title</label>
-                            <input type="text" id="prodTitle" required placeholder="e.g. iPhone 13 Pro Max - 256GB"
-                                class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1">Category</label>
-                            <select id="prodCategory" required class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
-                                <option value="Electronics">Electronics</option>
-                                <option value="Fashion">Fashion</option>
-                                <option value="Vehicles">Vehicles</option>
-                                <option value="Home">Home & Living</option>
-                                <option value="Other">Other</option>
-                            </select>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1">Price ($ USD or Local)</label>
-                            <input type="number" id="prodPrice" step="0.01" required placeholder="e.g. 450"
-                                class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1">Contact Phone Number (Calls/WhatsApp)</label>
-                            <input type="tel" id="prodPhone" required placeholder="e.g. +263771234567"
-                                class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1">Seller Email Address</label>
-                        <input type="email" id="prodEmail" required placeholder="seller@gmail.com"
-                            class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1">Product Description & Specs</label>
-                        <textarea id="prodDesc" rows="3" placeholder="Specify condition, location, warranty..."
-                            class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none"></textarea>
-                    </div>
-
-                    <button type="submit" class="w-full py-4 px-6 bg-gradient-to-r from-accent-600 to-brand-600 hover:from-accent-500 hover:to-brand-500 text-white font-bold rounded-2xl shadow-lg transition-all flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-paper-plane"></i>
-                        <span>Save & Instant Publish Product</span>
-                    </button>
-                </form>
+            <div id="myAdsContainer" class="flex-grow space-y-3 overflow-y-auto max-h-[500px] pr-1">
+              <!-- Dynamically Populated User Ads -->
             </div>
+          </div>
 
-            <!-- Section: Previous Uploads & Details -->
-            <div class="space-y-4">
-                <h3 class="text-lg font-bold dark:text-white flex items-center gap-2">
-                    <i class="fa-solid fa-list-check text-brand-500"></i>
-                    <span>Your Previous Uploads & Listed Ads</span>
-                </h3>
-                <div id="adminUploadsList" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <!-- Populated dynamically -->
-                </div>
+        </div>
+      </section>
+
+      <!-- 6. ADVANCED USER PROFILE VIEW (WhatsApp Style) -->
+      <section id="view-profile" class="hidden max-w-2xl mx-auto glass-panel p-6 md:p-8 rounded-3xl border border-cyber-cyan/30">
+        <div class="text-center pb-6 border-b border-white/10 relative">
+          <!-- Profile Picture Editor -->
+          <div class="relative w-28 h-28 mx-auto mb-4 group">
+            <img id="profileAvatarImg" src="https://placehold.co/150x150/1e293b/00f3ff?text=User" alt="Profile Avatar" class="w-28 h-28 rounded-full object-cover border-4 border-cyber-cyan/50 shadow-lg shadow-cyber-cyan/20">
+            <label for="profileAvatarInput" class="absolute bottom-0 right-0 p-2.5 bg-cyber-magenta hover:bg-cyber-magenta/80 text-white rounded-full cursor-pointer shadow-md transition-all">
+              <i class="fa-solid fa-camera text-xs"></i>
+              <input type="file" id="profileAvatarInput" accept="image/*" onchange="updateProfileAvatar(event)" class="hidden">
+            </label>
+          </div>
+
+          <h2 id="profileDisplayName" class="font-orbitron text-xl font-bold text-white">User</h2>
+          <p id="profileEmailBadge" class="text-xs text-cyber-cyan font-mono mt-1">user@gmail.com</p>
+          <span class="inline-block mt-2 px-3 py-1 bg-cyber-green/10 text-cyber-green border border-cyber-green/30 rounded-full text-[10px] font-mono">VERIFIED ACCOUNT</span>
+        </div>
+
+        <form onsubmit="handleProfileUpdate(event)" class="mt-6 space-y-4">
+          <div>
+            <label class="block text-xs font-mono text-gray-400 mb-1">DISPLAY / SELLER NAME</label>
+            <input type="text" id="profileNameInput" required class="w-full bg-cyber-black/80 border border-white/15 rounded-xl py-2.5 px-3.5 text-xs text-white focus:outline-none focus:border-cyber-cyan">
+          </div>
+
+          <div>
+            <label class="block text-xs font-mono text-gray-400 mb-1">CONTACT PHONE (WHATSAPP)</label>
+            <input type="tel" id="profilePhoneInput" placeholder="+263771234567" class="w-full bg-cyber-black/80 border border-white/15 rounded-xl py-2.5 px-3.5 text-xs text-white focus:outline-none focus:border-cyber-cyan">
+          </div>
+
+          <div>
+            <label class="block text-xs font-mono text-gray-400 mb-1">SELLER BIO / DISCLOSURE</label>
+            <textarea id="profileBioInput" rows="3" placeholder="Tell buyers about yourself or business..." class="w-full bg-cyber-black/80 border border-white/15 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-cyber-cyan"></textarea>
+          </div>
+
+          <button type="submit" class="w-full py-3 rounded-xl bg-cyber-cyan text-black font-bold font-orbitron text-xs hover:bg-cyber-cyan/90 transition-all shadow-lg shadow-cyber-cyan/20">
+            SAVE PROFILE CHANGES
+          </button>
+        </form>
+      </section>
+
+      <!-- 7. PRIVATE MESSAGING (CHAT TAB) -->
+      <section id="view-chat" class="hidden glass-panel rounded-3xl border border-cyber-cyan/30 overflow-hidden h-[75vh] flex flex-col md:flex-row">
+        <!-- Contacts List Sidebar -->
+        <div class="w-full md:w-80 border-b md:border-b-0 md:border-r border-white/10 p-4 flex flex-col bg-cyber-black/40">
+          <h3 class="font-orbitron font-bold text-sm text-white mb-3">MESSAGES</h3>
+          <div id="chatContactsList" class="flex-grow space-y-2 overflow-y-auto">
+            <!-- Active Conversations Populated Here -->
+          </div>
+        </div>
+
+        <!-- Chat Message Thread -->
+        <div class="flex-grow flex flex-col h-full bg-cyber-dark/60">
+          <div id="chatThreadHeader" class="p-4 border-b border-white/10 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+              <div class="w-9 h-9 rounded-full bg-cyber-cyan/20 border border-cyber-cyan/40 flex items-center justify-center text-cyber-cyan font-bold text-xs" id="chatHeaderInitial">
+                P
+              </div>
+              <div>
+                <h4 id="chatThreadTitle" class="font-orbitron text-xs font-bold text-white">Select a contact</h4>
+                <p id="chatThreadSub" class="text-[10px] text-gray-400">Private encrypted conversation</p>
+              </div>
             </div>
-        </section>
+          </div>
 
-        <!-- 3. AI ASSISTANT TAB -->
-        <section id="tab-ai" class="hidden space-y-6">
-            <div class="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xl overflow-hidden flex flex-col h-[650px]">
-                <!-- Chat Header -->
-                <div class="p-4 bg-gradient-to-r from-brand-600 to-accent-600 text-white flex items-center justify-between">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center text-lg backdrop-blur-sm">
-                            <i class="fa-solid fa-robot"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-sm">Pokieboii Market AI Assistant</h3>
-                            <p class="text-[11px] text-white/80">Ask about pricing, ad tips, or safety guidelines</p>
-                        </div>
-                    </div>
-                    <span class="px-2.5 py-1 bg-white/20 text-white text-[10px] rounded-full font-semibold">Online 24/7</span>
-                </div>
+          <div id="chatMessagesBox" class="flex-grow p-4 overflow-y-auto space-y-3">
+            <div class="text-center text-xs text-gray-500 py-10">Select an ad or contact from marketplace to start messaging directly.</div>
+          </div>
 
-                <!-- Chat History Messages -->
-                <div id="aiChatHistory" class="flex-grow p-4 sm:p-6 overflow-y-auto space-y-4 bg-slate-50/50 dark:bg-slate-950/50">
-                    <div class="flex items-start gap-3">
-                        <div class="w-8 h-8 rounded-full bg-brand-600 text-white flex items-center justify-center text-xs shrink-0">
-                            <i class="fa-solid fa-robot"></i>
-                        </div>
-                        <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl rounded-tl-none border border-slate-200/80 dark:border-slate-700 shadow-sm max-w-[85%] text-xs sm:text-sm text-slate-700 dark:text-slate-200 space-y-2">
-                            <p>Hello! 👋 Welcome to <strong>Pokieboii Market</strong>. How can I help you today?</p>
-                            <p class="text-xs text-slate-400">You can ask me how to post an ad, contact sellers via WhatsApp, or get market advice!</p>
-                        </div>
-                    </div>
-                </div>
+          <!-- Message Input Bar -->
+          <form onsubmit="handleSendChatMessage(event)" class="p-3 border-t border-white/10 flex items-center space-x-2 bg-cyber-black/60">
+            <input type="text" id="chatInput" placeholder="Type your message..." class="flex-grow bg-cyber-black border border-white/15 rounded-xl py-2 px-3.5 text-xs text-white focus:outline-none focus:border-cyber-cyan">
+            <button type="submit" class="p-2.5 bg-cyber-cyan text-black rounded-xl hover:bg-cyber-cyan/80 transition-all font-bold">
+              <i class="fa-solid fa-paper-plane text-xs"></i>
+            </button>
+          </form>
+        </div>
+      </section>
 
-                <!-- Chat Input Controls -->
-                <form onsubmit="handleAiSendMessage(event)" class="p-4 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 flex gap-2">
-                    <input type="text" id="aiInputPrompt" placeholder="Ask AI Assistant anything..."
-                        class="flex-grow px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs sm:text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
-                    <button type="submit" class="px-5 bg-brand-600 hover:bg-brand-500 text-white rounded-xl font-semibold transition flex items-center justify-center">
-                        <i class="fa-solid fa-paper-plane"></i>
-                    </button>
-                </form>
-            </div>
-        </section>
+      <!-- 8. AI MARKETPLACE ASSISTANT VIEW -->
+      <section id="view-ai" class="hidden max-w-3xl mx-auto glass-panel p-6 rounded-3xl border border-cyber-gold/30 flex flex-col h-[75vh]">
+        <div class="flex items-center space-x-3 pb-4 border-b border-white/10">
+          <div class="p-2.5 rounded-xl bg-cyber-gold/20 text-cyber-gold border border-cyber-gold/40">
+            <i class="fa-solid fa-robot text-xl"></i>
+          </div>
+          <div>
+            <h2 class="font-orbitron text-lg font-bold text-white">POKIEBOII AI ASSISTANT</h2>
+            <p class="text-xs text-gray-400">Powered by Gemini AI • Market Research, Pricing & Copywriting Helper</p>
+          </div>
+        </div>
 
-        <!-- 4. PRIVATE MESSAGES TAB -->
-        <section id="tab-messages" class="hidden space-y-6">
-            <div class="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xl overflow-hidden grid grid-cols-1 md:grid-cols-3 h-[600px]">
-                <!-- Contacts / Seller List -->
-                <div class="border-b md:border-b-0 md:border-r border-slate-200 dark:border-slate-800 flex flex-col bg-slate-50/50 dark:bg-slate-900/50">
-                    <div class="p-4 border-b border-slate-200 dark:border-slate-800">
-                        <h3 class="font-bold text-sm dark:text-white">Private Conversations</h3>
-                    </div>
-                    <div id="chatUsersList" class="flex-grow overflow-y-auto divide-y divide-slate-100 dark:divide-slate-800/60">
-                        <!-- Dynamic Contact Rows -->
-                    </div>
-                </div>
+        <div id="aiChatBox" class="flex-grow my-4 overflow-y-auto space-y-3 p-2">
+          <div class="glass-card p-3.5 rounded-2xl border-cyber-gold/20 text-xs text-gray-300 max-w-[85%]">
+            👋 Greetings! I am your Pokieboii Market AI assistant. I can help you research average market prices, draft captivating product titles/descriptions for sellers, or answer shopping queries. How can I assist you?
+          </div>
+        </div>
 
-                <!-- Active Chat Messages Window -->
-                <div class="md:col-span-2 flex flex-col h-full bg-white dark:bg-slate-900">
-                    <div id="activeChatHeader" class="p-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
-                        <div class="flex items-center gap-3">
-                            <div class="w-9 h-9 bg-brand-500/10 text-brand-600 dark:text-brand-400 rounded-full flex items-center justify-center font-bold text-sm">
-                                S
-                            </div>
-                            <div>
-                                <h4 id="activeChatName" class="font-bold text-xs sm:text-sm dark:text-white">Seller Support</h4>
-                                <span class="text-[10px] text-accent-500 font-semibold">Active in Market</span>
-                            </div>
-                        </div>
-                    </div>
+        <form onsubmit="handleAIChatSubmit(event)" class="flex items-center space-x-2 border-t border-white/10 pt-3">
+          <input type="text" id="aiInput" placeholder="Ask AI e.g. 'What is a good price to sell an iPhone 13 in 2026?'..." class="flex-grow bg-cyber-black/80 border border-white/15 rounded-xl py-2.5 px-4 text-xs text-white focus:outline-none focus:border-cyber-gold">
+          <button type="submit" class="px-5 py-2.5 bg-cyber-gold text-black rounded-xl font-orbitron font-bold text-xs hover:bg-cyber-gold/80 transition-all">
+            ASK AI
+          </button>
+        </form>
+      </section>
 
-                    <div id="chatMessagesArea" class="flex-grow p-4 overflow-y-auto space-y-3 bg-slate-50/30 dark:bg-slate-950/30">
-                        <!-- Messages dynamically rendered -->
-                    </div>
-
-                    <form onsubmit="handleSendPrivateMessage(event)" class="p-3 border-t border-slate-200 dark:border-slate-800 flex gap-2">
-                        <input type="text" id="privateMsgInput" placeholder="Type private message..." required
-                            class="flex-grow px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none">
-                        <button type="submit" class="px-4 py-2.5 bg-accent-600 hover:bg-accent-500 text-white rounded-xl text-xs font-semibold transition">
-                            Send
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </section>
-
-        <!-- 5. PROFILE TAB -->
-        <section id="tab-profile" class="hidden space-y-6">
-            <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-xl max-w-2xl mx-auto">
-                <div class="text-center pb-6 border-b border-slate-100 dark:border-slate-800">
-                    <div class="relative inline-block">
-                        <img id="profileAvatar" src="https://placehold.co/150x150/0284c7/ffffff?text=User" class="w-24 h-24 rounded-full object-cover border-4 border-brand-500 shadow-md">
-                        <label class="absolute bottom-0 right-0 bg-brand-600 hover:bg-brand-500 text-white p-2 rounded-full cursor-pointer shadow-md text-xs">
-                            <i class="fa-solid fa-camera"></i>
-                            <input type="file" accept="image/*" onchange="updateProfileAvatar(event)" class="hidden">
-                        </label>
-                    </div>
-                    <h2 id="profileDisplayName" class="text-xl font-bold dark:text-white mt-3">User Account</h2>
-                    <p id="profileDisplayEmail" class="text-xs text-slate-400">user@gmail.com</p>
-                </div>
-
-                <form onsubmit="saveProfileDetails(event)" class="space-y-4 pt-6">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1">Full Name</label>
-                            <input type="text" id="profFullName" value="Pokieboii User"
-                                class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1">Contact Number</label>
-                            <input type="tel" id="profPhone" value="+263771000000"
-                                class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none">
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1">Bio / Business Description</label>
-                        <textarea id="profBio" rows="3" placeholder="Verified seller on Pokieboii Market..."
-                            class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none"></textarea>
-                    </div>
-
-                    <button type="submit" class="w-full py-3.5 bg-brand-600 hover:bg-brand-500 text-white font-bold rounded-xl shadow-md transition">
-                        Update Profile
-                    </button>
-                </form>
-            </div>
-        </section>
     </main>
 
-    <!-- OPTIONS / SETTINGS DRAWER -->
-    <div id="optionsDrawer" class="fixed inset-0 z-50 hidden">
-        <div onclick="toggleOptionsDrawer()" class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"></div>
-        <div class="absolute right-0 top-0 bottom-0 max-w-sm w-full bg-white dark:bg-slate-900 p-6 shadow-2xl border-l border-slate-200 dark:border-slate-800 space-y-6 overflow-y-auto">
-            <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
-                <h3 class="font-bold text-lg dark:text-white">Options & Settings</h3>
-                <button onclick="toggleOptionsDrawer()" class="p-2 text-slate-400 hover:text-slate-600 dark:hover:text-white">
-                    <i class="fa-solid fa-xmark text-lg"></i>
-                </button>
-            </div>
-
-            <div class="space-y-4">
-                <!-- Theme Toggle -->
-                <div class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl">
-                    <div class="flex items-center gap-3">
-                        <i class="fa-solid fa-moon text-brand-500"></i>
-                        <span class="text-xs font-semibold dark:text-white">Dark Mode</span>
-                    </div>
-                    <button onclick="toggleTheme()" class="w-12 h-6 bg-slate-300 dark:bg-brand-600 rounded-full p-1 transition-colors relative">
-                        <div class="w-4 h-4 bg-white rounded-full transition-transform transform dark:translate-x-6"></div>
-                    </button>
-                </div>
-
-                <!-- Dynamic Switch Role -->
-                <div class="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl space-y-2">
-                    <label class="text-xs font-semibold text-slate-500 dark:text-slate-400">Current Role Mode</label>
-                    <div class="grid grid-cols-2 gap-2">
-                        <button onclick="setUserRole('Customer')" id="roleBtnCustomer" class="py-2 text-xs font-bold rounded-xl border border-brand-500 bg-brand-50 dark:bg-brand-900/30 text-brand-600 dark:text-brand-400">Customer</button>
-                        <button onclick="setUserRole('Admin')" id="roleBtnAdmin" class="py-2 text-xs font-bold rounded-xl border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300">Admin/Seller</button>
-                    </div>
-                </div>
-
-                <button onclick="resetData()" class="w-full py-3 bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 rounded-xl text-xs font-bold border border-red-200 dark:border-red-900 transition">
-                    Reset Local Market Database
-                </button>
-            </div>
+    <!-- Slide-Out Options Drawer -->
+    <div id="drawerOverlay" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm" onclick="toggleDrawer()"></div>
+    <div id="drawerPanel" class="fixed top-0 right-0 h-full w-80 z-50 glass-panel border-l border-cyber-cyan/30 translate-x-full transition-transform duration-300 p-6 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
+          <h3 class="font-orbitron font-bold text-sm text-white">PORTAL SETTINGS</h3>
+          <button onclick="toggleDrawer()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
         </div>
+
+        <div class="space-y-4 text-xs">
+          <button onclick="toggleRole(); toggleDrawer();" class="w-full text-left p-3 rounded-xl bg-white/5 hover:bg-white/10 flex items-center justify-between border border-white/10">
+            <span><i class="fa-solid fa-arrows-rotate mr-2 text-cyber-cyan"></i>Switch Operating Mode</span>
+            <span id="drawerRoleLabel" class="text-[10px] text-cyber-cyan font-mono">Customer</span>
+          </button>
+
+          <button onclick="clearPlatformData()" class="w-full text-left p-3 rounded-xl bg-white/5 hover:bg-white/10 flex items-center justify-between border border-white/10">
+            <span><i class="fa-solid fa-trash-can mr-2 text-cyber-magenta"></i>Reset App Cache</span>
+          </button>
+
+          <div class="p-3 rounded-xl bg-cyber-black/60 border border-white/10 space-y-2">
+            <span class="text-gray-400 font-mono text-[10px]">PLATFORM INFORMATION</span>
+            <p class="text-gray-300">Author: <strong class="text-white">Tinashe Chimugoti</strong></p>
+            <p class="text-gray-300">Version: <strong class="text-cyber-cyan">v3.0 Futuristic OS</strong></p>
+            <p class="text-gray-300">Compatibility: <span class="text-cyber-green">iOS, Android, Win, Linux, Mac</span></p>
+          </div>
+        </div>
+      </div>
+
+      <button onclick="handleLogout()" class="w-full py-3 rounded-xl bg-red-500/20 text-red-400 border border-red-500/30 font-orbitron font-bold text-xs hover:bg-red-500/30 transition-all">
+        <i class="fa-solid fa-right-from-bracket mr-2"></i>LOG OUT
+      </button>
     </div>
 
-    <!-- DYNAMIC COPYRIGHT FOOTER -->
-    <footer class="mt-auto bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-6 transition-colors">
-        <div class="max-w-7xl mx-auto px-4 text-center space-y-2">
-            <p class="text-xs font-semibold text-slate-500 dark:text-slate-400">
-                ©️ Made by Tinashe Chimugoti <span id="currentYear"></span>. All rights reserved.
-            </p>
-            <p class="text-[10px] text-slate-400">pokieboii market - Instant Direct Buyer & Seller Ads Platform</p>
-        </div>
+    <!-- Mobile Bottom Navigation Bar -->
+    <div id="mobileBottomNav" class="hidden md:hidden fixed bottom-0 inset-x-0 z-40 glass-panel border-t border-cyber-cyan/20 px-2 py-2 flex items-center justify-around text-[10px] font-mono">
+      <button onclick="switchTab('marketplace')" id="mob-marketplace" class="flex flex-col items-center text-cyber-cyan">
+        <i class="fa-solid fa-store text-base mb-0.5"></i>Market
+      </button>
+      <button onclick="switchTab('upload')" id="mob-upload" class="flex flex-col items-center text-gray-400">
+        <i class="fa-solid fa-plus-circle text-base mb-0.5"></i>Sell
+      </button>
+      <button onclick="switchTab('chat')" id="mob-chat" class="flex flex-col items-center text-gray-400">
+        <i class="fa-solid fa-comments text-base mb-0.5"></i>Chat
+      </button>
+      <button onclick="switchTab('ai')" id="mob-ai" class="flex flex-col items-center text-gray-400">
+        <i class="fa-solid fa-robot text-base mb-0.5"></i>AI
+      </button>
+      <button onclick="switchTab('profile')" id="mob-profile" class="flex flex-col items-center text-gray-400">
+        <i class="fa-solid fa-user text-base mb-0.5"></i>Profile
+      </button>
+    </div>
+
+    <!-- Global Footer -->
+    <footer class="glass-panel border-t border-white/10 py-4 text-center text-xs text-gray-500 mt-12">
+      <p>©️ Made by <strong class="text-cyber-cyan">Tinashe Chimugoti</strong> <span id="currentYear"></span> | Pokieboii Market. All rights reserved.</p>
     </footer>
 
-    <script>
-        // GLOBAL STATE & DATA MANAGEMENT
-        const DEFAULT_PRODUCTS = [
-            {
-                id: 'prod_1',
-                title: 'Samsung Galaxy S23 Ultra',
-                category: 'Electronics',
-                price: 850,
-                phone: '+263771234567',
-                email: 'seller@pokieboii.com',
-                desc: 'Brand new in box, Phantom Black, 512GB Storage. Includes fast charger.',
-                image: 'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&w=600&q=80',
-                date: 'Just now'
-            },
-            {
-                id: 'prod_2',
-                title: 'Nike Air Jordan 1 Retro',
-                category: 'Fashion',
-                price: 130,
-                phone: '+263779876543',
-                email: 'kicks@gmail.com',
-                desc: 'Authentic high-top sneakers, Size 42 (UK 8). Unworn in box.',
-                image: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=600&q=80',
-                date: '1 hour ago'
-            }
-        ];
+  </div>
 
-        let currentUser = {
-            email: '',
-            name: 'Market User',
-            phone: '+263770000000',
-            role: 'Customer', // 'Customer' or 'Admin'
-            avatar: 'https://placehold.co/100x100/0284c7/ffffff?text=U'
+  <script type="module">
+    // Firebase Modular CDN Imports
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import { getFirestore, collection, addDoc, onSnapshot, doc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+    // App Initialization State
+    const appId = typeof __app_id !== 'undefined' ? __app_id : 'pokieboii-market-app';
+    let firebaseConfig = null;
+    let app, auth, db;
+
+    try {
+      if (typeof __firebase_config !== 'undefined' && __firebase_config) {
+        firebaseConfig = JSON.parse(__firebase_config);
+        app = initializeApp(firebaseConfig);
+        auth = getAuth(app);
+        db = getFirestore(app);
+      }
+    } catch (e) {
+      console.log("Firebase initialized in local offline fallback mode");
+    }
+
+    // Application Global State
+    window.state = {
+      currentUser: null,
+      authMode: 'login',
+      role: 'customer', // 'customer' or 'seller'
+      activeTab: 'marketplace',
+      products: [],
+      chats: [],
+      activeChatContact: null,
+      termsAccepted: false,
+      selectedImageBase64: null,
+      profileAvatarBase64: null
+    };
+
+    // Default Seed Data for immediate testing across devices
+    const DEFAULT_PRODUCTS = [
+      {
+        id: 'seed-1',
+        title: 'Cyberpunk Neon Gaming Laptop RTX 4080',
+        category: 'Electronics',
+        price: '1850.00',
+        location: 'Harare, Zimbabwe',
+        phone: '+263771234567',
+        description: 'Brand new ultra-performance laptop with 32GB RAM, 1TB SSD, and RGB illuminated mechanical keyboard.',
+        image: 'https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&w=600&q=80',
+        sellerEmail: 'tinashe@pokieboii.com',
+        sellerName: 'Tinashe Chimugoti',
+        createdAt: Date.now()
+      },
+      {
+        id: 'seed-2',
+        title: 'Tesla Model S Plaid Futuristic Edition',
+        category: 'Vehicles',
+        price: '79000.00',
+        location: 'Johannesburg, SA',
+        phone: '+27821234567',
+        description: 'Mint condition electric vehicle with full self-driving package and custom matte black vinyl wrap.',
+        image: 'https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=600&q=80',
+        sellerEmail: 'auto.vendor@gmail.com',
+        sellerName: 'Global Autos',
+        createdAt: Date.now() - 3600000
+      }
+    ];
+
+    // Initialize App On Load
+    window.onload = function() {
+      // Dynamic Year Setter
+      document.getElementById('currentYear').innerText = new Date().getFullYear();
+
+      // Check Saved Credentials in persistent Storage
+      const savedUser = localStorage.getItem('pokieboii_saved_user');
+      if (savedUser) {
+        window.state.currentUser = JSON.parse(savedUser);
+        bootAuthenticatedUser();
+      } else {
+        switchView('auth');
+      }
+
+      // Load items from local storage if firestore absent
+      loadLocalProducts();
+      initFirestoreListener();
+    };
+
+    // Global Functions Attached to Window
+    window.setAuthMode = function(mode) {
+      window.state.authMode = mode;
+      const loginTab = document.getElementById('authTabLogin');
+      const regTab = document.getElementById('authTabRegister');
+      const btn = document.getElementById('authSubmitBtn');
+
+      if (mode === 'login') {
+        loginTab.className = "flex-1 py-2 text-xs font-semibold rounded-lg bg-cyber-cyan/20 text-cyber-cyan border border-cyber-cyan/30 transition-all";
+        regTab.className = "flex-1 py-2 text-xs font-semibold rounded-lg text-gray-400 hover:text-white transition-all";
+        btn.innerText = "ENTER PLATFORM";
+      } else {
+        regTab.className = "flex-1 py-2 text-xs font-semibold rounded-lg bg-cyber-cyan/20 text-cyber-cyan border border-cyber-cyan/30 transition-all";
+        loginTab.className = "flex-1 py-2 text-xs font-semibold rounded-lg text-gray-400 hover:text-white transition-all";
+        btn.innerText = "CREATE ACCOUNT";
+      }
+    };
+
+    window.handleAuthSubmit = async function(e) {
+      e.preventDefault();
+      const email = document.getElementById('authEmail').value.trim();
+      const password = document.getElementById('authPassword').value;
+      const remember = document.getElementById('authRemember').checked;
+
+      if (!email.includes('@') || password.length < 6) {
+        alert("Please enter a valid email address and password (min 6 characters).");
+        return;
+      }
+
+      // Standard user profile generation
+      const userData = {
+        email: email,
+        displayName: email.split('@')[0],
+        phone: '+263771234567',
+        bio: 'Official advertiser on Pokieboii Market platform.',
+        avatar: `https://placehold.co/150x150/121824/00f3ff?text=${email[0].toUpperCase()}`
+      };
+
+      if (remember) {
+        localStorage.setItem('pokieboii_saved_user', JSON.stringify(userData));
+      }
+
+      window.state.currentUser = userData;
+      bootAuthenticatedUser();
+    };
+
+    function bootAuthenticatedUser() {
+      // Hide Auth, Show Terms Modal
+      document.getElementById('view-auth').classList.add('hidden');
+      document.getElementById('modalTerms').classList.remove('hidden');
+      updateProfileUI();
+    }
+
+    window.toggleTermsAcceptance = function() {
+      const checkbox = document.getElementById('acceptTermsCheckbox');
+      const btn = document.getElementById('btnAgreeTerms');
+      if (checkbox.checked) {
+        btn.disabled = false;
+        btn.className = "w-full sm:w-auto px-6 py-2.5 rounded-xl bg-cyber-cyan text-black font-bold font-orbitron text-xs shadow-lg shadow-cyber-cyan/30 hover:bg-cyber-cyan/90 cursor-pointer transition-all";
+      } else {
+        btn.disabled = true;
+        btn.className = "w-full sm:w-auto px-6 py-2.5 rounded-xl bg-gray-700 text-gray-400 font-bold font-orbitron text-xs transition-all cursor-not-allowed";
+      }
+    };
+
+    window.confirmTerms = function() {
+      window.state.termsAccepted = true;
+      document.getElementById('modalTerms').classList.add('hidden');
+      document.getElementById('modalRoleSelect').classList.remove('hidden');
+    };
+
+    window.selectInitialRole = function(role) {
+      window.state.role = role;
+      document.getElementById('modalRoleSelect').classList.add('hidden');
+      document.getElementById('mainHeader').classList.remove('hidden');
+      document.getElementById('mobileBottomNav').classList.remove('hidden');
+      
+      updateRoleDisplay();
+      switchTab('marketplace');
+    };
+
+    window.toggleRole = function() {
+      window.state.role = window.state.role === 'customer' ? 'seller' : 'customer';
+      updateRoleDisplay();
+      if (window.state.role === 'seller' && window.state.activeTab !== 'upload') {
+        switchTab('upload');
+      } else if (window.state.role === 'customer' && window.state.activeTab !== 'marketplace') {
+        switchTab('marketplace');
+      }
+    };
+
+    function updateRoleDisplay() {
+      const isSeller = window.state.role === 'seller';
+      const label = isSeller ? 'Seller Mode' : 'Customer Mode';
+      document.getElementById('currentRoleDisplay').innerText = label;
+      document.getElementById('drawerRoleLabel').innerText = label;
+    }
+
+    // View & Navigation Tab Switcher
+    window.switchTab = function(tabName) {
+      window.state.activeTab = tabName;
+      const views = ['marketplace', 'upload', 'profile', 'chat', 'ai'];
+      
+      views.forEach(v => {
+        const el = document.getElementById(`view-${v}`);
+        if (el) el.classList.add('hidden');
+        
+        // Desktop nav highlighting
+        const navBtn = document.getElementById(`nav-${v}`);
+        if (navBtn) {
+          if (v === tabName) {
+            navBtn.className = "px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 text-cyber-cyan bg-cyber-cyan/10 border border-cyber-cyan/30";
+          } else {
+            navBtn.className = "px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 text-gray-300 hover:text-white hover:bg-white/5";
+          }
+        }
+
+        // Mobile nav highlighting
+        const mobBtn = document.getElementById(`mob-${v}`);
+        if (mobBtn) {
+          if (v === tabName) {
+            mobBtn.className = "flex flex-col items-center text-cyber-cyan font-bold";
+          } else {
+            mobBtn.className = "flex flex-col items-center text-gray-400";
+          }
+        }
+      });
+
+      const activeView = document.getElementById(`view-${tabName}`);
+      if (activeView) activeView.classList.remove('hidden');
+    };
+
+    // Product Upload Handler
+    window.previewProductImage = function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          window.state.selectedImageBase64 = evt.target.result;
+          document.getElementById('uploadImagePreview').src = evt.target.result;
+          document.getElementById('uploadImagePreviewContainer').classList.remove('hidden');
+          document.getElementById('uploadImagePlaceholder').classList.add('hidden');
+        };
+        reader.readAsDataURL(file);
+      }
+    };
+
+    window.handleProductUpload = async function(e) {
+      e.preventDefault();
+      const user = window.state.currentUser;
+      if (!user) return;
+
+      const title = document.getElementById('uploadTitle').value.trim();
+      const category = document.getElementById('uploadCategory').value;
+      const price = parseFloat(document.getElementById('uploadPrice').value).toFixed(2);
+      const location = document.getElementById('uploadLocation').value.trim();
+      const phone = document.getElementById('uploadPhone').value.trim();
+      const description = document.getElementById('uploadDescription').value.trim();
+      const image = window.state.selectedImageBase64 || 'https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=600&q=80';
+
+      const newProduct = {
+        id: 'prod-' + Date.now(),
+        title,
+        category,
+        price,
+        location,
+        phone,
+        description,
+        image,
+        sellerEmail: user.email,
+        sellerName: user.displayName || user.email.split('@')[0],
+        createdAt: Date.now()
+      };
+
+      if (db) {
+        try {
+          await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'products'), newProduct);
+        } catch(err) {
+          saveProductLocally(newProduct);
+        }
+      } else {
+        saveProductLocally(newProduct);
+      }
+
+      // Reset Form
+      e.target.reset();
+      document.getElementById('uploadImagePreviewContainer').classList.add('hidden');
+      document.getElementById('uploadImagePlaceholder').classList.remove('hidden');
+      window.state.selectedImageBase64 = null;
+
+      alertModal("Success!", "Your advertisement is live globally!");
+      switchTab('marketplace');
+    };
+
+    function saveProductLocally(prod) {
+      window.state.products.unshift(prod);
+      localStorage.setItem('pokieboii_products', JSON.stringify(window.state.products));
+      renderMarketplace();
+      renderMyAds();
+    }
+
+    function loadLocalProducts() {
+      const stored = localStorage.getItem('pokieboii_products');
+      if (stored) {
+        window.state.products = JSON.parse(stored);
+      } else {
+        window.state.products = [...DEFAULT_PRODUCTS];
+      }
+      renderMarketplace();
+      renderMyAds();
+    }
+
+    function initFirestoreListener() {
+      if (!db) return;
+      try {
+        const q = collection(db, 'artifacts', appId, 'public', 'data', 'products');
+        onSnapshot(q, (snapshot) => {
+          const list = [];
+          snapshot.forEach((doc) => {
+            list.push({ ...doc.data(), firestoreId: doc.id });
+          });
+          if (list.length > 0) {
+            window.state.products = list;
+            renderMarketplace();
+            renderMyAds();
+          }
+        }, (err) => console.log("Firestore stream fallback to local state"));
+      } catch(e) {}
+    }
+
+    // Render Global Marketplace Grid
+    function renderMarketplace(items = window.state.products) {
+      const grid = document.getElementById('productGrid');
+      const empty = document.getElementById('emptyGridState');
+
+      if (!grid) return;
+
+      if (items.length === 0) {
+        grid.innerHTML = '';
+        empty.classList.remove('hidden');
+        return;
+      }
+
+      empty.classList.add('hidden');
+      grid.innerHTML = items.map(item => `
+        <div class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between group">
+          <div>
+            <!-- Image & Price Tag -->
+            <div class="relative h-48 w-full overflow-hidden bg-cyber-black">
+              <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+              <span class="absolute top-3 right-3 px-3 py-1 bg-cyber-black/90 text-cyber-cyan font-orbitron font-bold text-xs rounded-full border border-cyber-cyan/40 backdrop-blur-md">
+                $${item.price}
+              </span>
+              <span class="absolute bottom-3 left-3 px-2.5 py-0.5 bg-cyber-dark/80 text-gray-300 text-[10px] rounded-md font-mono border border-white/10">
+                ${item.category}
+              </span>
+            </div>
+
+            <!-- Content -->
+            <div class="p-4">
+              <h3 class="font-orbitron font-bold text-sm text-white line-clamp-1 mb-1">${item.title}</h3>
+              <p class="text-xs text-gray-400 line-clamp-2 mb-3 leading-relaxed">${item.description}</p>
+              
+              <div class="flex items-center space-x-2 text-[11px] text-gray-400 mb-3">
+                <i class="fa-solid fa-location-dot text-cyber-magenta"></i>
+                <span class="truncate">${item.location}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Actions Footer -->
+          <div class="p-4 pt-0 border-t border-white/5 mt-auto flex items-center justify-between gap-2">
+            <a href="https://wa.me/${item.phone.replace(/[^0-9]/g, '')}?text=Hi,%20I'm%20interested%20in%20your%20advertisement:%20${encodeURIComponent(item.title)}" target="_blank" class="flex-1 py-2 rounded-xl bg-cyber-green/20 text-cyber-green border border-cyber-green/30 font-semibold text-center text-[11px] hover:bg-cyber-green/30 transition-all flex items-center justify-center space-x-1">
+              <i class="fa-brands fa-whatsapp text-sm"></i>
+              <span>WhatsApp</span>
+            </a>
+            
+            <button onclick="startPrivateChat('${item.sellerEmail}', '${item.title}')" class="flex-1 py-2 rounded-xl bg-cyber-cyan/20 text-cyber-cyan border border-cyber-cyan/30 font-semibold text-center text-[11px] hover:bg-cyber-cyan/30 transition-all flex items-center justify-center space-x-1">
+              <i class="fa-solid fa-comments text-sm"></i>
+              <span>Chat</span>
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderMyAds() {
+      const container = document.getElementById('myAdsContainer');
+      const countBadge = document.getElementById('myAdCount');
+      if (!container || !window.state.currentUser) return;
+
+      const myAds = window.state.products.filter(p => p.sellerEmail === window.state.currentUser.email);
+      countBadge.innerText = myAds.length;
+
+      if (myAds.length === 0) {
+        container.innerHTML = `<p class="text-xs text-gray-500 text-center py-8">You haven't uploaded any adverts yet.</p>`;
+        return;
+      }
+
+      container.innerHTML = myAds.map(item => `
+        <div class="p-3 rounded-xl bg-cyber-black/60 border border-white/10 flex items-center justify-between space-x-3">
+          <img src="${item.image}" class="w-12 h-12 rounded-lg object-cover">
+          <div class="flex-grow min-w-0">
+            <h4 class="text-xs font-bold text-white truncate">${item.title}</h4>
+            <p class="text-[10px] text-cyber-cyan font-mono">$${item.price}</p>
+          </div>
+          <button onclick="deleteProduct('${item.id}')" class="text-red-400 hover:text-red-300 p-2 text-xs">
+            <i class="fa-solid fa-trash-can"></i>
+          </button>
+        </div>
+      `).join('');
+    }
+
+    window.deleteProduct = async function(id) {
+      window.state.products = window.state.products.filter(p => p.id !== id);
+      localStorage.setItem('pokieboii_products', JSON.stringify(window.state.products));
+      renderMarketplace();
+      renderMyAds();
+    };
+
+    window.filterMarketplace = function() {
+      const query = document.getElementById('searchInput').value.toLowerCase();
+      const filtered = window.state.products.filter(p => 
+        p.title.toLowerCase().includes(query) || 
+        p.description.toLowerCase().includes(query) ||
+        p.location.toLowerCase().includes(query)
+      );
+      renderMarketplace(filtered);
+    };
+
+    window.filterCategory = function(cat) {
+      if (cat === 'All') {
+        renderMarketplace(window.state.products);
+      } else {
+        const filtered = window.state.products.filter(p => p.category === cat);
+        renderMarketplace(filtered);
+      }
+    };
+
+    // User Profile Management
+    function updateProfileUI() {
+      const u = window.state.currentUser;
+      if (!u) return;
+
+      document.getElementById('headerUserAvatar').src = u.avatar;
+      document.getElementById('profileAvatarImg').src = u.avatar;
+      document.getElementById('profileDisplayName').innerText = u.displayName || u.email;
+      document.getElementById('profileEmailBadge').innerText = u.email;
+      document.getElementById('profileNameInput').value = u.displayName || '';
+      document.getElementById('profilePhoneInput').value = u.phone || '';
+      document.getElementById('profileBioInput').value = u.bio || '';
+    }
+
+    window.updateProfileAvatar = function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          const img = evt.target.result;
+          window.state.currentUser.avatar = img;
+          document.getElementById('profileAvatarImg').src = img;
+          document.getElementById('headerUserAvatar').src = img;
+          localStorage.setItem('pokieboii_saved_user', JSON.stringify(window.state.currentUser));
+        };
+        reader.readAsDataURL(file);
+      }
+    };
+
+    window.handleProfileUpdate = function(e) {
+      e.preventDefault();
+      const u = window.state.currentUser;
+      u.displayName = document.getElementById('profileNameInput').value.trim();
+      u.phone = document.getElementById('profilePhoneInput').value.trim();
+      u.bio = document.getElementById('profileBioInput').value.trim();
+
+      localStorage.setItem('pokieboii_saved_user', JSON.stringify(u));
+      updateProfileUI();
+      alertModal("Profile Updated", "Your changes have been saved across your session.");
+    };
+
+    // Private Direct Messaging
+    window.startPrivateChat = function(sellerEmail, productTitle) {
+      window.state.activeChatContact = sellerEmail;
+      switchTab('chat');
+      document.getElementById('chatThreadTitle').innerText = sellerEmail;
+      document.getElementById('chatThreadSub').innerText = `Re: ${productTitle}`;
+      document.getElementById('chatHeaderInitial').innerText = sellerEmail[0].toUpperCase();
+      
+      const box = document.getElementById('chatMessagesBox');
+      box.innerHTML = `
+        <div class="glass-card p-3 rounded-2xl text-xs text-cyber-cyan max-w-[80%] my-2 border-cyber-cyan/30">
+          Inquiring about advertisement: <strong>${productTitle}</strong>
+        </div>
+      `;
+    };
+
+    window.handleSendChatMessage = function(e) {
+      e.preventDefault();
+      const input = document.getElementById('chatInput');
+      const text = input.value.trim();
+      if (!text) return;
+
+      const box = document.getElementById('chatMessagesBox');
+      box.innerHTML += `
+        <div class="flex justify-end my-1">
+          <div class="bg-cyber-cyan/20 border border-cyber-cyan/40 text-white p-3 rounded-2xl text-xs max-w-[80%]">
+            ${text}
+          </div>
+        </div>
+      `;
+      input.value = '';
+      box.scrollTop = box.scrollHeight;
+    };
+
+    // Gemini AI Assistant Integration
+    window.handleAIChatSubmit = async function(e) {
+      e.preventDefault();
+      const input = document.getElementById('aiInput');
+      const query = input.value.trim();
+      if (!query) return;
+
+      const box = document.getElementById('aiChatBox');
+      box.innerHTML += `
+        <div class="flex justify-end my-2">
+          <div class="bg-cyber-purple/20 border border-cyber-purple/40 text-white p-3.5 rounded-2xl text-xs max-w-[80%]">
+            ${query}
+          </div>
+        </div>
+      `;
+      input.value = '';
+      box.scrollTop = box.scrollHeight;
+
+      // Call Gemini API
+      try {
+        const apiKey = "";
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+        
+        const payload = {
+          contents: [{ parts: [{ text: query }] }],
+          systemInstruction: {
+            parts: [{ text: "You are the official AI Assistant for Pokieboii Market created by Tinashe Chimugoti. Provide helpful, concise advice regarding buying, selling, copy-writing product descriptions, or pricing items." }]
+          }
         };
 
-        let products = [];
-        let activeCategory = 'All';
-        let currentChatSeller = 'seller@pokieboii.com';
-
-        // INITIALIZATION ON PAGE LOAD
-        window.addEventListener('DOMContentLoaded', () => {
-            // Dynamic Copyright Year
-            document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-            // Load persisted state
-            loadInitialData();
-
-            // Setup custom event listener for real-time tab syncing
-            window.addEventListener('storage', (e) => {
-                if (e.key === 'pokieboii_products') {
-                    products = JSON.parse(e.newValue || '[]');
-                    renderCustomerProducts();
-                    renderAdminUploads();
-                }
-            });
+        const response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
         });
 
-        function loadInitialData() {
-            // Load products from localStorage or defaults
-            const storedProds = localStorage.getItem('pokieboii_products');
-            if (storedProds) {
-                products = JSON.parse(storedProds);
-            } else {
-                products = [...DEFAULT_PRODUCTS];
-                localStorage.setItem('pokieboii_products', JSON.stringify(products));
-            }
+        const result = await response.json();
+        const reply = result?.candidates?.[0]?.content?.parts?.[0]?.text || "I am currently optimizing my market algorithms. Please try again in a moment.";
 
-            // Check auto-login saved email
-            const savedEmail = localStorage.getItem('pokieboii_saved_email');
-            if (savedEmail) {
-                document.getElementById('loginEmail').value = savedEmail;
-                autoRecognizeUser(savedEmail);
-            }
-        }
+        box.innerHTML += `
+          <div class="glass-card p-3.5 rounded-2xl border-cyber-gold/20 text-xs text-gray-300 max-w-[85%] my-2">
+            🤖 ${reply}
+          </div>
+        `;
+        box.scrollTop = box.scrollHeight;
 
-        // AUTHENTICATION & ONBOARDING LOGIC
-        function autoRecognizeUser(email) {
-            const badge = document.getElementById('recognizedBadge');
-            const passInput = document.getElementById('loginPassword');
-            
-            if (email.includes('@') && email.length > 5) {
-                badge.classList.remove('hidden');
-                passInput.value = 'verif1337password'; // Auto-recognized simulated password
-            } else {
-                badge.classList.add('hidden');
-            }
-        }
+      } catch (err) {
+        box.innerHTML += `
+          <div class="glass-card p-3 rounded-2xl border-red-500/20 text-xs text-red-400 max-w-[85%] my-2">
+            AI Assistant error. Please check your connection.
+          </div>
+        `;
+      }
+    };
 
-        function handleLogin(e) {
-            e.preventDefault();
-            const email = document.getElementById('loginEmail').value;
-            const remember = document.getElementById('rememberMe').checked;
+    window.generateAIDescription = async function() {
+      const title = document.getElementById('uploadTitle').value;
+      if (!title) {
+        alert("Please enter a Product Title first.");
+        return;
+      }
 
-            if (remember) {
-                localStorage.setItem('pokieboii_saved_email', email);
-            }
+      const descBox = document.getElementById('uploadDescription');
+      descBox.value = "AI is drafting description...";
 
-            currentUser.email = email;
-            currentUser.name = email.split('@')[0];
-            currentUser.avatar = `https://placehold.co/100x100/0284c7/ffffff?text=${email.charAt(0).toUpperCase()}`;
-
-            // Update UI
-            document.getElementById('headerUserName').textContent = currentUser.name;
-            document.getElementById('headerUserAvatar').src = currentUser.avatar;
-            document.getElementById('profileDisplayName').textContent = currentUser.name;
-            document.getElementById('profileDisplayEmail').textContent = currentUser.email;
-
-            // Hide Login Modal & Show Terms Modal
-            document.getElementById('loginModal').classList.add('hidden');
-            document.getElementById('termsModal').classList.remove('hidden');
-        }
-
-        function handleAgreeTerms() {
-            document.getElementById('termsModal').classList.add('hidden');
-            renderCustomerProducts();
-            renderAdminUploads();
-            renderPrivateChatList();
-            showNotification('Welcome to Pokieboii Market!', 'success');
-        }
-
-        function handleDisagreeTerms() {
-            alert('You must accept the terms to enter Pokieboii Market.');
-        }
-
-        // NAVIGATION & TAB SWITCHING
-        function switchTab(tabId) {
-            const tabs = ['customer', 'admin', 'ai', 'messages', 'profile'];
-            tabs.forEach(t => {
-                document.getElementById(`tab-${t}`).classList.add('hidden');
-                const btn = document.getElementById(`nav-${t}`);
-                if (btn) {
-                    btn.className = 'nav-btn px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition flex items-center gap-2';
-                }
-            });
-
-            document.getElementById(`tab-${tabId}`).classList.remove('hidden');
-            const activeBtn = document.getElementById(`nav-${tabId}`);
-            if (activeBtn) {
-                activeBtn.className = 'nav-btn px-4 py-2 rounded-xl text-xs font-semibold transition flex items-center gap-2 text-brand-600 dark:text-brand-400 bg-white dark:bg-slate-800 shadow-sm';
-            }
-        }
-
-        // PRODUCT MANAGEMENT (ADMIN & CUSTOMER)
-        let selectedImageBase64 = 'https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=600&q=80';
-
-        function previewProductImage(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    selectedImageBase64 = e.target.result;
-                    document.getElementById('imagePreview').src = selectedImageBase64;
-                    document.getElementById('imagePreviewContainer').classList.remove('hidden');
-                    document.getElementById('imagePlaceholder').classList.add('hidden');
-                }
-                reader.readAsDataURL(file);
-            }
-        }
-
-        function handleProductSubmit(e) {
-            e.preventDefault();
-
-            const newProduct = {
-                id: 'prod_' + Date.now(),
-                title: document.getElementById('prodTitle').value,
-                category: document.getElementById('prodCategory').value,
-                price: parseFloat(document.getElementById('prodPrice').value),
-                phone: document.getElementById('prodPhone').value,
-                email: document.getElementById('prodEmail').value,
-                desc: document.getElementById('prodDesc').value,
-                image: selectedImageBase64,
-                date: 'Just now'
-            };
-
-            products.unshift(newProduct);
-            localStorage.setItem('pokieboii_products', JSON.stringify(products));
-
-            // Reset form
-            document.getElementById('productUploadForm').reset();
-            document.getElementById('imagePreviewContainer').classList.add('hidden');
-            document.getElementById('imagePlaceholder').classList.remove('hidden');
-
-            renderAdminUploads();
-            renderCustomerProducts();
-            showNotification('Product Published Instantly!', 'success');
-        }
-
-        function deleteProduct(prodId) {
-            products = products.filter(p => p.id !== prodId);
-            localStorage.setItem('pokieboii_products', JSON.stringify(products));
-            renderAdminUploads();
-            renderCustomerProducts();
-            showNotification('Product removed.', 'info');
-        }
-
-        // RENDERING FUNCTIONS
-        function renderCustomerProducts() {
-            const grid = document.getElementById('productsGrid');
-            const search = document.getElementById('searchInput').value.toLowerCase();
-
-            const filtered = products.filter(p => {
-                const matchesCat = activeCategory === 'All' || p.category === activeCategory;
-                const matchesSearch = p.title.toLowerCase().includes(search) || p.desc.toLowerCase().includes(search);
-                return matchesCat && matchesSearch;
-            });
-
-            if (filtered.length === 0) {
-                grid.innerHTML = `
-                    <div class="col-span-full text-center py-12 text-slate-400">
-                        <i class="fa-solid fa-box-open text-4xl mb-2"></i>
-                        <p class="text-sm">No products found matching your search.</p>
-                    </div>
-                `;
-                return;
-            }
-
-            grid.innerHTML = filtered.map(p => `
-                <div class="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-md hover:shadow-xl transition-all overflow-hidden flex flex-col">
-                    <div class="relative h-48 bg-slate-100 dark:bg-slate-800 overflow-hidden">
-                        <img src="${p.image}" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105" alt="${p.title}">
-                        <span class="absolute top-3 right-3 px-3 py-1 bg-slate-900/80 backdrop-blur-md text-white font-bold text-xs rounded-full">
-                            $${p.price}
-                        </span>
-                        <span class="absolute bottom-3 left-3 px-2.5 py-0.5 bg-brand-500/90 text-white font-semibold text-[10px] rounded-md">
-                            ${p.category}
-                        </span>
-                    </div>
-
-                    <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
-                        <div>
-                            <h3 class="font-bold text-base text-slate-800 dark:text-white line-clamp-1">${p.title}</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">${p.desc}</p>
-                        </div>
-
-                        <div class="pt-3 border-t border-slate-100 dark:border-slate-800 space-y-3">
-                            <div class="flex items-center justify-between text-[11px] text-slate-400">
-                                <span class="truncate max-w-[120px]"><i class="fa-solid fa-user-tag mr-1"></i>${p.email}</span>
-                                <span>${p.date}</span>
-                            </div>
-
-                            <div class="grid grid-cols-2 gap-2">
-                                <a href="tel:${p.phone}" class="py-2.5 px-3 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-white font-semibold text-xs rounded-xl text-center transition flex items-center justify-center gap-1.5">
-                                    <i class="fa-solid fa-phone text-brand-500"></i>
-                                    <span>Call</span>
-                                </a>
-                                <a href="https://wa.me/${p.phone.replace(/[^0-9]/g, '')}?text=Hi,%20I'm%20interested%20in%20your%20product%20'${encodeURIComponent(p.title)}'%20on%20Pokieboii%20Market." target="_blank" class="py-2.5 px-3 bg-accent-600 hover:bg-accent-500 text-white font-semibold text-xs rounded-xl text-center transition flex items-center justify-center gap-1.5">
-                                    <i class="fa-brands fa-whatsapp text-sm"></i>
-                                    <span>WhatsApp</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function renderAdminUploads() {
-            const container = document.getElementById('adminUploadsList');
-            if (products.length === 0) {
-                container.innerHTML = `<p class="text-xs text-slate-400">No previous uploads found.</p>`;
-                return;
-            }
-
-            container.innerHTML = products.map(p => `
-                <div class="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 flex items-center gap-4">
-                    <img src="${p.image}" class="w-16 h-16 rounded-xl object-cover border border-slate-200 dark:border-slate-700">
-                    <div class="flex-grow">
-                        <h4 class="font-bold text-xs sm:text-sm dark:text-white truncate">${p.title}</h4>
-                        <p class="text-xs text-brand-600 font-bold">$${p.price}</p>
-                        <p class="text-[10px] text-slate-400">${p.category} • ${p.phone}</p>
-                    </div>
-                    <button onclick="deleteProduct('${p.id}')" class="p-2 text-red-500 hover:bg-red-50 dark:hover:bg-red-950/30 rounded-lg transition" title="Delete">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
-                </div>
-            `).join('');
-        }
-
-        function setCategoryFilter(cat) {
-            activeCategory = cat;
-            document.querySelectorAll('.cat-filter').forEach(btn => {
-                if (btn.textContent.includes(cat)) {
-                    btn.className = 'cat-filter active-cat px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition bg-brand-600 text-white';
-                } else {
-                    btn.className = 'cat-filter px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200';
-                }
-            });
-            renderCustomerProducts();
-        }
-
-        // AI ASSISTANT INTELLIGENCE
-        function handleAiSendMessage(e) {
-            e.preventDefault();
-            const input = document.getElementById('aiInputPrompt');
-            const prompt = input.value.trim();
-            if (!prompt) return;
-
-            const chatHistory = document.getElementById('aiChatHistory');
-
-            // Render User Prompt
-            chatHistory.innerHTML += `
-                <div class="flex items-start gap-3 justify-end">
-                    <div class="bg-brand-600 text-white p-4 rounded-2xl rounded-tr-none max-w-[85%] text-xs sm:text-sm shadow-sm">
-                        ${prompt}
-                    </div>
-                </div>
-            `;
-
-            input.value = '';
-            chatHistory.scrollTop = chatHistory.scrollHeight;
-
-            // Generate Smart AI Reply
-            setTimeout(() => {
-                let reply = "Pokieboii Market allows sellers to upload ads instantly. Customers can contact sellers via Call or WhatsApp directly!";
-                const lower = prompt.toLowerCase();
-
-                if (lower.includes('post') || lower.includes('upload') || lower.includes('sell')) {
-                    reply = "To post a product, click on the **Admin / Seller Portal** tab in the top navigation bar. Select a photo from your gallery, fill in the price and contact details, then tap **Save & Instant Publish**!";
-                } else if (lower.includes('price') || lower.includes('buy')) {
-                    reply = "All prices on Pokieboii Market are listed directly on product cards. Tap 'Call' or 'WhatsApp' to negotiate or finalize payment directly with the seller!";
-                } else if (lower.includes('who') || lower.includes('creator')) {
-                    reply = "Pokieboii Market was created by Tinashe Chimugoti as a fast direct advertisement portal.";
-                }
-
-                chatHistory.innerHTML += `
-                    <div class="flex items-start gap-3">
-                        <div class="w-8 h-8 rounded-full bg-brand-600 text-white flex items-center justify-center text-xs shrink-0">
-                            <i class="fa-solid fa-robot"></i>
-                        </div>
-                        <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl rounded-tl-none border border-slate-200 dark:border-slate-700 shadow-sm max-w-[85%] text-xs sm:text-sm text-slate-700 dark:text-slate-200">
-                            ${reply}
-                        </div>
-                    </div>
-                `;
-                chatHistory.scrollTop = chatHistory.scrollHeight;
-            }, 600);
-        }
-
-        // PRIVATE MESSAGING LOGIC
-        const mockMessages = {
-            'seller@pokieboii.com': [
-                { sender: 'them', text: 'Hi! Welcome to Pokieboii Market support.' },
-                { sender: 'me', text: 'Hello, is my product visible to customers?' },
-                { sender: 'them', text: 'Yes, all uploads publish in real-time across devices!' }
-            ]
+      try {
+        const apiKey = "";
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+        const payload = {
+          contents: [{ parts: [{ text: `Write a short, engaging, professional seller advertisement description for: ${title}` }] }]
         };
 
-        function renderPrivateChatList() {
-            const list = document.getElementById('chatUsersList');
-            list.innerHTML = `
-                <div onclick="selectChatUser('seller@pokieboii.com')" class="p-3 bg-brand-50 dark:bg-brand-900/20 cursor-pointer flex items-center gap-3">
-                    <div class="w-8 h-8 rounded-full bg-brand-600 text-white flex items-center justify-center text-xs font-bold">
-                        P
-                    </div>
-                    <div class="overflow-hidden">
-                        <h5 class="text-xs font-bold dark:text-white truncate">Pokieboii Admin</h5>
-                        <p class="text-[10px] text-slate-400 truncate">Real-time sync verified</p>
-                    </div>
-                </div>
-            `;
-            renderChatArea();
+        const res = await fetch(apiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        const data = await res.json();
+        const generated = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+        if (generated) {
+          descBox.value = generated.trim();
+        } else {
+          descBox.value = "High quality product in excellent condition. Contact seller for immediate deal.";
         }
+      } catch(e) {
+        descBox.value = "Mint condition item ready for global shipment. Contact seller via WhatsApp or chat for details.";
+      }
+    };
 
-        function renderChatArea() {
-            const area = document.getElementById('chatMessagesArea');
-            const msgs = mockMessages[currentChatSeller] || [];
-            area.innerHTML = msgs.map(m => `
-                <div class="flex ${m.sender === 'me' ? 'justify-end' : 'justify-start'}">
-                    <div class="max-w-[75%] p-3 rounded-2xl text-xs ${m.sender === 'me' ? 'bg-brand-600 text-white rounded-tr-none' : 'bg-white dark:bg-slate-800 text-slate-800 dark:text-white rounded-tl-none border border-slate-200 dark:border-slate-700'}">
-                        ${m.text}
-                    </div>
-                </div>
-            `).join('');
-            area.scrollTop = area.scrollHeight;
-        }
+    // Global Modal & Drawer Controls
+    window.toggleDrawer = function() {
+      const panel = document.getElementById('drawerPanel');
+      const overlay = document.getElementById('drawerOverlay');
+      panel.classList.toggle('translate-x-full');
+      overlay.classList.toggle('hidden');
+    };
 
-        function handleSendPrivateMessage(e) {
-            e.preventDefault();
-            const input = document.getElementById('privateMsgInput');
-            const txt = input.value.trim();
-            if (!txt) return;
+    window.handleLogout = function() {
+      localStorage.removeItem('pokieboii_saved_user');
+      window.state.currentUser = null;
+      location.reload();
+    };
 
-            if (!mockMessages[currentChatSeller]) mockMessages[currentChatSeller] = [];
-            mockMessages[currentChatSeller].push({ sender: 'me', text: txt });
+    window.clearPlatformData = function() {
+      localStorage.clear();
+      alert("App data reset successfully.");
+      location.reload();
+    };
 
-            input.value = '';
-            renderChatArea();
-        }
-
-        // PROFILE & OPTIONS DRAWER
-        function updateProfileAvatar(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(evt) {
-                    document.getElementById('profileAvatar').src = evt.target.result;
-                    document.getElementById('headerUserAvatar').src = evt.target.result;
-                }
-                reader.readAsDataURL(file);
-            }
-        }
-
-        function saveProfileDetails(e) {
-            e.preventDefault();
-            currentUser.name = document.getElementById('profFullName').value;
-            currentUser.phone = document.getElementById('profPhone').value;
-            document.getElementById('headerUserName').textContent = currentUser.name;
-            showNotification('Profile updated successfully!', 'success');
-        }
-
-        function toggleOptionsDrawer() {
-            document.getElementById('optionsDrawer').classList.toggle('hidden');
-        }
-
-        function toggleTheme() {
-            document.documentElement.classList.toggle('dark');
-        }
-
-        function setUserRole(role) {
-            currentUser.role = role;
-            document.getElementById('headerUserRole').textContent = role;
-            if (role === 'Admin') {
-                switchTab('admin');
-            } else {
-                switchTab('customer');
-            }
-            toggleOptionsDrawer();
-        }
-
-        function resetData() {
-            localStorage.removeItem('pokieboii_products');
-            products = [...DEFAULT_PRODUCTS];
-            renderCustomerProducts();
-            renderAdminUploads();
-            toggleOptionsDrawer();
-            showNotification('Market data reset to default.', 'info');
-        }
-
-        function showNotification(msg, type = 'info') {
-            const toast = document.createElement('div');
-            toast.className = `fixed bottom-6 right-6 z-50 px-4 py-3 rounded-2xl shadow-xl text-xs font-bold text-white transition-all transform translate-y-0 ${type === 'success' ? 'bg-accent-600' : 'bg-brand-600'}`;
-            toast.textContent = msg;
-            document.body.appendChild(toast);
-            setTimeout(() => toast.remove(), 3000);
-        }
-    </script>
+    function alertModal(title, msg) {
+      alert(`${title}\n\n${msg}`);
+    }
+  </script>
 </body>
 </html>
